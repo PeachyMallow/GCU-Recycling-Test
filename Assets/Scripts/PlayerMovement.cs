@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // add option for using WASD or Arrow input 
-    [SerializeField]
-    private bool wasd;
-
-    [SerializeField]
-    private bool arrows;
+    private float hInput;
+    private float vInput;
+    private Vector3 moveDir;
 
     /// <summary>
     /// Adjusts player's top speed they can reach
@@ -28,9 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.D))
-        {
-            
-        }
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
+
+        moveDir = new Vector3(hInput, vInput, 0);
+        transform.Translate(moveDir * maxSpeed * Time.deltaTime);
     }
 }
