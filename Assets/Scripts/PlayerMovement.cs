@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // this method covers both WASD and arrow key input
     private float hInput;
     private float vInput;
     private Vector3 moveDir;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    // saves what has been set in the inspector as the speed to be used
     private float maxSpeed;
 
 
@@ -24,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
+    {
+        Movement();
+    }
+
+    private void Movement()
     {
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
