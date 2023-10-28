@@ -9,12 +9,16 @@ public class PlayerMovement : MonoBehaviour
     private float vInput;
     private Vector3 moveDir;
 
+
     /// <summary>
     /// Adjusts player's top speed they can reach
     /// </summary>
     [Header("Adjusts player's speed")]
     [SerializeField]
     private float speed;
+
+    [SerializeField]
+    private float lerpSpeed;
 
     // saves what has been set in the inspector as the speed to be used
     private float maxSpeed;
@@ -35,7 +39,11 @@ public class PlayerMovement : MonoBehaviour
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
 
-        moveDir = new Vector3(hInput, vInput, 0);
-        transform.Translate(moveDir * maxSpeed * Time.deltaTime);
+        moveDir = transform.position + new Vector3(hInput, vInput, 0) * maxSpeed;
+        transform.position = Vector3.Lerp(transform.position, moveDir, lerpSpeed);
+
+        //moveDir = new Vector3(hInput, vInput, 0);
+        //transform.Translate(moveDir * maxSpeed * Time.deltaTime);
+
     }
 }
