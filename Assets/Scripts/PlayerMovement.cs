@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody2D rb2d;
+
     // this method covers both WASD and arrow key input
     private float hInput;
     private float vInput;
-    private Vector3 moveDir;
+    private Vector2 moveDir;
 
 
     /// <summary>
@@ -17,19 +20,34 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    [SerializeField]
-    private float lerpSpeed;
-
     // saves what has been set in the inspector as the speed to be used
     private float maxSpeed;
 
+    [Header("Pick one to test different types of movement")]
+    [SerializeField]
+    private bool addForce = false;
+
+    [SerializeField]
+    private bool movePosition = false;
+
+    [SerializeField]
+    private bool vel = false;
+
+    [SerializeField]
+    private bool pTransform = false;
 
     private void Start()
     {
+        rb2d = GetComponent<Rigidbody2D>();
         maxSpeed = speed;
     }
 
     private void Update()
+    {
+        //Movement();
+    }
+
+    private void FixedUpdate()
     {
         Movement();
     }
@@ -39,11 +57,33 @@ public class PlayerMovement : MonoBehaviour
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
 
-        moveDir = transform.position + new Vector3(hInput, vInput, 0) * maxSpeed;
-        transform.position = Vector3.Lerp(transform.position, moveDir, lerpSpeed);
+        moveDir = new Vector2(hInput, vInput);
 
-        //moveDir = new Vector3(hInput, vInput, 0);
-        //transform.Translate(moveDir * maxSpeed * Time.deltaTime);
+        if (addForce)
+        {
+            Debug.Log("Using AddForce");
+            rb2d.AddForce(moveDir * maxSpeed);
+        }
 
+        if (movePosition)
+        {
+            Debug.Log("Using MovePosition");
+            rb2d.MovePosition(rb2d.position + moveDir * maxSpeed * Time.fixedDeltaTime);
+        }
+
+        if (vel)
+        {
+            Debug.Log("Using Velocity");
+            rb2d.velocity = moveDir * maxSpeed;
+        }
+
+        if (pTransform)
+        {
+            Debug.Log("Using Transform.Translate");
+            transform.Translate(moveDir * maxSpeed * Time.deltaTime);
+        }
+
+        // movement using transforms
+        //transform.position = Vector3.Lerp(transform.position, moveDir, lerpSpeed);
     }
 }
