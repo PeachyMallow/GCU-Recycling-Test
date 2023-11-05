@@ -15,8 +15,8 @@ public class Pickup : MonoBehaviour
     {
         numTrash = 0;
         recycledScore = 0;
-        trashScore.text = "Trash Collected : " + numTrash;
-        score.text = "Trash Recycled : " + recycledScore;
+        trashScore.text = "Rubbish Collected: " + numTrash;
+        score.text = "Rubbish Recycled: " + recycledScore;
     }
 
     private void OnTriggerEnter(Collider Trash)
@@ -25,7 +25,7 @@ public class Pickup : MonoBehaviour
         {
             numTrash++;
             Destroy(Trash.gameObject);
-            trashScore.text = "Trash Collected : " + numTrash;
+            trashScore.text = "Rubbish Collected: " + numTrash;
         }
     }
 
@@ -36,13 +36,13 @@ public class Pickup : MonoBehaviour
             if(Input.GetKey(KeyCode.E) && numTrash > 0)
             {
                 recycledScore = numTrash;
-                score.text = "Trash Recycled : " + recycledScore;
+                score.text = "Rubbish Recycled: " + recycledScore;
                 numTrash = 0;
-                trashScore.text = "Trash Collected : " + numTrash;
+                trashScore.text = "Rubbish Collected: " + numTrash;
             }
             else if(Input.GetKey(KeyCode.E) && numTrash <= 0)
             {
-                Debug.Log("No trash to deposit");
+                Debug.Log("No rubbish to deposit");
             }
         }
     }

@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private Rigidbody2D rb2d;
+    private Rigidbody rb;
 
     // this method covers both WASD and arrow key input
     private float hInput;
     private float vInput;
-    private Vector2 moveDir;
+    private Vector3 moveDir;
 
 
     /// <summary>
@@ -36,52 +37,77 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool pTransform = false;
 
+    [SerializeField]
+    private bool usingUpdate = false;
+
     private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         maxSpeed = speed;
     }
 
     private void Update()
     {
-        //Movement();
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
+
+        moveDir = new Vector3(hInput, vInput, 0.0f);
+
+        if (usingUpdate)
+        {
+            Movement();
+        }
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        if (!usingUpdate)
+        {
+            Movement();
+        }
     }
 
     private void Movement()
     {
-        hInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetAxis("Vertical");
+        //if (!usingUpdate)
+        //{
+        //    hInput = Input.GetAxis("Horizontal");
+        //    vInput = Input.GetAxis("Vertical");
+        //}
 
-        moveDir = new Vector2(hInput, vInput);
-
-        if (addForce)
+        if (addForce || movePosition || pTransform)
         {
-            Debug.Log("Using AddForce");
-            rb2d.AddForce(moveDir * maxSpeed);
+            usingUpdate = false; 
+
+            if (addForce)
+            {
+                Vector3 move = (transform.up * vInput + transform.right * hInput).normalized;
+                Vector3 hVel = rb.velocity;
+                rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
+            }
+
+            // too fast
+            if (movePosition)
+            {
+                moveDir.Normalize();
+                Vector3 newPos = rb.position + moveDir * maxSpeed * Time.fixedDeltaTime;
+                rb.MovePosition(newPos);
+            }
+
+            if (pTransform)
+            {
+                transform.Translate(moveDir * maxSpeed * Time.deltaTime);
+            }
         }
 
-        if (movePosition)
-        {
-            Debug.Log("Using MovePosition");
-            rb2d.MovePosition(rb2d.position + moveDir * maxSpeed * Time.fixedDeltaTime);
-        }
-
+        // using rigidbody velocity
         if (vel)
         {
-            Debug.Log("Using Velocity");
-            rb2d.velocity = moveDir * maxSpeed;
+            usingUpdate = true;
+            //moveDir = moveDir * maxSpeed * Time.deltaTime;
+            rb.velocity = moveDir * maxSpeed;
         }
 
-        if (pTransform)
-        {
-            Debug.Log("Using Transform.Translate");
-            transform.Translate(moveDir * maxSpeed * Time.deltaTime);
-        }
 
         // movement using transforms
         //transform.position = Vector3.Lerp(transform.position, moveDir, lerpSpeed);
