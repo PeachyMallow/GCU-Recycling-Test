@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         vInput = Input.GetAxis("Vertical");
         
         //calculates where the player should move based on that input
-        moveDir = new Vector3(hInput, vInput, 0.0f);
+        moveDir = new Vector3(hInput, 0.0f, vInput);
 
         if (usingUpdate)
         {
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (addForce)
             {
-                Vector3 move = (transform.up * vInput + transform.right * hInput).normalized;
+                Vector3 move = (transform.forward * vInput + transform.right * hInput).normalized;
                 Vector3 hVel = rb.velocity;
                 rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
             }
