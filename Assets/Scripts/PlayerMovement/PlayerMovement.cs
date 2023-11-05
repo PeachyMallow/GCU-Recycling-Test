@@ -8,49 +8,52 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
 
-    // this method covers both WASD and arrow key input
+    // covers both WASD and arrow key input
     private float hInput;
     private float vInput;
     private Vector3 moveDir;
-
 
     /// <summary>
     /// Adjusts player's top speed they can reach
     /// </summary>
     [Header("Adjusts player's speed")]
     [SerializeField]
-    private float speed;
-
-    // saves what has been set in the inspector as the speed to be used
     private float maxSpeed;
 
+    //// saves what has been set in the inspector as the speed to be used
+    //private float maxSpeed;
+
+    // these are all false, but bools in c# are automatically declared false so no need to initialize
     [Header("Pick one to test different types of movement")]
     [SerializeField]
-    private bool addForce = false;
+    private bool addForce;
 
     [SerializeField]
-    private bool movePosition = false;
+    private bool movePosition;
 
     [SerializeField]
-    private bool vel = false;
+    private bool velocity;
 
     [SerializeField]
-    private bool pTransform = false;
+    private bool fUVelocity;
 
     [SerializeField]
-    private bool usingUpdate = false;
+    private bool playerTransform;
+
+    private bool usingUpdate;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        maxSpeed = speed;
     }
 
     private void Update()
     {
+        // gets the values from arrows or WASD input
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
-
+        
+        //calculates where the player should move based on that input
         moveDir = new Vector3(hInput, vInput, 0.0f);
 
         if (usingUpdate)
@@ -69,13 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        //if (!usingUpdate)
-        //{
-        //    hInput = Input.GetAxis("Horizontal");
-        //    vInput = Input.GetAxis("Vertical");
-        //}
-
-        if (addForce || movePosition || pTransform)
+        if (addForce || movePosition || playerTransform || fUVelocity)
         {
             usingUpdate = false; 
 
@@ -86,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
             }
 
-            // too fast
             if (movePosition)
             {
                 moveDir.Normalize();
@@ -94,22 +90,23 @@ public class PlayerMovement : MonoBehaviour
                 rb.MovePosition(newPos);
             }
 
-            if (pTransform)
+            if (playerTransform)
             {
-                transform.Translate(moveDir * maxSpeed * Time.deltaTime);
+                transform.Translate(moveDir * maxSpeed * Time.fixedDeltaTime);
+            }
+
+            // using rigidbody velocity in fixed update
+            if (fUVelocity)
+            {
+                rb.velocity = moveDir * maxSpeed;
             }
         }
 
-        // using rigidbody velocity
-        if (vel)
-        {
-            usingUpdate = true;
-            //moveDir = moveDir * maxSpeed * Time.deltaTime;
-            rb.velocity = moveDir * maxSpeed;
-        }
-
-
-        // movement using transforms
-        //transform.position = Vector3.Lerp(transform.position, moveDir, lerpSpeed);
+         // using rigidbody velocity in update
+         if (velocity)
+         {
+             usingUpdate = true;
+             rb.velocity = moveDir * maxSpeed;
+         }
     }
 }

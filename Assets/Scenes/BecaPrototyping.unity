@@ -1111,11 +1111,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 10
+  maxSpeed: 7
   addForce: 0
   movePosition: 0
-  vel: 1
-  pTransform: 0
+  velocity: 1
+  fUVelocity: 0
+  playerTransform: 0
   usingUpdate: 0
 --- !u!4 &1797242779
 Transform:
