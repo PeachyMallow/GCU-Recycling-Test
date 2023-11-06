@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Hotbar : MonoBehaviour
 {
+    public static Hotbar instance;
+
     // total items that can be held in the hotbar
     private int totalItems = 8;
 
@@ -18,8 +20,21 @@ public class Hotbar : MonoBehaviour
 
     // the icons of the items the player currently has in their inventory 
     [SerializeField]
-    private List<GameObject> itemIcons = new List<GameObject>();
+    private List<GameObject> itemIcons = new List<GameObject>(8);
 
+    public List<Item> items = new List<Item>();
+
+    // makes sure there isn't more than one instance of the hotbar's inventory 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of inventory found");
+            return;
+        }
+            instance = this;
+        
+    }
 
     private void Start()
     {
@@ -32,6 +47,17 @@ public class Hotbar : MonoBehaviour
         
     }
 
+    public void Add(Item item)
+    {
+        items.Add(item);
+    }
+
+    public void Remove(Item item)
+    {
+        items.Remove(item);
+    }
+
+    // need to change this 
     /// <summary>
     /// Returns false if the players inventory is full
     /// Returns true if the players inventory is not full
@@ -50,6 +76,17 @@ public class Hotbar : MonoBehaviour
         }
     }
 
+    // for now, hide all icon images
+    private void ContainsItem()
+    {
+        if (itemIcons != null)
+        {
+            foreach (GameObject icons in itemIcons)
+            {
+                icons.gameObject.SetActive(false);
+            }
+        }
+    }
 
     private void ItemSlots()
     {
@@ -62,7 +99,7 @@ public class Hotbar : MonoBehaviour
                 currentItemSlots.Add(item.gameObject);
             }
 
-            CurrentItems();
+            ItemIcons();
         }
 
         else
@@ -71,14 +108,18 @@ public class Hotbar : MonoBehaviour
         }
     }
 
-    private void CurrentItems()
+    // accesses each item slots corresponding icon
+    private void ItemIcons()
     {
         if (currentItemSlots != null)
         {
-            foreach (GameObject item in currentItemSlots)
+            for (int i = 0; i < currentItemSlots.Count; i++)
             {
-                itemIcons.Add(item.gameObject);
+                GameObject icon = currentItemSlots[i].transform.GetChild(0).gameObject;
+                itemIcons.Add(icon);
             }
+
+            ContainsItem();
         }
     }
 }

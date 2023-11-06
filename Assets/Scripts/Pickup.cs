@@ -11,6 +11,9 @@ public class Pickup : MonoBehaviour
     private int recycledScore;
     private int numTrash;
 
+    // beca added
+    public Item item;
+
     void Start()
     {
         numTrash = 0;
@@ -23,9 +26,10 @@ public class Pickup : MonoBehaviour
     {
         if(Trash.tag == "myTrash")
         {
+            Hotbar.instance.Add(item);
             numTrash++;
             Destroy(Trash.gameObject);
-            trashScore.text = "Rubbish Collected: " + numTrash;
+            trashScore.text = "Rubbish Collected: " + numTrash;            
         }
     }
 
