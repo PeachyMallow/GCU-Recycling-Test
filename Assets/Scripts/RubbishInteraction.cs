@@ -4,17 +4,20 @@ using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Pickup : MonoBehaviour
+public class RubbishInteraction : MonoBehaviour
 {
     public Text trashScore;
     public Text score;
     private int recycledScore;
     private int numTrash;
 
+    public Slider enviroMeter;
+
     void Start()
     {
         numTrash = 0;
         recycledScore = 0;
+        enviroMeter.value = recycledScore;
         trashScore.text = "Trash Collected : " + numTrash;
         score.text = "Trash Recycled : " + recycledScore;
     }
@@ -37,6 +40,7 @@ public class Pickup : MonoBehaviour
             {
                 recycledScore = numTrash;
                 score.text = "Trash Recycled : " + recycledScore;
+                enviroMeter.value = recycledScore;
                 numTrash = 0;
                 trashScore.text = "Trash Collected : " + numTrash;
             }
