@@ -46,4 +46,9 @@ public class Pickup : MonoBehaviour
             }
         }
     }
+
+    public int CurrentAmountOfTrash()
+    {
+        return numTrash;
+    }
 }
