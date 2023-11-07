@@ -67,23 +67,25 @@ public class Hotbar : MonoBehaviour
     {
         if (currentItemSlots.Count < totalItems)
         {
+            Debug.Log("Inventory is not full");
             return false;
         }
 
         else
         {
+            Debug.Log("Inventory is full");
             return true;
         }
     }
 
-    // for now, hide all icon images
+    // for now, hides all icon images
     private void ContainsItem()
     {
         if (itemIcons != null)
         {
             foreach (GameObject icons in itemIcons)
             {
-                icons.gameObject.SetActive(false);
+                icons.SetActive(false);
             }
         }
     }

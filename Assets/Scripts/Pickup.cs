@@ -27,6 +27,7 @@ public class Pickup : MonoBehaviour
         if(Trash.tag == "myTrash")
         {
             Hotbar.instance.Add(item);
+            Debug.Log(item.name);
             numTrash++;
             Destroy(Trash.gameObject);
             trashScore.text = "Rubbish Collected: " + numTrash;            
