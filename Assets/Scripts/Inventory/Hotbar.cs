@@ -49,7 +49,9 @@ public class Hotbar : MonoBehaviour
 
     public void Add(Item item)
     {
+        Debug.Log("Add called");
         items.Add(item);
+        Debug.Log("Item has been added");
     }
 
     public void Remove(Item item)
