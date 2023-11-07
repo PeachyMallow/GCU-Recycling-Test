@@ -16,15 +16,38 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float currentTime;
 
+    // is the timer active
+    [SerializeField]
+    private bool timerActive;
+
 
     private void Start()
     {
         totalTime = timer;
+        timerActive = true;
     }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        if (timerActive)
+        {
+            if (timer > 0)
+            {
+                Timer();
+            }
+
+            else
+            {
+                timer = 0;
+                Debug.Log("Time's Up!");
+                timerActive = false;            
+            }
+        }
+    }
+
+    private float Timer()
+    {
+        return timer -= Time.deltaTime;
     }
 
     // public method for other scripts to access the current time 
@@ -44,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         timer = totalTime;
     }
-
 
 
     public bool IsTimeUp()
