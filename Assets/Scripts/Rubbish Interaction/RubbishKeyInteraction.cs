@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RubbishInteraction : MonoBehaviour
+public class RubbishKeyInteraction : MonoBehaviour
 {
     public Text trashScore;
     public Text score;
@@ -18,25 +18,16 @@ public class RubbishInteraction : MonoBehaviour
         numTrash = 0;
         recycledScore = 0;
         enviroMeter.value = recycledScore;
-        trashScore.text = "Trash Collected : " + numTrash;
-        score.text = "Trash Recycled : " + recycledScore;
-    }
-
-    private void OnTriggerEnter(Collider Trash)
-    {
-        if(Trash.tag == "myTrash")
-        {
-            numTrash++;
-            Destroy(Trash.gameObject);
-            trashScore.text = "Trash Collected : " + numTrash;
-        }
+        trashScore.text = "Rubbish Collected : " + numTrash;
+        score.text = "Rubbish Recycled : " + recycledScore;
+        Console.WriteLine("Press (E) Key to Pickup Rubbish");
     }
 
     private void OnTriggerStay(Collider trashBin)
     {
         if (trashBin.tag == "Bin")
         {
-            if(Input.GetKey(KeyCode.E) && numTrash > 0)
+            if (Input.GetKey(KeyCode.E) && numTrash > 0)
             {
                 recycledScore = numTrash;
                 score.text = "Trash Recycled : " + recycledScore;
@@ -44,10 +35,16 @@ public class RubbishInteraction : MonoBehaviour
                 numTrash = 0;
                 trashScore.text = "Trash Collected : " + numTrash;
             }
-            else if(Input.GetKey(KeyCode.E) && numTrash <= 0)
+            else if (Input.GetKey(KeyCode.E) && numTrash <= 0)
             {
-                Debug.Log("No trash to deposit");
+                Console.WriteLine("No trash to deposit");
             }
+        }
+        if (trashBin.tag == "myTrash" && Input.GetKey(KeyCode.E))
+        {
+            numTrash++;
+            Destroy(trashBin.gameObject);
+            trashScore.text = "Trash Collected : " + numTrash;
         }
     }
 }
