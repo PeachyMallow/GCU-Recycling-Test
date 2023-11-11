@@ -10,12 +10,17 @@ public class RubbishInteraction : MonoBehaviour
     public Text score;
     private int recycledScore;
     private int numRubbish;
-    private int numRubbishHeld;
+     int numRubbishHeld;
 
     [SerializeField]
     private bool Autopickup;
 
     public Slider enviroMeter;
+
+    // used to update what the player is currently holding
+    [Header("Drag PlayerManager GameObject into here")]
+    [SerializeField]
+    private PlayerManager playerManager;
 
     void Start()
     {
@@ -62,6 +67,7 @@ public class RubbishInteraction : MonoBehaviour
                 recycledScore = numRubbish;
                 score.text = "Trash Recycled : " + recycledScore;
                 enviroMeter.value = recycledScore;
+                playerManager.UpdateInventory(0, true);
                 numRubbishHeld = 0;
                 trashScore.text = "Trash Collected: " + numRubbishHeld;
             }
@@ -72,12 +78,18 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
+    // checks if the player's inventory is full
+    // if not, then the player will pick up rubbish
     private void RubbishPickup(GameObject Rubbish)
-    {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-        numRubbish++;
-        numRubbishHeld++;
-        Destroy(Rubbish.gameObject);
-        trashScore.text = "Trash Collected : " + numRubbishHeld;
+    {
+        if (!playerManager.InventoryFull())
+        {
+            numRubbish++;
+            numRubbishHeld++;
+            playerManager.UpdateInventory(1, false);
+            Destroy(Rubbish.gameObject);
+            trashScore.text = "Trash Collected : " + numRubbishHeld;
+        }
     }
 
     private void PickupSwitch()
@@ -92,8 +104,12 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
-    public int CurrentAmountOfTrash()
+    /// <summary>
+    /// Current amount of rubbish the player is holding
+    /// </summary>
+    /// <returns></returns>
+    public int CurrentAmountOfRubbish()
     {
-        return numRubbish;
+        return numRubbishHeld;
     }
 }
