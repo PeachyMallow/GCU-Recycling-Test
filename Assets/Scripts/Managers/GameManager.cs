@@ -9,18 +9,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float timer;
 
-    // variable for the script to access the time set in the inspector later on
-    [SerializeField]
+    // saves the time alotted in the inspector to reset the timer
     private float totalTime;
 
-    // current time that is passed to timer UI
-    [SerializeField]
-    private float currentTime;
-
     // is the timer active
-    [SerializeField]
     private bool timerActive;
-
 
     private void Start()
     {
@@ -68,7 +61,6 @@ public class GameManager : MonoBehaviour
     {
         timer = totalTime;
     }
-
 
     public bool IsTimeUp()
     {
