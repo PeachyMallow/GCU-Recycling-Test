@@ -13,23 +13,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private bool inventoryFull;
 
-    //[Header("Add 'Player' GameObject here")]
-    //[SerializeField]
-    //private GameObject player;
-
-    //[SerializeField]
-    //private RubbishInteraction rInteractionScript;
-
-    private void Start()
-    {
-        //rInteractionScript = player.GetComponent<RubbishInteraction>(); 
-    }
-
-
-    private void Update()
-    {
-
-    }
 
     // (accessed in RubbishInteraction.cs)
     /// <summary>
