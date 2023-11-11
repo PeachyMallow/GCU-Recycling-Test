@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     {
         if (capacityGO != null)
         {
-            capacityGO.text = a + " / " + b;
+            capacityGO.text = a + "\n_\n\n" + b;
         }
     }
 }
