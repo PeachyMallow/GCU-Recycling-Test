@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        gM = GetComponent<GameManager>();
+        //gM = GetComponent<GameManager>();
     }
 
     private void Update()

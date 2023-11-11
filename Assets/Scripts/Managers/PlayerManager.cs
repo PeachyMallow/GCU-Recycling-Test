@@ -4,15 +4,50 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private int playerCapacity;
+
+    [SerializeField]
+    private int currentlyHolding;
+
+    [SerializeField]
+    private bool inventoryFull;
+
+    [Header("Add 'Player' GameObject here")]
+    [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
+    private RubbishInteraction rInteractionScript;
+
+
+    private void Start()
     {
-        
+        rInteractionScript = player.GetComponent<RubbishInteraction>(); 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        
+        if (currentlyHolding >= playerCapacity)
+        {
+            inventoryFull = true;
+        }
+    }
+
+    public bool InventoryFull()
+    {
+        return inventoryFull;
+    }
+
+    //// 
+    //private void CurrentlyHolding()
+    //{
+    //    currentlyHolding = rInteractionScript.CurrentAmountOfTrash();
+    //}
+
+    public void UpdateInventory(int a)
+    {
+
     }
 }
