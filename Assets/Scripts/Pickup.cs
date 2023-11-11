@@ -11,26 +11,21 @@ public class Pickup : MonoBehaviour
     private int recycledScore;
     private int numTrash;
 
-    // beca added
-    public Item item;
-
     void Start()
     {
         numTrash = 0;
         recycledScore = 0;
-        trashScore.text = "Rubbish Collected: " + numTrash;
-        score.text = "Rubbish Recycled: " + recycledScore;
+        trashScore.text = "Trash Collected: " + numTrash;
+        score.text = "Trash Recycled: " + recycledScore;
     }
 
     private void OnTriggerEnter(Collider Trash)
     {
         if(Trash.tag == "myTrash")
         {
-            Hotbar.instance.Add(item);
-            //Debug.Log(item.name);
             numTrash++;
             Destroy(Trash.gameObject);
-            trashScore.text = "Rubbish Collected: " + numTrash;            
+            trashScore.text = "Trash Collected: " + numTrash;            
         }
     }
 
@@ -41,13 +36,13 @@ public class Pickup : MonoBehaviour
             if(Input.GetKey(KeyCode.E) && numTrash > 0)
             {
                 recycledScore = numTrash;
-                score.text = "Rubbish Recycled: " + recycledScore;
+                score.text = "Trash Recycled: " + recycledScore;
                 numTrash = 0;
-                trashScore.text = "Rubbish Collected: " + numTrash;
+                trashScore.text = "Trash Collected: " + numTrash;
             }
             else if(Input.GetKey(KeyCode.E) && numTrash <= 0)
             {
-                Debug.Log("No rubbish to deposit");
+                Debug.Log("No trash to deposit");
             }
         }
     }
