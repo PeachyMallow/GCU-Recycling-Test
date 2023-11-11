@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // timer set in inspector
+    [Header("Enter time in seconds")]
     [SerializeField]
     private float timer;
 

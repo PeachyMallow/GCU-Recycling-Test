@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
     private Rigidbody rb;
 
     // covers both WASD and arrow key input
