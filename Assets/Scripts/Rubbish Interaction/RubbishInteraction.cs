@@ -9,51 +9,91 @@ public class RubbishInteraction : MonoBehaviour
     public Text trashScore;
     public Text score;
     private int recycledScore;
-    private int numTrash;
+    private int numRubbish;
+    private int numRubbishHeld;
+
+    [SerializeField]
+    private bool Autopickup;
 
     public Slider enviroMeter;
 
     void Start()
     {
-        numTrash = 0;
+        Autopickup = true;
+        numRubbish = 0;
+        numRubbishHeld = 0;
         recycledScore = 0;
         enviroMeter.value = recycledScore;
-        trashScore.text = "Rubbish Collected : " + numTrash;
+        trashScore.text = "Rubbish Collected : " + numRubbishHeld;
         score.text = "Rubbish Recycled : " + recycledScore;
         Console.WriteLine("Auto Pickup Active");
     }
 
-    private void OnTriggerEnter(Collider Trash)
+    private void Update()
     {
-        if(Trash.tag == "myTrash")
+        PickupSwitch();
+    }
+
+    private void OnTriggerEnter(Collider Rubbish)
+    {
+        if (Autopickup == true)
         {
-            numTrash++;
-            Destroy(Trash.gameObject);
-            trashScore.text = "Trash Collected: " + numTrash;            
+            if (Rubbish.tag == "myTrash")
+            {
+                RubbishPickup(Rubbish.gameObject);
+            }
         }
+        else if (Autopickup == false)
+        {
+            if (Rubbish.tag == "myTrash" && Input.GetKey(KeyCode.E))
+            {
+                RubbishPickup(Rubbish.gameObject);
+            }
+        }
+
     }
 
     private void OnTriggerStay(Collider trashBin)
     {
         if (trashBin.tag == "Bin")
         {
-            if (Input.GetKey(KeyCode.E) && numTrash > 0)
+            if (Input.GetKey(KeyCode.E) && numRubbish > 0)
             {
-                recycledScore = numTrash;
+                recycledScore = numRubbish;
                 score.text = "Trash Recycled : " + recycledScore;
                 enviroMeter.value = recycledScore;
-                numTrash = 0;
-                trashScore.text = "Trash Collected: " + numTrash;
+                numRubbishHeld = 0;
+                trashScore.text = "Trash Collected: " + numRubbishHeld;
             }
-            else if (Input.GetKey(KeyCode.E) && numTrash <= 0)
+            else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
             {
                 Console.WriteLine("No trash to deposit");
             }
         }
     }
 
+    private void RubbishPickup(GameObject Rubbish)
+    {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        numRubbish++;
+        numRubbishHeld++;
+        Destroy(Rubbish.gameObject);
+        trashScore.text = "Trash Collected : " + numRubbishHeld;
+    }
+
+    private void PickupSwitch()
+    {
+        if (Autopickup == true && Input.GetKey(KeyCode.Q))
+        {
+            Autopickup = false;
+        }
+        else if (Autopickup == false && Input.GetKey(KeyCode.Q))
+        {
+            Autopickup = true;
+        }
+    }
+
     public int CurrentAmountOfTrash()
     {
-        return numTrash;
+        return numRubbish;
     }
 }
