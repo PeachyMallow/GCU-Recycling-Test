@@ -6,6 +6,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     // the timer UI
+    [Header("Drag the Timer UI GameObject here")]
     [SerializeField]
     private TextMeshProUGUI timerGO;
 
@@ -27,7 +28,16 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        DisplayTime();
+        if (timerGO != null)
+        {
+            DisplayTime();
+
+        }
+
+        else
+        {
+            Debug.Log("Please attach the timer UI to the UI Manager in the Inspector (in the hierarchy UI > Timer)");
+        }
     }
 
     // converts float into minutes and seconds to display correctly
