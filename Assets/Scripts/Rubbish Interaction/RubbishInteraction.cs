@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RubbishInteraction : MonoBehaviour
 {
-    public Text trashScore;
+    public Text RubbishScore;
     public Text score;
     private int recycledScore;
     private int numRubbish;
@@ -29,7 +29,7 @@ public class RubbishInteraction : MonoBehaviour
         numRubbishHeld = 0;
         recycledScore = 0;
         enviroMeter.value = recycledScore;
-        trashScore.text = "Rubbish Collected : " + numRubbishHeld;
+        RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
         score.text = "Rubbish Recycled : " + recycledScore;
         Console.WriteLine("Auto Pickup Active");
     }
@@ -43,40 +43,51 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (Autopickup == true)
         {
-            if (Rubbish.tag == "myTrash")
+            if (Rubbish.tag == "Rubbish")
             {
                 RubbishPickup(Rubbish.gameObject);
             }
         }
         else if (Autopickup == false)
         {
-            if (Rubbish.tag == "myTrash" && Input.GetKey(KeyCode.E))
-            {
-                RubbishPickup(Rubbish.gameObject);
-            }
+            //if (Rubbish.tag == "myRubbish" && Input.GetKey(KeyCode.E))
+            //{
+            //    RubbishPickup(Rubbish.gameObject);
+            //}
         }
 
     }
 
-    private void OnTriggerStay(Collider trashBin)
+    private void OnTriggerStay(Collider RubbishBin)
     {
-        if (trashBin.tag == "Bin")
+        if (RubbishBin.tag == "Bin")
         {
             if (Input.GetKey(KeyCode.E) && numRubbish > 0)
             {
                 recycledScore = numRubbish;
-                score.text = "Trash Recycled : " + recycledScore;
+                score.text = "Rubbish Recycled : " + recycledScore;
                 enviroMeter.value = recycledScore;
                 playerManager.UpdateInventory(0, true);
                 numRubbishHeld = 0;
-                trashScore.text = "Trash Collected: " + numRubbishHeld;
+                RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
             }
             else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
             {
-                Console.WriteLine("No trash to deposit");
+                Console.WriteLine("No rubbish to deposit");
+            }
+        }
+        else if (RubbishBin.tag == "Rubbish")
+        {
+            if (Autopickup == false)
+            {
+                if (RubbishBin.tag == "Rubbish" && Input.GetKey(KeyCode.E))
+                {
+                    RubbishPickup(RubbishBin.gameObject);
+                }
             }
         }
     }
+
 
     // checks if the player's inventory is full
     // if not, then the player will pick up rubbish
@@ -88,7 +99,7 @@ public class RubbishInteraction : MonoBehaviour
             numRubbishHeld++;
             playerManager.UpdateInventory(1, false);
             Destroy(Rubbish.gameObject);
-            trashScore.text = "Trash Collected : " + numRubbishHeld;
+            RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
         }
     }
 
