@@ -8404,11 +8404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921ad6740b4427146b20c975eab0c713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RubbishScore: {fileID: 0}
+  RubbishScore: {fileID: 1600251012}
   score: {fileID: 1395509114}
   Autopickup: 0
-  enviroMeter: {fileID: 0}
-  playerManager: {fileID: 0}
+  enviroMeter: {fileID: 1026328827}
+  playerManager: {fileID: 1783626240}
 --- !u!1001 &1001774644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12272,7 +12272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6589790958707103246, guid: 9cb297ed03612da48a1ff8859138e636, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 376.46
+      value: 376.52
       objectReference: {fileID: 0}
     - target: {fileID: 6589790958707103246, guid: 9cb297ed03612da48a1ff8859138e636, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14592,8 +14592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683bf113383a6e9458df1cc7069ded29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCapacity: 0
-  uiManager: {fileID: 0}
+  playerCapacity: 8
+  uiManager: {fileID: 1157755236}
 --- !u!1001 &1791921245
 PrefabInstance:
   m_ObjectHideFlags: 0
