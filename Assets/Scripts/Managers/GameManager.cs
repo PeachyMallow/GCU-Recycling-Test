@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // item spawn
     [Header("Drag rubbish prefab here")]
     [SerializeField]
-    private GameObject litter;
+    private GameObject[] litter;
 
     // time between items spawning
     [Header("Time in seconds for litter spawning")]
@@ -32,9 +32,15 @@ public class GameManager : MonoBehaviour
     private float litterSpawnTime;
 
     // temp variables
-    // position of litter to be instantiated
+
     [Header("Temp Variables")]
-    [Header("Input position for litter to spawn")]
+    // y position of litter to be instantiated
+    [Header("Point on Y axis litter should spawn")]
+    [SerializeField]
+    private float litterPosY;
+
+    // position of litter to be instantiated
+    [Header("Position for litter to spawn")]
     [SerializeField]
     private Vector3 litterPos;
 
@@ -69,16 +75,22 @@ public class GameManager : MonoBehaviour
             {
                 timer = 0;
                 Debug.Log("Time's Up!");
-                timerActive = false;            
+                timerActive = false;
             }
         }
         #endregion
 
-        if (readyToSpawn)
+        if (litterParent != null && litter != null)
         {
-            readyToSpawn = false;
-            InstantiateItem();
+            if (readyToSpawn)
+            {
+                readyToSpawn = false;
+                InstantiateItem();
+            }
         }
+
+        else { Debug.Log("Please assign litter prefab and/or litterParent into the hierarchy on GameManager script"); }
+
     }
 
     #region timerMethods
@@ -113,10 +125,19 @@ public class GameManager : MonoBehaviour
     #endregion
 
     // item spawn
+    // generates a random X & z point and takes the input from the Inspector for the Y
+    // generates a random piece of litter to be spawned
     private void InstantiateItem()
     {
-        Instantiate(litter, litterPos, Quaternion.identity, litterParent);
-        SpawnTimer();
+        float rX = Random.Range(-13, 13);
+        float rZ = Random.Range(-13, 13);
+        litterPos = new Vector3 (rX, litterPosY, rZ);
+
+        // which piece of litter is to be spawned
+        int num = Random.Range(0, litter.Length);
+
+        Instantiate(litter[num], litterPos, Quaternion.identity, litterParent);
+        StartCoroutine(SpawnTimer());
     }
 
     // timer for item spawn
