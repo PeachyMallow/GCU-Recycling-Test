@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject[] litter;
 
+    [SerializeField]
+    private List<GameObject> rubbish;
+
     // time between items spawning
     [Header("Time in seconds for litter spawning")]
     [SerializeField]
@@ -135,6 +138,7 @@ public class GameManager : MonoBehaviour
 
         // which piece of litter is to be spawned
         int num = Random.Range(0, litter.Length);
+        Debug.Log(litter[num]);
 
         Instantiate(litter[num], litterPos, Quaternion.identity, litterParent);
         StartCoroutine(SpawnTimer());
