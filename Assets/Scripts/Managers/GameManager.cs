@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     [Header("\n\nLitter Spawn\n")]
     // item spawn
-    [Header("Drag rubbish prefab here")]
+    [Header("Drag litter prefabs here\nOnly items added here will spawn")]
     [SerializeField]
     private GameObject[] litter;
 
