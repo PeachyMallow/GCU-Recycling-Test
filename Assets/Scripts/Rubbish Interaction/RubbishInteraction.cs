@@ -34,9 +34,10 @@ public class RubbishInteraction : MonoBehaviour
         Console.WriteLine("Auto Pickup Active");
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         PickupSwitch();
+        EMIReduce();
     }
 
     private void OnTriggerEnter(Collider Rubbish)
@@ -58,6 +59,7 @@ public class RubbishInteraction : MonoBehaviour
 
     }
 
+    // these check if the player is in contact with the bins allowing for a deposit 
     private void OnTriggerStay(Collider RubbishBin)
     {
         if (RubbishBin.tag == "Bin")
@@ -70,6 +72,7 @@ public class RubbishInteraction : MonoBehaviour
                 playerManager.UpdateInventory(0, true);
                 numRubbishHeld = 0;
                 RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
+                Debug.Log(recycledScore);
             }
             else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
             {
@@ -103,6 +106,14 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
+    private void RubbishIncrease()
+    {
+        recycledScore --;
+        enviroMeter.value = recycledScore;
+        Debug.Log(recycledScore);
+    }
+
+    // used to Switch between manual and automatic pickup
     private void PickupSwitch()
     {
         if (Autopickup == true && Input.GetKey(KeyCode.Q))
@@ -112,6 +123,14 @@ public class RubbishInteraction : MonoBehaviour
         else if (Autopickup == false && Input.GetKey(KeyCode.Q))
         {
             Autopickup = true;
+        }
+    }
+
+    private void EMIReduce()
+    {
+        if (recycledScore > 0 && Input.GetKey(KeyCode.R))
+        {
+            RubbishIncrease();
         }
     }
 
