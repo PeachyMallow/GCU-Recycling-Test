@@ -8,9 +8,14 @@ public class HoverObj : MonoBehaviour
     public InspectionObj inspectionObj;
     public int index;
 
-    // Update is called once per frame
+    /// <summary>
+    /// Highlights selected object
+    /// activates inspection on left mouse click
+    /// </summary>
     void Update()
     {
+        if (Inspection.active)
+            return;
         Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Color color = GetComponent<MeshRenderer>().material.color;
