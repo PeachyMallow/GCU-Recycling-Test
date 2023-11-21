@@ -20,14 +20,14 @@ public class GameManager : MonoBehaviour
     private bool timerActive;
     #endregion
 
-    [Header("\n\nLitter Spawn\n")]
+    [Header("----------------------------\n\nLitter Spawn\n")]
     // item spawn
     [Header("Drag litter prefabs here\nOnly items added here will spawn")]
     [SerializeField]
     private GameObject[] litter;
 
-    [SerializeField]
-    private List<GameObject> rubbish;
+    //[SerializeField]
+    //private List<GameObject> rubbish;
 
     // time between items spawning
     [Header("Time in seconds for litter spawning")]
@@ -42,15 +42,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float litterPosY;
 
-    // position of litter to be instantiated
-    [Header("Position for litter to spawn")]
-    [SerializeField]
-    private Vector3 litterPos;
-
     // litter's parent
     [Header("Drag Litter Parent GameObject here")]
     [SerializeField]
     private Transform litterParent;
+
+
+    [Header("For Debugging")]
+    // position of litter to be instantiated
+    [Header("Position for litter to spawn")]
+    [SerializeField]
+    private Vector3 litterPos;
 
     // true if there is an item has been spawned
     [SerializeField]
