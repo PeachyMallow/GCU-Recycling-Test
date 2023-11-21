@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float litterSpawnTime;
 
+    [Header("Access to Rubbish Interaction Script to allow reduction")]
+    [SerializeField]
+    private RubbishInteraction RI;
+
     // temp variables
 
     [Header("Temp Variables")]
@@ -89,6 +93,7 @@ public class GameManager : MonoBehaviour
             {
                 readyToSpawn = false;
                 InstantiateItem();
+                RI.RubbishIncrease();
             }
         }
 

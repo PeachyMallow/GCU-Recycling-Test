@@ -9,12 +9,14 @@ public class RubbishInteraction : MonoBehaviour
     public Text RubbishScore;
     public Text score;
     private int recycledScore;
+    private int recycledHighScore;
     private int numRubbish;
-     int numRubbishHeld;
+    int numRubbishHeld;
 
     [SerializeField]
     private bool Autopickup;
 
+    [SerializeField]
     public Slider enviroMeter;
 
     // used to update what the player is currently holding
@@ -28,34 +30,28 @@ public class RubbishInteraction : MonoBehaviour
         numRubbish = 0;
         numRubbishHeld = 0;
         recycledScore = 0;
+        recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
         RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
-        score.text = "Rubbish Recycled : " + recycledScore;
+        score.text = "Rubbish Recycled : " + recycledHighScore;
         Console.WriteLine("Auto Pickup Active");
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         PickupSwitch();
-        EMIReduce();
     }
 
     private void OnTriggerEnter(Collider Rubbish)
     {
         if (Autopickup == true)
         {
-            if (Rubbish.tag == "Rubbish")
+            if (Rubbish.tag == "Rubbish" || Rubbish.tag == "Paper" || Rubbish.tag == "LiquidInside" || Rubbish.tag == "FoodWaste")
             {
                 RubbishPickup(Rubbish.gameObject);
             }
         }
-        else if (Autopickup == false)
-        {
-            //if (Rubbish.tag == "myRubbish" && Input.GetKey(KeyCode.E))
-            //{
-            //    RubbishPickup(Rubbish.gameObject);
-            //}
-        }
+        else { }
 
     }
 
@@ -64,10 +60,11 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
-            if (Input.GetKey(KeyCode.E) && numRubbish > 0)
+            if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
             {
-                recycledScore = numRubbish;
-                score.text = "Rubbish Recycled : " + recycledScore;
+                recycledScore += numRubbishHeld;
+                recycledHighScore += numRubbishHeld;
+                score.text = "Rubbish Recycled : " + recycledHighScore;
                 enviroMeter.value = recycledScore;
                 playerManager.UpdateInventory(0, true);
                 numRubbishHeld = 0;
@@ -83,7 +80,7 @@ public class RubbishInteraction : MonoBehaviour
         {
             if (Autopickup == false)
             {
-                if (RubbishBin.tag == "Rubbish" && Input.GetKey(KeyCode.E))
+                if (RubbishBin.tag == "Rubbish" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" && Input.GetKey(KeyCode.E))
                 {
                     RubbishPickup(RubbishBin.gameObject);
                 }
@@ -106,11 +103,14 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
-    private void RubbishIncrease()
+    public void RubbishIncrease()
     {
-        recycledScore --;
-        enviroMeter.value = recycledScore;
-        Debug.Log(recycledScore);
+        if (recycledScore > 0)
+        {
+            recycledScore--;
+            enviroMeter.value = recycledScore;
+            Debug.Log(recycledScore);
+        }
     }
 
     // used to Switch between manual and automatic pickup
@@ -119,18 +119,12 @@ public class RubbishInteraction : MonoBehaviour
         if (Autopickup == true && Input.GetKey(KeyCode.Q))
         {
             Autopickup = false;
+            Debug.Log("Key Pickup Active");
         }
         else if (Autopickup == false && Input.GetKey(KeyCode.Q))
         {
             Autopickup = true;
-        }
-    }
-
-    private void EMIReduce()
-    {
-        if (recycledScore > 0 && Input.GetKey(KeyCode.R))
-        {
-            RubbishIncrease();
+            Debug.Log("Auto Pickup Active");
         }
     }
 
