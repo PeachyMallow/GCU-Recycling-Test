@@ -2111,16 +2111,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 160
+  timerActive: 0
+  litterParent: {fileID: 456441189}
   litter:
   - {fileID: 2233020953187505264, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
   - {fileID: 6216011569501080760, guid: 7ab99a68d5130474fa6cf4e763301c8b, type: 3}
   - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
   - {fileID: 8004461758732291673, guid: 6ff3f1d58817d1342b3d29908af08f14, type: 3}
   - {fileID: 6084135387239679434, guid: b31372502a73ede4cae41e9a4569ffd7, type: 3}
+  startDelay: 5
   litterSpawnTime: 2
   litterPosY: 0.45
+  xMin: -13
+  xMax: 13
+  zMin: -13
+  zMax: 13
   litterPos: {x: 0, y: 0, z: 0}
-  litterParent: {fileID: 456441189}
   readyToSpawn: 1
 --- !u!1 &1094176056
 GameObject:
