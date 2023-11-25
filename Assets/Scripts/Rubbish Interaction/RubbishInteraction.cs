@@ -11,7 +11,7 @@ public class RubbishInteraction : MonoBehaviour
     private int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
-    int numRubbishHeld;
+    private int numRubbishHeld;
 
     [SerializeField]
     private bool Autopickup;
@@ -60,20 +60,31 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
-            if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
+            if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
-                recycledScore += numRubbishHeld;
-                recycledHighScore += numRubbishHeld;
-                score.text = "Rubbish Recycled : " + recycledHighScore;
-                enviroMeter.value = recycledScore;
-                playerManager.UpdateInventory(0, true);
-                numRubbishHeld = 0;
-                RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
-                Debug.Log(recycledScore);
+                if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
+                {
+                    recycledScore += numRubbishHeld;
+                    recycledHighScore += numRubbishHeld;
+                    score.text = "Rubbish Recycled : " + recycledHighScore;
+                    enviroMeter.value = recycledScore;
+                    RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
+                    playerManager.UpdateInventory(0, true);
+                    numRubbishHeld = 0;
+                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
+                    //Debug.Log(recycledScore);
+
+                }
+
+                else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
+                {
+                    Console.WriteLine("No rubbish to deposit");
+                }
             }
-            else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
+
+            else
             {
-                Console.WriteLine("No rubbish to deposit");
+                Debug.Log("This bin is full");
             }
         }
         else if (RubbishBin.tag == "Rubbish")
