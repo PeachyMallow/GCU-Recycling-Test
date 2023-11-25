@@ -86,6 +86,13 @@ public class GameManager : MonoBehaviour
     private bool readyToSpawn;
     #endregion
 
+    #region inspectionVariables
+    // from Alex's update (pasted on 25/11/2023)
+    [Header("Access to Rubbish Interaction Script to allow reduction")]
+    [SerializeField]
+    private RubbishInteraction RI;
+    #endregion
+
     private void Start()
     {
         totalTime = timer;
