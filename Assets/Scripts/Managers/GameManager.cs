@@ -86,6 +86,11 @@ public class GameManager : MonoBehaviour
     private bool readyToSpawn;
     #endregion
 
+        [Header("Access to Rubbish Interaction Script to allow reduction")]
+        [SerializeField]
+        private RubbishInteraction RI;
+
+
     private void Start()
     {
         totalTime = timer;
@@ -125,6 +130,7 @@ public class GameManager : MonoBehaviour
             {
                 readyToSpawn = false;
                 InstantiateItem();
+                RI.RubbishIncrease();
             }
         }
 
