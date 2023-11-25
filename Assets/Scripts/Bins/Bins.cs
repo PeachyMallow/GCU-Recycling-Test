@@ -21,4 +21,13 @@ public class Bins : MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// True if this bin is full
+    /// </summary>
+    /// <returns></returns>
+    public bool IsBinFull()
+    {
+        return isBinFull;
+    }
 }
