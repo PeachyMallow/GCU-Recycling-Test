@@ -10887,6 +10887,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 160
+  litterParent: {fileID: 0}
+  litter: []
+  startDelay: 0
+  litterSpawnTime: 0
+  litterPosY: 0
+  xMin: 0
+  xMax: 0
+  zMin: 0
+  zMax: 0
+  litterPos: {x: 0, y: 0, z: 0}
+  readyToSpawn: 0
+  RI: {fileID: 0}
+  binsMaxCapacity: 0
 --- !u!4 &1123941666
 Transform:
   m_ObjectHideFlags: 0
