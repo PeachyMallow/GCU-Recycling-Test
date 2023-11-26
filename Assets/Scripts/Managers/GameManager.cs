@@ -86,6 +86,19 @@ public class GameManager : MonoBehaviour
     private bool readyToSpawn;
     #endregion
 
+    [Header("Access to Rubbish Interaction Script to allow reduction")]
+    [SerializeField]
+    private RubbishInteraction RI;
+
+    // bins
+    [Header("----------------------------\n\nBin Capacity\n")]
+
+    [Header("Max Capacity of each bin")]
+    [SerializeField]
+    private int binsMaxCapacity;
+
+
+
     private void Start()
     {
         totalTime = timer;
@@ -125,6 +138,7 @@ public class GameManager : MonoBehaviour
             {
                 readyToSpawn = false;
                 InstantiateItem();
+                RI.RubbishIncrease();
             }
         }
 
@@ -209,4 +223,11 @@ public class GameManager : MonoBehaviour
         readyToSpawn = true;
     }
     #endregion
+
+
+    // accesses binsMaxCapacity 
+    public int MaxCapacity()
+    {
+        return binsMaxCapacity;
+    }
 }
