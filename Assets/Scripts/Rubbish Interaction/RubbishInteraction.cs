@@ -60,9 +60,9 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
-            if (!RubbishBin.GetComponent<Bins>().IsBinFull())
+            if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
             {
-                if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
+                if (!RubbishBin.GetComponent<Bins>().IsBinFull())
                 {
                     recycledScore += numRubbishHeld;
                     recycledHighScore += numRubbishHeld;
@@ -73,20 +73,21 @@ public class RubbishInteraction : MonoBehaviour
                     numRubbishHeld = 0;
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
                     //Debug.Log(recycledScore);
-
                 }
 
-                else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
+                else
                 {
-                    Console.WriteLine("No rubbish to deposit");
+                    Debug.Log("This bin is full");
+                    return;
                 }
             }
 
-            else
+            else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
             {
-                Debug.Log("This bin is full");
+                Console.WriteLine("No rubbish to deposit");
             }
         }
+
         else if (RubbishBin.tag == "Rubbish")
         {
             if (Autopickup == false)
@@ -120,7 +121,7 @@ public class RubbishInteraction : MonoBehaviour
         {
             recycledScore--;
             enviroMeter.value = recycledScore;
-            Debug.Log(recycledScore);
+            //Debug.Log(recycledScore);
         }
     }
 
