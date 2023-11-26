@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
     private void InstantiateItem()
     {
         float rX = Random.Range(xMin, xMax);
-        float rZ = Random.Range(zMin, xMax);
+        float rZ = Random.Range(zMin, zMax);
         litterPos = new Vector3 (rX, litterPosY, rZ);
 
         // which piece of litter is to be spawned
