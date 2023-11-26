@@ -64,15 +64,31 @@ public class RubbishInteraction : MonoBehaviour
             {
                 if (!RubbishBin.GetComponent<Bins>().IsBinFull())
                 {
-                    recycledScore += numRubbishHeld;
-                    recycledHighScore += numRubbishHeld;
+                    recycledScore++;
+                    recycledHighScore++;
                     score.text = "Rubbish Recycled : " + recycledHighScore;
                     enviroMeter.value = recycledScore;
                     RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     playerManager.UpdateInventory(0, true);
-                    numRubbishHeld = 0;
+                    Debug.Log("numRubbishHeld before: " + numRubbishHeld);
+                    numRubbishHeld--;
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
-                    //Debug.Log(recycledScore);
+                    Debug.Log("Recycled Score: " + recycledScore);
+                    Debug.Log("Recycled Highscore: " + recycledHighScore);
+                    Debug.Log("numRubbishHeld after: " + numRubbishHeld);
+
+
+
+                    //code prior to update
+                    //recycledScore += numRubbishHeld;
+                    //recycledHighScore += numRubbishHeld;
+                    //score.text = "Rubbish Recycled : " + recycledHighScore;
+                    //enviroMeter.value = recycledScore;
+                    //RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
+                    //playerManager.UpdateInventory(0, true);
+                    //numRubbishHeld = 0;
+                    //RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
+                    ////Debug.Log(recycledScore);
                 }
 
                 else

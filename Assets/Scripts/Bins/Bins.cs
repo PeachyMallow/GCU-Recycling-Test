@@ -39,6 +39,7 @@ public class Bins : MonoBehaviour
     /// </summary>
     public void DepositingLitter(int rubbishHeld)
     {
+        
         binCapacity += rubbishHeld;
     }
 
