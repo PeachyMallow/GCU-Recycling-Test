@@ -11,6 +11,7 @@ public class RubbishInteraction : MonoBehaviour
     private int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
+    [SerializeField]
     private int numRubbishHeld;
 
     [SerializeField]
@@ -60,23 +61,18 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
-            if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
+            if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
-                if (!RubbishBin.GetComponent<Bins>().IsBinFull())
+                if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
                 {
                     recycledScore++;
                     recycledHighScore++;
                     score.text = "Rubbish Recycled : " + recycledHighScore;
                     enviroMeter.value = recycledScore;
-                    RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
-                    playerManager.UpdateInventory(0, true);
-                    Debug.Log("numRubbishHeld before: " + numRubbishHeld);
-                    numRubbishHeld--;
+                    int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
+                    numRubbishHeld = holding;
+                    playerManager.UpdateInventory(holding, true);
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
-                    Debug.Log("Recycled Score: " + recycledScore);
-                    Debug.Log("Recycled Highscore: " + recycledHighScore);
-                    Debug.Log("numRubbishHeld after: " + numRubbishHeld);
-
 
 
                     //code prior to update
@@ -88,19 +84,13 @@ public class RubbishInteraction : MonoBehaviour
                     //playerManager.UpdateInventory(0, true);
                     //numRubbishHeld = 0;
                     //RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
-                    ////Debug.Log(recycledScore);
+                    //Debug.Log(recycledScore);
                 }
 
-                else
+                else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
                 {
-                    Debug.Log("This bin is full");
-                    return;
+                    Console.WriteLine("No rubbish to deposit");
                 }
-            }
-
-            else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
-            {
-                Console.WriteLine("No rubbish to deposit");
             }
         }
 

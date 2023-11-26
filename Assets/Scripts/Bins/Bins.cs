@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Bins : MonoBehaviour
 {
+    [Header("All of these variables are for Debugging purposes only")]
     [Header("Amount this bin is holding")]
     [SerializeField]
-    private int binCapacity;
+    private int binCurrentlyHolding;
 
     [SerializeField]
     private bool isBinFull;
 
-    [Header("For Debugging")]
     [SerializeField]
     private int maxCapacity;
 
     private void Start()
     {
-        binCapacity = 0;
+        binCurrentlyHolding = 0;
         isBinFull = false;
 
         if (FindObjectOfType<GameManager>() != null)
@@ -37,10 +37,25 @@ public class Bins : MonoBehaviour
     /// <summary>
     /// Adds the deposited litter to the binsCapacity (Right now takes all the rubbish the player has in their inventory)
     /// </summary>
-    public void DepositingLitter(int rubbishHeld)
+    public int DepositingLitter(int rubbishHeld)
     {
-        
-        binCapacity += rubbishHeld;
+        if (rubbishHeld > 0)
+        {
+            if (!isBinFull)
+            {
+                binCurrentlyHolding++ /*+= rubbishHeld*/;
+                rubbishHeld--;
+                return rubbishHeld;
+            }
+        }
+
+        else
+        {
+            Debug.Log("BIN IS FULL from bins.cs");
+            return rubbishHeld;
+        }
+
+        return 0;
     }
 
 
@@ -50,7 +65,7 @@ public class Bins : MonoBehaviour
     /// <returns></returns>
     public bool IsBinFull()
     {
-        if (binCapacity >= maxCapacity)
+        if (binCurrentlyHolding >= maxCapacity)
         {
             isBinFull = true;
             return true;
