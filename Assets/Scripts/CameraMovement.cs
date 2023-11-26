@@ -2,41 +2,35 @@
 
 public class CameraMovement : MonoBehaviour
 {
-    [Header("Drag Player GameObject here")]
-    [SerializeField]
-    private Transform player;
+    /// <summary>
+    /// Reference to the player's Transform component
+    /// Smoothing factor for camera movement
+    /// Camera Offset 
+    /// </summary>
+    public Transform player;
+    public float smoothSpeed = 0.125f;
+    public Vector3 offset;
 
-    [Header("Distance the camera is from the player")]
-    [SerializeField]
-    private Vector3 offset;
-
-
-    private void Start()
+    /// <summary>
+    /// Calculate the desired position for the camera
+    /// Use Mathf.Lerp to smooth the current camera position to the desired position
+    /// Update the cameras position
+    /// Make the camera look at the player
+    /// </summary>
+    void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0)); // change cameras rotation with X,Y,Z 
+        if (player != null)
+        {
+            Vector3 desiredPosition = player.position + offset;
+
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+
+            transform.position = smoothedPosition;
+
+            transform.LookAt(player);
+        }
     }
-
-    private void LateUpdate()
-    {
-        Vector3 target = new Vector3(player.position.x, 0, player.position.z) + offset;
-        transform.position = target; // change cameras position with X,Y,Z
-    }
-
-
-    //GameObject player;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //   player = GameObject.Find("player"); // find the player character
-    //}
-
-    ////Update is called once per frame
-    //void Update()
-    //{
-    //   transform.position = player.transform.position + new Vector3(6, 8, 0); // change cameras position with X,Y,Z
-    //   transform.rotation = Quaternion.Euler(new Vector3(45, -90, 0)); // change cameras rotation with X,Y,Z
-    //}
 }
+
 
 

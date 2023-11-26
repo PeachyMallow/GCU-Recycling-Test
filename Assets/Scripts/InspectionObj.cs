@@ -2,19 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InspectionObj : MonoBehaviour
 {
     public GameObject[] inspectionObjects;
+
+    public Text objDescriptionText;
+    public Text objDescriptionText2;
+    public Text objDescriptionText3;
+
     private int currentIndex;
 
-    public void TurnOnInspection(int index)
+    /// <summary>
+    /// // turn on item inspection canvas with relivant data for each item
+    /// </summary>
+    /// <param name="index"></param>
+    public void TurnOnInspection(int index) 
     {
         currentIndex = index;
         inspectionObjects[index].SetActive(true);
+        var data = inspectionObjects[index].GetComponent<InspectionObjectData>();
+        objDescriptionText.text = data.description;
+        objDescriptionText2.text=data.description1;
+        objDescriptionText3.text=data.description2;
     }
 
-    public void TurnOffInspection()
+    /// <summary>
+    /// turn off item inspection
+    /// </summary>
+    public void TurnOffInspection() 
     {
         inspectionObjects[currentIndex].SetActive(false);
     }
