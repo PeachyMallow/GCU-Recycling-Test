@@ -9,12 +9,20 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int playerCapacity;
 
-    // what he player currently has in their inventory
+    // could make this equal to playerInventory.size
+    // how many items the player currently has in their inventory
+    [Header("All the pieces of litter the player is holding")]
+    [SerializeField]
     private int currentlyHolding;
+
+    // player's inventory
+    [SerializeField]
+    private List<GameObject> playerInventory = new List<GameObject>();
 
     [Header("Drag UI Manager GameObject here")]
     [SerializeField]
     private UIManager uiManager;
+
 
     private void Start()
     {
@@ -40,18 +48,26 @@ public class PlayerManager : MonoBehaviour
     // (accessed in RubbishInteraction.cs)
     /// <summary>
     /// Updates the player's inventory upon player interaction with rubbish or the bin
+    /// a = how many items to add to player inventory count
+    /// b = true when player is depositing an item, false when player picks up an item
     /// </summary>
     /// <param name="a"></param>
-    public void UpdateInventory(int a, bool b)
+    public void UpdateInventory(int a, bool b, GameObject item)
     {
-        if (!b)
+        // picking up litter
+        if (b == false)
         {
+            Debug.Log("Picked up litter");
             currentlyHolding += a;
+            playerInventory.Add(item);
         }
 
+        // depositing litter
         else
         {
+            Debug.Log("Disposed of litter");
             currentlyHolding = a;
+            playerInventory.RemoveAt(0);
         }
 
         uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);

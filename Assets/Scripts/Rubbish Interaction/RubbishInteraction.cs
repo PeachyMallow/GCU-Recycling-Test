@@ -97,7 +97,7 @@ public class RubbishInteraction : MonoBehaviour
                     enviroMeter.value = recycledScore;
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
-                    playerManager.UpdateInventory(holding, true);
+                    playerManager.UpdateInventory(holding, true, null);
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
                 }
 
@@ -130,8 +130,9 @@ public class RubbishInteraction : MonoBehaviour
         {
             numRubbish++;
             numRubbishHeld++;
-            playerManager.UpdateInventory(1, false);
-            Destroy(Rubbish.gameObject);
+            playerManager.UpdateInventory(1, false, Rubbish.gameObject);
+            Rubbish.gameObject.SetActive(false);
+            //Destroy(Rubbish.gameObject);
             RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
         }
     }

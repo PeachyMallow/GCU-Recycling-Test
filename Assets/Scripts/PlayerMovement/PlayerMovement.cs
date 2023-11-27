@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     // does not work with current rotation so removed visibility in the inspector
     private bool playerTransform;
 
-    [SerializeField]
     private bool usingUpdate;
 
     private void Start()
