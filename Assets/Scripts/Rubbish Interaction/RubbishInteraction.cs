@@ -94,9 +94,11 @@ public class RubbishInteraction : MonoBehaviour
             }
         }
 
-        else if (RubbishBin.tag == "Rubbish")
+        //else if (RubbishBin.tag == "Rubbish")
+        //{
+        if (Autopickup == false)
         {
-            if (Autopickup == false)
+            if (Input.GetKey(KeyCode.E))
             {
                 if (RubbishBin.tag == "Rubbish" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" && Input.GetKey(KeyCode.E))
                 {
@@ -104,6 +106,7 @@ public class RubbishInteraction : MonoBehaviour
                 }
             }
         }
+        //}
     }
 
 
