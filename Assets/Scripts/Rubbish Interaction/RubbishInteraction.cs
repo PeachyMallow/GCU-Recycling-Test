@@ -11,8 +11,12 @@ public class RubbishInteraction : MonoBehaviour
     private int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
-    [SerializeField]
-    private int numRubbishHeld;
+    int numRubbishHeld;
+    public float radNum = 0f;
+
+    private bool isGameOver;
+    public GameObject victoryMenuUI;
+    public GameObject gameOverMenuUI;
 
     [SerializeField]
     private bool Autopickup;
@@ -30,7 +34,7 @@ public class RubbishInteraction : MonoBehaviour
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
-        recycledScore = 0;
+        recycledScore = 5;
         recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
         RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
@@ -41,6 +45,7 @@ public class RubbishInteraction : MonoBehaviour
     private void Update()
     {
         PickupSwitch();
+        EndingmenuUI();
     }
 
     private void OnTriggerEnter(Collider Rubbish)
@@ -61,39 +66,22 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
-            if (!RubbishBin.GetComponent<Bins>().IsBinFull())
+            if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
             {
-                if (Input.GetKey(KeyCode.E) && numRubbishHeld > 0)
-                {
-                    recycledScore++;
-                    recycledHighScore++;
-                    score.text = "Rubbish Recycled : " + recycledHighScore;
-                    enviroMeter.value = recycledScore;
-                    int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
-                    numRubbishHeld = holding;
-                    playerManager.UpdateInventory(holding, true);
-                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
-
-
-                    //code prior to update
-                    //recycledScore += numRubbishHeld;
-                    //recycledHighScore += numRubbishHeld;
-                    //score.text = "Rubbish Recycled : " + recycledHighScore;
-                    //enviroMeter.value = recycledScore;
-                    //RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
-                    //playerManager.UpdateInventory(0, true);
-                    //numRubbishHeld = 0;
-                    //RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
-                    //Debug.Log(recycledScore);
-                }
-
-                else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
-                {
-                    Console.WriteLine("No rubbish to deposit");
-                }
+                recycledScore += numRubbishHeld;
+                recycledHighScore += numRubbishHeld;
+                score.text = "Rubbish Recycled : " + recycledHighScore;
+                enviroMeter.value = recycledScore;
+                playerManager.UpdateInventory(0, true);
+                numRubbishHeld = 0;
+                RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
+                Debug.Log(recycledScore);
+            }
+            else if (Input.GetKey(KeyCode.E) && numRubbish <= 0)
+            {
+                Console.WriteLine("No rubbish to deposit");
             }
         }
-
         else if (RubbishBin.tag == "Rubbish")
         {
             if (Autopickup == false)
@@ -127,7 +115,21 @@ public class RubbishInteraction : MonoBehaviour
         {
             recycledScore--;
             enviroMeter.value = recycledScore;
-            //Debug.Log(recycledScore);
+            Debug.Log(recycledScore);
+        }
+    }
+
+    public void EndingmenuUI()
+    {
+        if (enviroMeter.value == 10)
+        {
+            victoryMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else if (enviroMeter.value == 0)
+        {
+            gameOverMenuUI.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
