@@ -74,8 +74,6 @@ public class PlayerMovement : MonoBehaviour
             Movement();
         }
 
-        Debug.Log(moveDir.magnitude);
-
         // beca note: need to revisit this to understand it better
         if (moveDir.magnitude >= 0.1f)
         {
