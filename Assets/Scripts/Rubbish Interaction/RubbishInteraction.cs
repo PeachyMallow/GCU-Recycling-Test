@@ -26,12 +26,11 @@ public class RubbishInteraction : MonoBehaviour
     [SerializeField]
     private PlayerManager playerManager;
 
+    // true when player presses E
     [SerializeField]
     private bool keyPressed;
 
-    [SerializeField]
-    private bool atBin;
-
+    // required to deposit one item at a time
     [SerializeField]
     private bool canDeposit;
 
@@ -47,7 +46,6 @@ public class RubbishInteraction : MonoBehaviour
         score.text = "Rubbish Recycled : " + recycledHighScore;
         Console.WriteLine("Auto Pickup Active");
         keyPressed = false;
-        atBin = false;
         canDeposit = false;
     }
 
@@ -58,14 +56,12 @@ public class RubbishInteraction : MonoBehaviour
         {
             canDeposit = true;
             keyPressed = true;
-            Debug.Log("KeyPressed = true: " + keyPressed);
         }
 
         //once the player has deposited a piece of rubbish
         else if (Input.GetKeyUp(KeyCode.E))
         {
             keyPressed = false;
-            Debug.Log("KeyPressed = false: " + keyPressed);
         }
 
         PickupSwitch();

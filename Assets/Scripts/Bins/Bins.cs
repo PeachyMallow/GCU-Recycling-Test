@@ -51,7 +51,6 @@ public class Bins : MonoBehaviour
 
         else
         {
-            Debug.Log("BIN IS FULL from bins.cs");
             return rubbishHeld;
         }
 
@@ -71,7 +70,10 @@ public class Bins : MonoBehaviour
             return true;
         }
 
-        else return false;
+        else
+        {
+            return false;
+        }
 
         // return isBinFull;
     }
