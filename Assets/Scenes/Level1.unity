@@ -14969,7 +14969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 504107904}
-  offset: {x: -0.87, y: 396, z: -15.1}
+  smoothSpeed: 10
+  offset: {x: -0.87, y: 15.4, z: -14.5}
 --- !u!81 &1108377675
 AudioListener:
   m_ObjectHideFlags: 0
@@ -25580,6 +25581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCapacity: 8
+  currentlyHolding: 0
+  playerInventory: []
   uiManager: {fileID: 1157755236}
 --- !u!1 &1802049647
 GameObject:
@@ -30765,7 +30768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7147393936048258979, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
       propertyPath: maxSpeed
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7147393936048258979, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
       propertyPath: velocity
@@ -30778,10 +30781,6 @@ PrefabInstance:
     - target: {fileID: 7147393936048258979, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
       propertyPath: movePosition
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7147393936048258979, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
-      propertyPath: turnSmoothTime
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7161938256478933029, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
       propertyPath: m_Constraints
