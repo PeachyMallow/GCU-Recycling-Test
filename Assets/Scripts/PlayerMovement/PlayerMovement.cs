@@ -10,7 +10,19 @@ public class PlayerMovement : MonoBehaviour
     // covers both WASD and arrow key input
     private float hInput;
     private float vInput;
+    // not a temp variable in a method as it needs a wider scope of access
     private Vector3 moveDir;
+
+    private float targetAngle;
+    private float angle;
+
+    //[Header("How much smoothing the player rotation should have")]
+    [SerializeField]
+    private float turnSmoothTime;
+
+    // revisit this and why we need ref
+    //[SerializeField]
+    private float turnSmoothVel;
 
     /// <summary>
     /// Adjusts player's top speed they can reach
@@ -23,10 +35,11 @@ public class PlayerMovement : MonoBehaviour
     //private float maxSpeed;
 
     // these are all false, but bools in c# are automatically declared false so no need to initialize
-    [Header("Pick one to test different types of movement")]
-    [SerializeField]
+    
+    // does not work with current rotation so removed visibility in the inspector
     private bool addForce;
 
+    [Header("Pick one at a time to test different types of movement")]
     [SerializeField]
     private bool movePosition;
 
@@ -36,9 +49,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool fUVelocity;
 
-    [SerializeField]
+    // does not work with current rotation so removed visibility in the inspector
     private bool playerTransform;
 
+    [SerializeField]
     private bool usingUpdate;
 
     private void Start()
@@ -52,12 +66,22 @@ public class PlayerMovement : MonoBehaviour
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
         
-        //calculates where the player should move based on that input
-        moveDir = new Vector3(hInput, 0.0f, vInput);
+        // calculates the direction in which the player should move based on that input
+        moveDir = new Vector3(hInput, 0.0f, vInput).normalized;
 
         if (usingUpdate)
         {
             Movement();
+        }
+
+        Debug.Log(moveDir.magnitude);
+
+        // beca note: need to revisit this to understand it better
+        if (moveDir.magnitude >= 0.1f)
+        {
+            targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0.0f);
         }
     }
 
@@ -67,6 +91,14 @@ public class PlayerMovement : MonoBehaviour
         {
             Movement();
         }
+
+        // beca note: need to revisit this to understand it better
+        if (moveDir.magnitude >= 0.1f)
+        {
+            targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0.0f);
+        }
     }
 
     private void Movement()
@@ -75,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
         {
             usingUpdate = false; 
 
-            if (addForce)
-            {
-                Vector3 move = (transform.forward * vInput + transform.right * hInput).normalized;
-                Vector3 hVel = rb.velocity;
-                rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
-            }
+            //if (addForce)
+            //{
+            //    Vector3 move = (transform.forward * vInput + transform.right * hInput).normalized;
+            //    Vector3 hVel = rb.velocity;
+            //    rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
+            //}
 
             if (movePosition)
             {
@@ -89,10 +121,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.MovePosition(newPos);
             }
 
-            if (playerTransform)
-            {
-                transform.Translate(moveDir * maxSpeed * Time.fixedDeltaTime);
-            }
+            //if (playerTransform)
+            //{
+            //    transform.Translate(moveDir * maxSpeed * Time.fixedDeltaTime);
+            //}
 
             // using rigidbody velocity in fixed update
             if (fUVelocity)

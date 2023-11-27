@@ -2,20 +2,35 @@
 
 public class CameraMovement : MonoBehaviour
 {
-    GameObject player;
- 
-    // Start is called before the first frame update
-    void Start()
-    {
-       player = GameObject.Find("player"); // find the player character
-    }
+    /// <summary>
+    /// Reference to the player's Transform component
+    /// Smoothing factor for camera movement
+    /// Camera Offset 
+    /// </summary>
+    public Transform player;
+    public float smoothSpeed = 0.125f;
+    public Vector3 offset;
 
-    //Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Calculate the desired position for the camera
+    /// Use Mathf.Lerp to smooth the current camera position to the desired position
+    /// Update the cameras position
+    /// Make the camera look at the player
+    /// </summary>
+    void LateUpdate()
     {
-       transform.position = player.transform.position + new Vector3(6, 8, 0); // change cameras position with X,Y,Z
-       transform.rotation = Quaternion.Euler(new Vector3(45, -90, 0)); // change cameras rotation with X,Y,Z
+        if (player != null)
+        {
+            Vector3 desiredPosition = player.position + offset;
+
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+
+            transform.position = smoothedPosition;
+
+            transform.LookAt(player);
+        }
     }
 }
+
 
 
