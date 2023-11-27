@@ -1421,6 +1421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1881607210}
+  smoothSpeed: 5
   offset: {x: 0, y: 7.74, z: -7.55}
 --- !u!1 &753971551
 GameObject:
@@ -3965,6 +3966,7 @@ MonoBehaviour:
   movePosition: 0
   velocity: 0
   fUVelocity: 1
+  usingUpdate: 0
 --- !u!114 &1881607215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3979,6 +3981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RubbishScore: {fileID: 1667739282}
   score: {fileID: 1770901725}
+  numRubbishHeld: 0
   Autopickup: 0
   enviroMeter: {fileID: 1229660090}
   playerManager: {fileID: 700851648}
