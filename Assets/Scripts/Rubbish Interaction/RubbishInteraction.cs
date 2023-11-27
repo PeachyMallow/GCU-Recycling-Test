@@ -71,7 +71,7 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (Autopickup == true)
         {
-            if (Rubbish.tag == "Rubbish" || Rubbish.tag == "Paper" || Rubbish.tag == "LiquidInside" || Rubbish.tag == "FoodWaste")
+            if (Rubbish.tag == "NonRecyclable" || Rubbish.tag == "Paper" || Rubbish.tag == "LiquidInside" || Rubbish.tag == "FoodWaste" || Rubbish.tag == "Plastic")
             {
                 RubbishPickup(Rubbish.gameObject);
             }
@@ -97,7 +97,7 @@ public class RubbishInteraction : MonoBehaviour
                     enviroMeter.value = recycledScore;
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
-                    playerManager.UpdateInventory(holding, true, null);
+                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject);
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
                 }
 
@@ -110,16 +110,16 @@ public class RubbishInteraction : MonoBehaviour
             canDeposit = false;
         }
 
-        else if (RubbishBin.tag == "Rubbish")
+        //else if (RubbishBin.tag == "NonRecyclable")
+        //{
+        if (Autopickup == false)
         {
-            if (Autopickup == false)
+            if (RubbishBin.tag == "NonRecyclable" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" || RubbishBin.tag == "Plastic" && Input.GetKey(KeyCode.E))
             {
-                if (RubbishBin.tag == "Rubbish" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" && Input.GetKey(KeyCode.E))
-                {
-                    RubbishPickup(RubbishBin.gameObject);
-                }
+                RubbishPickup(RubbishBin.gameObject);
             }
         }
+       // }
     }
 
     // checks if the player's inventory is full
@@ -171,6 +171,17 @@ public class RubbishInteraction : MonoBehaviour
         return numRubbishHeld;
     }
 }
+
+//else if (RubbishBin.tag == "Rubbish")
+//{
+//    if (Autopickup == false)
+//    {
+//        if (RubbishBin.tag == "Rubbish" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" && Input.GetKey(KeyCode.E))
+//        {
+//            RubbishPickup(RubbishBin.gameObject);
+//        }
+//    }
+//}
 
 // when player is at the bin
 //private void AtBin(GameObject bin)

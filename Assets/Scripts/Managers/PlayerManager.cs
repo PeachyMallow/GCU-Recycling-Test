@@ -67,7 +67,13 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Disposed of litter");
             currentlyHolding = a;
-            playerInventory.RemoveAt(0);
+
+            // might need an exception here
+            int index = playerInventory.IndexOf(item);
+
+            Destroy(playerInventory[index]);
+            playerInventory.RemoveAt(index);
+            
         }
 
         uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
