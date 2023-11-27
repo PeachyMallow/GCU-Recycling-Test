@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RubbishScore: {fileID: 0}
   score: {fileID: 0}
+  numRubbishHeld: 0
   Autopickup: 0
   enviroMeter: {fileID: 0}
   playerManager: {fileID: 0}
@@ -183,11 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5aa250c0b4494bb65695c3901bd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSmoothTime: 0
+  turnSmoothTime: 0.1
   maxSpeed: 15
   movePosition: 0
   velocity: 1
   fUVelocity: 0
+  usingUpdate: 0
 --- !u!54 &7161938256478933029
 Rigidbody:
   m_ObjectHideFlags: 0
