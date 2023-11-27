@@ -15032,7 +15032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 504107904}
-  smoothSpeed: 0.125
+  smoothSpeed: 10
   offset: {x: -0.87, y: 15.4, z: -14.5}
 --- !u!81 &1108377675
 AudioListener:
@@ -31154,7 +31154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7161938256478933029, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
       propertyPath: m_Constraints
-      value: 80
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
