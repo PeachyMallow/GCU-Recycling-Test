@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     // does not work with current rotation so removed visibility in the inspector
     private bool playerTransform;
 
+    [SerializeField]
     private bool usingUpdate;
 
     private void Start()
@@ -73,10 +74,10 @@ public class PlayerMovement : MonoBehaviour
             Movement();
         }
 
-        //Debug.Log(moveDir.magnitude);
+        Debug.Log(moveDir.magnitude);
 
         // beca note: need to revisit this to understand it better
-        if (moveDir.magnitude >= 0.1f && usingUpdate)
+        if (moveDir.magnitude >= 0.1f)
         {
             targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
             angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
@@ -106,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
         {
             usingUpdate = false; 
 
-            if (addForce)
-            {
-                Vector3 move = (transform.forward * vInput + transform.right * hInput).normalized;
-                Vector3 hVel = rb.velocity;
-                rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
-            }
+            //if (addForce)
+            //{
+            //    Vector3 move = (transform.forward * vInput + transform.right * hInput).normalized;
+            //    Vector3 hVel = rb.velocity;
+            //    rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
+            //}
 
             if (movePosition)
             {
@@ -120,10 +121,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.MovePosition(newPos);
             }
 
-            if (playerTransform)
-            {
-                transform.Translate(moveDir * maxSpeed * Time.fixedDeltaTime);
-            }
+            //if (playerTransform)
+            //{
+            //    transform.Translate(moveDir * maxSpeed * Time.fixedDeltaTime);
+            //}
 
             // using rigidbody velocity in fixed update
             if (fUVelocity)

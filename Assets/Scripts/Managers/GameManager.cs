@@ -86,12 +86,18 @@ public class GameManager : MonoBehaviour
     private bool readyToSpawn;
     #endregion
 
-    #region inspectionVariables
-    // from Alex's update (pasted on 25/11/2023)
     [Header("Access to Rubbish Interaction Script to allow reduction")]
     [SerializeField]
     private RubbishInteraction RI;
-    #endregion
+
+    // bins
+    [Header("----------------------------\n\nBin Capacity\n")]
+
+    [Header("Max Capacity of each bin")]
+    [SerializeField]
+    private int binsMaxCapacity;
+
+
 
     private void Start()
     {
@@ -132,6 +138,7 @@ public class GameManager : MonoBehaviour
             {
                 readyToSpawn = false;
                 InstantiateItem();
+                RI.RubbishIncrease();
             }
         }
 
@@ -184,7 +191,7 @@ public class GameManager : MonoBehaviour
     private void InstantiateItem()
     {
         float rX = Random.Range(xMin, xMax);
-        float rZ = Random.Range(zMin, xMax);
+        float rZ = Random.Range(zMin, zMax);
         litterPos = new Vector3 (rX, litterPosY, rZ);
 
         // which piece of litter is to be spawned
@@ -216,4 +223,11 @@ public class GameManager : MonoBehaviour
         readyToSpawn = true;
     }
     #endregion
+
+
+    // accesses binsMaxCapacity 
+    public int MaxCapacity()
+    {
+        return binsMaxCapacity;
+    }
 }
