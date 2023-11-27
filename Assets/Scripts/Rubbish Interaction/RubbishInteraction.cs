@@ -12,6 +12,11 @@ public class RubbishInteraction : MonoBehaviour
     private int recycledHighScore;
     private int numRubbish;
     int numRubbishHeld;
+    public float radNum = 0f;
+
+    private bool isGameOver;
+    public GameObject victoryMenuUI;
+    public GameObject gameOverMenuUI;
 
     [SerializeField]
     private bool Autopickup;
@@ -29,7 +34,7 @@ public class RubbishInteraction : MonoBehaviour
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
-        recycledScore = 0;
+        recycledScore = 5;
         recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
         RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
@@ -40,6 +45,7 @@ public class RubbishInteraction : MonoBehaviour
     private void Update()
     {
         PickupSwitch();
+        EndingmenuUI();
     }
 
     private void OnTriggerEnter(Collider Rubbish)
@@ -110,6 +116,20 @@ public class RubbishInteraction : MonoBehaviour
             recycledScore--;
             enviroMeter.value = recycledScore;
             Debug.Log(recycledScore);
+        }
+    }
+
+    public void EndingmenuUI()
+    {
+        if (enviroMeter.value == 10)
+        {
+            victoryMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else if (enviroMeter.value == 0)
+        {
+            gameOverMenuUI.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
