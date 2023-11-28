@@ -446,7 +446,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 165341954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1315552850}
+        m_TargetAssemblyTypeName: RubbishInteraction, Assembly-CSharp
+        m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &165341954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,7 +1780,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 611645761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1315552850}
+        m_TargetAssemblyTypeName: RubbishInteraction, Assembly-CSharp
+        m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &611645761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3164,12 +3188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5aa250c0b4494bb65695c3901bd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnSmoothTime: 0
   maxSpeed: 8
-  addForce: 0
   movePosition: 0
   velocity: 0
   fUVelocity: 1
-  playerTransform: 0
+  usingUpdate: 0
 --- !u!23 &1315552843
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4169,20 +4193,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 160
+  litterParent: {fileID: 1151097111}
   litter:
   - {fileID: 6084135387239679434, guid: b31372502a73ede4cae41e9a4569ffd7, type: 3}
   - {fileID: 8004461758732291673, guid: 6ff3f1d58817d1342b3d29908af08f14, type: 3}
   - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
   - {fileID: 6216011569501080760, guid: 7ab99a68d5130474fa6cf4e763301c8b, type: 3}
   - {fileID: 2233020953187505264, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-  rubbish:
-  - {fileID: 2310893230806546575, guid: 9cb297ed03612da48a1ff8859138e636, type: 3}
+  startDelay: 0
   litterSpawnTime: 5
-  RI: {fileID: 1315552850}
   litterPosY: 1
+  xMin: 0
+  xMax: 0
+  zMin: 0
+  zMax: 0
   litterPos: {x: 0, y: 0, z: 0}
-  litterParent: {fileID: 1151097111}
   readyToSpawn: 0
+  RI: {fileID: 1315552850}
+  binsMaxCapacity: 0
 --- !u!4 &1667812181
 Transform:
   m_ObjectHideFlags: 0

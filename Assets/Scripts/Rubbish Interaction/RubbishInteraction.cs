@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class RubbishInteraction : MonoBehaviour
     private bool isGameOver;
     public GameObject victoryMenuUI;
     public GameObject gameOverMenuUI;
+    private GameObject Menu;
 
     [SerializeField]
     private bool Autopickup;
@@ -131,6 +134,21 @@ public class RubbishInteraction : MonoBehaviour
             gameOverMenuUI.SetActive(true);
             Time.timeScale = 0f;
         }
+    }
+
+    public void Continue()
+    {
+        // Ui Buttons Functions
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Exit()
+    {
+        // Ui Buttons Functions
     }
 
     // used to Switch between manual and automatic pickup
