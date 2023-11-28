@@ -9,7 +9,7 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-    // Press "P" to pause 
+        // Press "P" to pause 
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("P key pressed");
@@ -57,5 +57,11 @@ public class PauseManager : MonoBehaviour
     {
         // Implement logic for quitting the game (can be adjusted based on your needs)
         Application.Quit();
+    }
+
+    public void ExitToHomeScreen()
+    {
+        // Implement logic to exit to the home screen
+        SceneManager.LoadScene("MainMenu");
     }
 }
