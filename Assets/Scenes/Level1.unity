@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 24385778}
   - component: {fileID: 24385777}
   m_Layer: 5
-  m_Name: Image
+  m_Name: EnvMeterBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1138,15 +1138,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24385775}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0.000000104308114}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.23786671, y: 11.2923765, z: 0.23786671}
+  m_LocalPosition: {x: 0, y: 0, z: -2807.3887}
+  m_LocalScale: {x: 0.57088006, y: 47.281418, z: 0.5708801}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1481980599}
+  m_Father: {fileID: 985432533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 375.20004, y: 54.299988}
+  m_AnchoredPosition: {x: 127, y: 590}
   m_SizeDelta: {x: 50, y: 3.5667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24385777
@@ -16699,6 +16699,7 @@ Transform:
   m_Children:
   - {fileID: 1258344217}
   - {fileID: 1193941680}
+  - {fileID: 24385776}
   m_Father: {fileID: 712970623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1008028889
@@ -24228,7 +24229,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1373743544}
-  - {fileID: 24385776}
   m_Father: {fileID: 1026328826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0}
@@ -35878,7 +35878,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 229aa48afc538424d8f31674360fa3ff, type: 2}
     - target: {fileID: 919132149155446097, guid: 7dd1e5366fe0b434ba34fb9995a1db39, type: 3}
       propertyPath: m_Name
-      value: Character_walk_cycle_for_unity_test
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
