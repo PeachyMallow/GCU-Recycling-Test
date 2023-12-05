@@ -2139,8 +2139,8 @@ MonoBehaviour:
   - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
   - {fileID: 8004461758732291673, guid: 6ff3f1d58817d1342b3d29908af08f14, type: 3}
   - {fileID: 6084135387239679434, guid: b31372502a73ede4cae41e9a4569ffd7, type: 3}
-  startDelay: 0
-  litterSpawnTime: 1
+  startDelay: 100
+  litterSpawnTime: 100
   litterPosY: 0.45
   xMin: -6
   xMax: 6
@@ -3982,9 +3982,14 @@ MonoBehaviour:
   RubbishScore: {fileID: 1667739282}
   score: {fileID: 1770901725}
   numRubbishHeld: 0
+  radNum: 0
+  victoryMenuUI: {fileID: 0}
+  gameOverMenuUI: {fileID: 0}
   Autopickup: 0
   enviroMeter: {fileID: 1229660090}
   playerManager: {fileID: 700851648}
+  keyPressed: 0
+  canDeposit: 0
 --- !u!54 &1881607216
 Rigidbody:
   m_ObjectHideFlags: 0
