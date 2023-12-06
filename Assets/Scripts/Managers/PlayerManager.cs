@@ -50,6 +50,7 @@ public class PlayerManager : MonoBehaviour
     /// Updates the player's inventory upon player interaction with rubbish or the bin
     /// a = how many items to add to player inventory count
     /// b = true when player is depositing an item, false when player picks up an item
+    /// item = the item the player is disposing of
     /// </summary>
     /// <param name="a"></param>
     public void UpdateInventory(int a, bool b, GameObject item)
@@ -68,12 +69,22 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Disposed of litter");
             currentlyHolding = a;
 
-            // might need an exception here
-            int index = playerInventory.IndexOf(item);
+            //if (currentlyHolding >= 0)
+            //{
+                // might need an exception here
+            int index = playerInventory.IndexOf(item); // this is not working because I'm passing in the bloody rubbish bin game object??? 
+            Debug.Log("Index: " + index);
 
-            Destroy(playerInventory[index]);
-            playerInventory.RemoveAt(index);
-            
+
+
+            if (index >= 0)
+            {
+                Debug.Log("Item: " + item + " Index: " + index);
+
+                Destroy(playerInventory[index]);
+                playerInventory.RemoveAt(index);
+            }
+            //}
         }
 
         uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
