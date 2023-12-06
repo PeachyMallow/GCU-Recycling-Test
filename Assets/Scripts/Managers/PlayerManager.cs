@@ -9,11 +9,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int playerCapacity;
 
-    // could make this equal to playerInventory.size
-    // how many items the player currently has in their inventory
-    [Header("All the pieces of litter the player is holding")]
-    [SerializeField]
-    private int currentlyHolding;
+    //// could make this equal to playerInventory.size
+    //// how many items the player currently has in their inventory
+    //[Header("All the pieces of litter the player is holding")]
+    //[SerializeField]
+    //private int currentlyHolding;
 
     // player's inventory
     [SerializeField]
@@ -27,11 +27,15 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private bool hasSearched;
 
+    // true when a matching piece of rubbish is found for the bin the player is currently at
+    [SerializeField]
+    private bool matchFound;
 
     private void Start()
     {
         hasSearched = false;
-        uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
+        matchFound = false;
+        uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
     }
 
     // (accessed in RubbishInteraction.cs)
@@ -41,7 +45,7 @@ public class PlayerManager : MonoBehaviour
     /// <returns></returns>
     public bool InventoryFull()
     {
-        if (currentlyHolding >= playerCapacity)
+        if (playerInventory.Count >= playerCapacity)
         {
             Debug.Log("Player's inventory is full!");
             return true;
@@ -60,14 +64,11 @@ public class PlayerManager : MonoBehaviour
     /// <param name="a"></param>
     public void UpdateInventory(int a, bool b, GameObject c)
     {
-        hasSearched = false;
-        Debug.Log("hasSearched: " + hasSearched);
-
         // picking up litter
         if (b == false)
         {
 
-            currentlyHolding++;
+            //currentlyHolding++;
             //currentlyHolding += a;
             playerInventory.Add(c);
         }
@@ -75,16 +76,11 @@ public class PlayerManager : MonoBehaviour
         // depositing litter
         else
         {
+            hasSearched = false;
+           //Debug.Log("hasSearched: " + hasSearched);
 
-            currentlyHolding = playerInventory.Count;
+            //currentlyHolding = playerInventory.Count;
             //currentlyHolding = a;
-
-
-            //if (currentlyHolding >= 0)
-            //{
-                // might need an exception here
-            //int index = playerInventory.IndexOf(c); // this is not working because I'm passing in the bloody rubbish bin game object??? 
-            //Debug.Log("Index: " + index);
 
             // removing 'bin' from the end of the bin currently being interacted with's name
             string binName = c.name.Substring(0, c.name.Length - 3);
@@ -96,41 +92,45 @@ public class PlayerManager : MonoBehaviour
             {
                 foreach (GameObject item in playerInventory)
                 {
-                    Debug.Log(item.name);
+                    //Debug.Log(item.name);
 
                     if (item.name.StartsWith(binName))
                     {
                         // points on EIM
-                        //Debug.Log("Found matching item: " + item.name);
+                        Debug.Log("Found matching item: " + item.name);
                         playerInventory.Remove(item);
+                        matchFound = true;
                         //Debug.Log("List Length: " + playerInventory.Count);
                         break;
                     }
-
-                    //else
-                    //{
-                    //    // minus points on eim
-                    //    Debug.Log("This item did not match: " + item.name);
-                    //    playerInventory.RemoveAt(0);
-                    //    break;
-                    //}
                 }
 
+                if (!matchFound)
+                {
+                    // minus points on EIM
+                    Debug.Log("No matching item was found");
+                    playerInventory.RemoveAt(0);
+                }
+
+                matchFound = false;
                 hasSearched = true;
-                Debug.Log("hasSearched: " + hasSearched);
+                //Debug.Log("hasSearched: " + hasSearched);
             }
-
-
-            //if (index >= 0)
-            //{
-            //    Debug.Log("Item: " + c + " Index: " + index);
-
-            //    Destroy(playerInventory[index]);
-            //    playerInventory.RemoveAt(index);
-            //}
-            //}
         }
 
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
+    }
+
+    // to perform check on item being recycled
+
+
+    /// <summary>
+    /// Updates the players' score dependant on proper or inproper recycling
+    /// </summary>
+    /// <param name="score"></param>
+    /// <returns></returns>
+    public int UpdateScore(int score)
+    {
+        return score;
     }
 }
