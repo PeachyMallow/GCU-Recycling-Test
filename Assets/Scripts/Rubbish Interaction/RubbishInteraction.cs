@@ -18,6 +18,13 @@ public class RubbishInteraction : MonoBehaviour
     private int numRubbishHeld;
     public float radNum = 0f;
 
+    [Header("SFX Here")]
+    [SerializeField]
+    public AudioSource pickupSource;
+    public AudioClip pickupClip;
+    public AudioSource disposeSource;
+    public AudioClip disposeClip;
+
     private bool isGameOver;
     public GameObject victoryMenuUI;
     public GameObject gameOverMenuUI;
@@ -109,6 +116,7 @@ public class RubbishInteraction : MonoBehaviour
                     numRubbishHeld = holding;
                     playerManager.UpdateInventory(holding, true);
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
+                    disposeSource.PlayOneShot(disposeClip);
                     Debug.Log(recycledScore);
                 }
 
@@ -140,6 +148,7 @@ public class RubbishInteraction : MonoBehaviour
             numRubbish++;
             numRubbishHeld++;
             playerManager.UpdateInventory(1, false);
+            pickupSource.PlayOneShot(pickupClip);
             Destroy(Rubbish.gameObject);
             RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
         }
