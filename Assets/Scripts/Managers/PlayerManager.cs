@@ -50,40 +50,60 @@ public class PlayerManager : MonoBehaviour
     /// Updates the player's inventory upon player interaction with rubbish or the bin
     /// a = how many items to add to player inventory count
     /// b = true when player is depositing an item, false when player picks up an item
-    /// item = the item the player is disposing of
+    /// c = is either the item the player is disposing of or the bin the player is currently interacting with
     /// </summary>
     /// <param name="a"></param>
-    public void UpdateInventory(int a, bool b, GameObject item)
+    public void UpdateInventory(int a, bool b, GameObject c)
     {
         // picking up litter
         if (b == false)
         {
-            Debug.Log("Picked up litter");
+            //Debug.Log("Picked up litter");
             currentlyHolding += a;
-            playerInventory.Add(item);
+            playerInventory.Add(c);
         }
 
         // depositing litter
         else
         {
-            Debug.Log("Disposed of litter");
+            //Debug.Log("Disposed of litter");
             currentlyHolding = a;
 
             //if (currentlyHolding >= 0)
             //{
                 // might need an exception here
-            int index = playerInventory.IndexOf(item); // this is not working because I'm passing in the bloody rubbish bin game object??? 
-            Debug.Log("Index: " + index);
+            //int index = playerInventory.IndexOf(c); // this is not working because I'm passing in the bloody rubbish bin game object??? 
+            //Debug.Log("Index: " + index);
 
 
+            string binName = c.name.Substring(0, c.name.Length - 3);
+            //Debug.Log("binName: " + binName);
 
-            if (index >= 0)
+            // do an exists check?
+
+            foreach (GameObject item in playerInventory)
             {
-                Debug.Log("Item: " + item + " Index: " + index);
-
-                Destroy(playerInventory[index]);
-                playerInventory.RemoveAt(index);
+                if (item.name.StartsWith(binName))
+                {
+                    Debug.Log("Found matching item: " + item.name);
+                    playerInventory.Remove(item);
+                    break;
+                }
+                
+                else
+                {
+                    Debug.Log("This item did not match: " + item.name);
+                }
             }
+
+
+            //if (index >= 0)
+            //{
+            //    Debug.Log("Item: " + c + " Index: " + index);
+
+            //    Destroy(playerInventory[index]);
+            //    playerInventory.RemoveAt(index);
+            //}
             //}
         }
 
