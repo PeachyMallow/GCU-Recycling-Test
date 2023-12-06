@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -16,8 +17,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private UIManager uiManager;
 
+    [Header("Capacity UI Image Fill")]
+    [SerializeField]
+    public Image fill;
+
     private void Start()
     {
+        fill.fillAmount = 0;
         uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
     }
 
@@ -47,11 +53,15 @@ public class PlayerManager : MonoBehaviour
         if (!b)
         {
             currentlyHolding += a;
+            //added by Euan pls delete if necessary
+            fill.fillAmount = (float)currentlyHolding / playerCapacity;
         }
 
         else
         {
             currentlyHolding = a;
+            //added by Euan pls delete if necessary
+            fill.fillAmount = (float)currentlyHolding / playerCapacity;
         }
 
         uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
