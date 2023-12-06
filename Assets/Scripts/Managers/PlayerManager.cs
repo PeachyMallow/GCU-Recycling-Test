@@ -23,9 +23,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private UIManager uiManager;
 
+    // true when player's inventory has been searched for a matching piece of litter respective to what bin they are currently at
+    [SerializeField]
+    private bool hasSearched;
+
 
     private void Start()
     {
+        hasSearched = false;
         uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
     }
 
@@ -55,19 +60,25 @@ public class PlayerManager : MonoBehaviour
     /// <param name="a"></param>
     public void UpdateInventory(int a, bool b, GameObject c)
     {
+        hasSearched = false;
+        Debug.Log("hasSearched: " + hasSearched);
+
         // picking up litter
         if (b == false)
         {
-            //Debug.Log("Picked up litter");
-            currentlyHolding += a;
+
+            currentlyHolding++;
+            //currentlyHolding += a;
             playerInventory.Add(c);
         }
 
         // depositing litter
         else
         {
-            //Debug.Log("Disposed of litter");
-            currentlyHolding = a;
+
+            currentlyHolding = playerInventory.Count;
+            //currentlyHolding = a;
+
 
             //if (currentlyHolding >= 0)
             //{
@@ -75,25 +86,38 @@ public class PlayerManager : MonoBehaviour
             //int index = playerInventory.IndexOf(c); // this is not working because I'm passing in the bloody rubbish bin game object??? 
             //Debug.Log("Index: " + index);
 
-
+            // removing 'bin' from the end of the bin currently being interacted with's name
             string binName = c.name.Substring(0, c.name.Length - 3);
             //Debug.Log("binName: " + binName);
 
             // do an exists check?
 
-            foreach (GameObject item in playerInventory)
+            if (!hasSearched)
             {
-                if (item.name.StartsWith(binName))
+                foreach (GameObject item in playerInventory)
                 {
-                    Debug.Log("Found matching item: " + item.name);
-                    playerInventory.Remove(item);
-                    break;
+                    Debug.Log(item.name);
+
+                    if (item.name.StartsWith(binName))
+                    {
+                        // points on EIM
+                        //Debug.Log("Found matching item: " + item.name);
+                        playerInventory.Remove(item);
+                        //Debug.Log("List Length: " + playerInventory.Count);
+                        break;
+                    }
+
+                    //else
+                    //{
+                    //    // minus points on eim
+                    //    Debug.Log("This item did not match: " + item.name);
+                    //    playerInventory.RemoveAt(0);
+                    //    break;
+                    //}
                 }
-                
-                else
-                {
-                    Debug.Log("This item did not match: " + item.name);
-                }
+
+                hasSearched = true;
+                Debug.Log("hasSearched: " + hasSearched);
             }
 
 
@@ -107,6 +131,6 @@ public class PlayerManager : MonoBehaviour
             //}
         }
 
-        uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
+        uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
     }
 }
