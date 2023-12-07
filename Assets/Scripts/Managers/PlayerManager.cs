@@ -31,11 +31,20 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private bool matchFound;
 
+    [Header("Drag RubbishInteraction script here")]
+    [SerializeField]
+    private RubbishInteraction rInteraction;
+
     private void Start()
     {
         hasSearched = false;
         matchFound = false;
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
+
+        if (rInteraction == null) 
+        {
+            Debug.Log("Please assign RubbishInteraction script on PlayerManager");
+        }
     }
 
     // (accessed in RubbishInteraction.cs)
@@ -65,9 +74,9 @@ public class PlayerManager : MonoBehaviour
     public void UpdateInventory(int a, bool b, GameObject c)
     {
         // picking up litter
+        // adds it to the player's inventory list
         if (b == false)
         {
-
             //currentlyHolding++;
             //currentlyHolding += a;
             playerInventory.Add(c);
@@ -77,7 +86,6 @@ public class PlayerManager : MonoBehaviour
         else
         {
             hasSearched = false;
-           //Debug.Log("hasSearched: " + hasSearched);
 
             //currentlyHolding = playerInventory.Count;
             //currentlyHolding = a;
@@ -88,19 +96,18 @@ public class PlayerManager : MonoBehaviour
 
             // do an exists check?
 
+            // if the player inventory list hasn't already been searched for a matching piece of litter corresponding
+            // to the bin the player is currently interacting with
             if (!hasSearched)
             {
                 foreach (GameObject item in playerInventory)
                 {
-                    //Debug.Log(item.name);
-
                     if (item.name.StartsWith(binName))
                     {
                         // points on EIM
                         Debug.Log("Found matching item: " + item.name);
                         playerInventory.Remove(item);
                         matchFound = true;
-                        //Debug.Log("List Length: " + playerInventory.Count);
                         break;
                     }
                 }
