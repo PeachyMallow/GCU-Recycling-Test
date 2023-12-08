@@ -4,11 +4,10 @@ using UnityEngine;
 using static UnityEngine.UI.Image;
 using UnityEngine.UIElements;
 
-// beca note: create one 'timer method' that's not exclusive to the Timer
 public class GameManager : MonoBehaviour
 {
     #region itemSpawnVariables
-    [Header("----------------------------\n\nLitter Spawn\n")]
+    [Header("Litter Spawn\n")]
 
     // litter's parent
     [Header("Drag Litter Parent GameObject here")]
@@ -64,11 +63,10 @@ public class GameManager : MonoBehaviour
     private Vector3 litterPos;
 
     // true if there is an item has been spawned
-    [SerializeField]
     private bool readyToSpawn;
     #endregion
 
-    [Header("Access to Rubbish Interaction Script to allow reduction")]
+    [Header("----------------------------\n\nAccess to Rubbish Interaction Script to allow reduction")]
     [SerializeField]
     private RubbishInteraction RI;
 
@@ -107,8 +105,6 @@ public class GameManager : MonoBehaviour
         else { Debug.Log("Please assign litter prefab and/or litterParent into the hierarchy on GameManager script"); }
         #endregion
     }
-
-    
 
     #region itemSpawnMethods
 

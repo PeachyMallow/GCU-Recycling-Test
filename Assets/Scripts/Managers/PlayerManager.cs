@@ -10,7 +10,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int playerCapacity;
 
-    //// could make this equal to playerInventory.size
     //// how many items the player currently has in their inventory
     //[Header("All the pieces of litter the player is holding")]
     //[SerializeField]
@@ -45,12 +44,13 @@ public class PlayerManager : MonoBehaviour
         hasSearched = false;
         matchFound = false;
 
-        if (fill  != null)
+        if (fill != null)
         {
             fill.fillAmount = 0;
         }
         
         else { Debug.Log("Please assign 'PlayerCapacityFull' on PlayerManager script. UI > PlayerCapacity > PlayerCapacityFull"); }
+
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
 
         if (rInteraction == null) 
@@ -126,7 +126,6 @@ public class PlayerManager : MonoBehaviour
                     if (item.name.StartsWith(binName))
                     {
                         // points on EIM
-                        //Debug.Log("Found matching item: " + item.name);
                         playerInventory.Remove(item);
                         matchFound = true;
                         break;

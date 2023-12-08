@@ -111,7 +111,7 @@ public class RubbishInteraction : MonoBehaviour
                 {
                     // pass in recycled score to playermanager to increase or decrease dependant on if player recycles
                     // as of right now, the score increases regardless of bin/rubbish type 
-                    recycledScore++; // comment this out?
+                    //recycledScore++; // comment this out?
                     recycledHighScore++; // comment this out?
                     score.text = "Rubbish Recycled : " + recycledHighScore;
 
