@@ -7,24 +7,6 @@ using UnityEngine.UIElements;
 // beca note: create one 'timer method' that's not exclusive to the Timer
 public class GameManager : MonoBehaviour
 {
-    #region timerVariables
-    [Header("\nTimer\n")]
-    // timer set in inspector
-    [Header("Enter time in seconds")]
-    [SerializeField]
-    private float timer;
-
-    //// saves the timer internally
-    //[SerializeField]
-    //private float timer;
-
-    // saves the time alotted in the inspector to reset the timer
-    private float totalTime;
-
-    // is the timer active
-    private bool timerActive;
-    #endregion
-
     #region itemSpawnVariables
     [Header("----------------------------\n\nLitter Spawn\n")]
 
@@ -98,34 +80,14 @@ public class GameManager : MonoBehaviour
     private int binsMaxCapacity;
 
 
-
     private void Start()
     {
-        totalTime = timer;
-        timerActive = true;
         readyToSpawn = false;
         delayOccurred = false;
     }
 
     private void Update()
     {
-        #region timerUpdate
-        if (timerActive)
-        {
-            if (timer > 0)
-            {
-                Timer();
-            }
-
-            else
-            {
-                timer = 0;
-                Debug.Log("Time's Up!");
-                timerActive = false;
-            }
-        }
-        #endregion
-
         #region litterUpdate
         if (litterParent != null && litter != null)
         {
@@ -146,39 +108,7 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
-    #region timerMethods
-    private float Timer()
-    {
-        return timer -= Time.deltaTime;
-    }
-
-    /// <summary>
-    /// Public method for other scripts to access the Timer's current time
-    /// </summary>
-    /// <returns></returns>
-    public float CurrentTime()
-    {
-        return timer;
-    }
-
-    // will start the timer from the time set in the inspector 
-    public void StartTimer()
-    {
-
-    }
-
-    // will reset the timer to the time set in the inspector 
-    public void ResetTimer()
-    {
-        timer = totalTime;
-    }
-
-    public bool IsTimeUp()
-    {
-        return timer <= 0;
-    }
-
-    #endregion
+    
 
     #region itemSpawnMethods
 
