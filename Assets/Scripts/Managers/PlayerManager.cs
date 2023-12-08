@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,10 +36,15 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private RubbishInteraction rInteraction;
 
+    [Header("Capacity UI Image Fill")]
+    [SerializeField]
+    public Image fill;
+
     private void Start()
     {
         hasSearched = false;
         matchFound = false;
+        fill.fillAmount = 0;
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
 
         if (rInteraction == null) 
@@ -78,8 +84,11 @@ public class PlayerManager : MonoBehaviour
         if (b == false)
         {
             //currentlyHolding++;
-            //currentlyHolding += a;
             playerInventory.Add(c);
+
+            //currentlyHolding += a;
+            //added by Euan pls delete if necessary
+            fill.fillAmount = (float)currentlyHolding / playerCapacity;
         }
 
         // depositing litter
@@ -129,6 +138,10 @@ public class PlayerManager : MonoBehaviour
                 hasSearched = true;
                 //Debug.Log("hasSearched: " + hasSearched);
             }
+
+            //currentlyHolding = a;
+            //added by Euan pls delete if necessary
+            fill.fillAmount = (float)currentlyHolding / playerCapacity;
         }
 
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
