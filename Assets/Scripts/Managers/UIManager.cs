@@ -5,11 +5,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // the timer UI
-    [Header("Drag the Timer UI GameObject here")]
-    [SerializeField]
-    private TextMeshProUGUI timerGO;
-
     // player's capacity UI
     [Header("Drag the Capacity UI GameObject here")]
     [SerializeField]

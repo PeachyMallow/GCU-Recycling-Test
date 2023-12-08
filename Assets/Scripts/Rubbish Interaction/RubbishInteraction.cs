@@ -68,6 +68,9 @@ public class RubbishInteraction : MonoBehaviour
 
     private void Update()
     {
+
+        Debug.Log("RecycledScore: " + recycledScore);
+
         // when the player is depositing rubbish
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -109,13 +112,14 @@ public class RubbishInteraction : MonoBehaviour
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && numRubbishHeld > 0 && canDeposit)
                 {
-                    // pass in recycled score to playermanager to increase or decrease dependant on if player recycles
-                    // as of right now, the score increases regardless of bin/rubbish type 
-                    //recycledScore++; // comment this out?
-                    recycledHighScore++; // comment this out?
-                    score.text = "Rubbish Recycled : " + recycledHighScore;
+                    // if the player has deposited litter in the correct bin
+                    EIMScore(playerManager.Recycled());
+                    
+                    //recycledScore++;
+                    //recycledHighScore++;
+                    
 
-                    // actually this might be the ticket
+                    score.text = "Rubbish Recycled : " + recycledHighScore;
                     enviroMeter.value = recycledScore;
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
@@ -134,8 +138,6 @@ public class RubbishInteraction : MonoBehaviour
             canDeposit = false;
         }
 
-        //else if (RubbishBin.tag == "NonRecyclable")
-        //{
         if (Autopickup == false)
         {
             if (RubbishBin.tag == "NonRecyclable" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" || RubbishBin.tag == "Plastic" && Input.GetKey(KeyCode.E))
@@ -143,7 +145,6 @@ public class RubbishInteraction : MonoBehaviour
                 RubbishPickup(RubbishBin.gameObject);
             }
         }
-       // }
     }
 
     // checks if the player's inventory is full
@@ -163,14 +164,29 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
-    public void RubbishIncrease()
+    /// <summary>
+    /// Changes EIM Score dependant on player interaction with the bin
+    /// if a is true, then increase the score
+    /// if a is false, then decrease the score
+    /// </summary>
+    public void EIMScore(bool a)
     {
-        if (recycledScore > 0)
+        if (a)
         {
-            Debug.Log("RecycledScore before decrease: " + recycledScore);
-            recycledScore--;
-            enviroMeter.value = recycledScore;
-            Debug.Log("RecycledScore after decrease: " + recycledScore);
+            if (recycledScore > 0)
+            {
+                recycledScore++;
+                enviroMeter.value = recycledScore;
+            }
+        }
+
+        else
+        {
+            if (recycledScore > 0)
+            {
+                recycledScore--;
+                enviroMeter.value = recycledScore;
+            }
         }
     }
 
@@ -217,15 +233,6 @@ public class RubbishInteraction : MonoBehaviour
             Debug.Log("Auto Pickup Active");
         }
     }
-
-    /// <summary>
-    /// Changes EIM Score dependant on player interaction with the bin
-    /// </summary>
-    public void EIMScore()
-    {
-
-    }
-
     
     /// <summary>
     /// Current amount of rubbish the player is holding

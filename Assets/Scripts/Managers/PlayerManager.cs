@@ -31,6 +31,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private bool matchFound;
 
+    [SerializeField]
+    private bool hasRecycled;
+
     [Header("Drag RubbishInteraction script here")]
     [SerializeField]
     private RubbishInteraction rInteraction;
@@ -89,12 +92,9 @@ public class PlayerManager : MonoBehaviour
         // adds it to the player's inventory list
         if (b == false)
         {
-            //currentlyHolding++;
             playerInventory.Add(c);
 
-            //currentlyHolding += a;
             //added by Euan pls delete if necessary
-
             if (fill != null)
             {
                 fill.fillAmount = (float)playerInventory.Count / playerCapacity;
@@ -108,14 +108,8 @@ public class PlayerManager : MonoBehaviour
         {
             hasSearched = false;
 
-            //currentlyHolding = playerInventory.Count;
-            //currentlyHolding = a;
-
             // removing 'bin' from the end of the bin currently being interacted with's name
             string binName = c.name.Substring(0, c.name.Length - 3);
-            //Debug.Log("binName: " + binName);
-
-            // do an exists check?
 
             // if the player inventory list hasn't already been searched for a matching piece of litter corresponding
             // to the bin the player is currently interacting with
@@ -126,6 +120,7 @@ public class PlayerManager : MonoBehaviour
                     if (item.name.StartsWith(binName))
                     {
                         // points on EIM
+                        hasRecycled = true;
                         playerInventory.Remove(item);
                         matchFound = true;
                         break;
@@ -137,22 +132,18 @@ public class PlayerManager : MonoBehaviour
                     // minus points on EIM
                     if (rInteraction != null)
                     {
-                        rInteraction.RubbishIncrease();
-                        Debug.Log("EIM Decreased");
+                        rInteraction.EIMScore(false);
                     }
                     
-                    Debug.Log("No matching item was found");
                     playerInventory.RemoveAt(0);
                 }
 
+                hasRecycled = false;
                 matchFound = false;
                 hasSearched = true;
-                //Debug.Log("hasSearched: " + hasSearched);
             }
 
-            //currentlyHolding = a;
             //added by Euan pls delete if necessary
-            
             if (fill != null)
             {
                 fill.fillAmount = (float)playerInventory.Count / playerCapacity;
@@ -164,7 +155,11 @@ public class PlayerManager : MonoBehaviour
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
     }
 
-    // to perform check on item being recycled
+    // true when player has recycled, false if player disposes of item incorrectly
+    public bool Recycled()
+    {
+        return hasRecycled;
+    }
 
 
     /// <summary>

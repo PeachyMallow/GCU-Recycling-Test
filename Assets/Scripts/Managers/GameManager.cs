@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
             {
                 readyToSpawn = false;
                 InstantiateItem();
-                RI.RubbishIncrease();
+                RI.EIMScore(false);
             }
         }
 
