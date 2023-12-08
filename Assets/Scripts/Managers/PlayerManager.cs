@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
                     if (item.name.StartsWith(binName))
                     {
                         // points on EIM
-                        Debug.Log("Found matching item: " + item.name);
+                        //Debug.Log("Found matching item: " + item.name);
                         playerInventory.Remove(item);
                         matchFound = true;
                         break;
@@ -115,6 +115,12 @@ public class PlayerManager : MonoBehaviour
                 if (!matchFound)
                 {
                     // minus points on EIM
+                    if (rInteraction != null)
+                    {
+                        rInteraction.RubbishIncrease();
+                        Debug.Log("EIM Decreased");
+                    }
+                    
                     Debug.Log("No matching item was found");
                     playerInventory.RemoveAt(0);
                 }

@@ -1489,9 +1489,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCapacity: 8
-  currentlyHolding: 0
   playerInventory: []
   uiManager: {fileID: 778846989}
+  hasSearched: 0
+  matchFound: 0
+  rInteraction: {fileID: 860223311}
 --- !u!1 &725826206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,6 +2117,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1688376965593153525, guid: 75a02b74335e4da47a2840cf1b6965fc, type: 3}
   m_PrefabInstance: {fileID: 1906451105}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &860223311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1282460462546478657, guid: 6ddd9bfb27aa6c645824ca2faafe4991, type: 3}
+  m_PrefabInstance: {fileID: 1798724416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921ad6740b4427146b20c975eab0c713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &861526242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,7 +2374,7 @@ MonoBehaviour:
   - {fileID: 8004461758732291673, guid: 6ff3f1d58817d1342b3d29908af08f14, type: 3}
   - {fileID: 6084135387239679434, guid: b31372502a73ede4cae41e9a4569ffd7, type: 3}
   startDelay: 0
-  litterSpawnTime: 100
+  litterSpawnTime: 4
   litterPosY: 0.45
   xMin: -5
   xMax: 5
@@ -4694,7 +4707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RubbishScore: {fileID: 1667739282}
   score: {fileID: 1770901725}
-  numRubbishHeld: 0
+  recycledScore: 0
   Autopickup: 0
   enviroMeter: {fileID: 1229660090}
   playerManager: {fileID: 700851648}

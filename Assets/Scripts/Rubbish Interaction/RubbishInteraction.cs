@@ -9,10 +9,10 @@ public class RubbishInteraction : MonoBehaviour
 {
     public Text RubbishScore;
     public Text score;
+    [SerializeField]
     private int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
-    [SerializeField]
     private int numRubbishHeld;
 
     [SerializeField]
@@ -145,9 +145,10 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (recycledScore > 0)
         {
+            Debug.Log("RecycledScore before decrease: " + recycledScore);
             recycledScore--;
             enviroMeter.value = recycledScore;
-            //Debug.Log(recycledScore);
+            Debug.Log("RecycledScore after decrease: " + recycledScore);
         }
     }
 
