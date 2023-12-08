@@ -9,11 +9,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int playerCapacity;
 
-    // could make this equal to playerInventory.size
-    // how many items the player currently has in their inventory
-    [Header("All the pieces of litter the player is holding")]
-    [SerializeField]
-    private int currentlyHolding;
+    //// could make this equal to playerInventory.size
+    //// how many items the player currently has in their inventory
+    //[Header("All the pieces of litter the player is holding")]
+    //[SerializeField]
+    //private int currentlyHolding;
 
     // player's inventory
     [SerializeField]
@@ -23,10 +23,28 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private UIManager uiManager;
 
+    // true when player's inventory has been searched for a matching piece of litter respective to what bin they are currently at
+    [SerializeField]
+    private bool hasSearched;
+
+    // true when a matching piece of rubbish is found for the bin the player is currently at
+    [SerializeField]
+    private bool matchFound;
+
+    [Header("Drag RubbishInteraction script here")]
+    [SerializeField]
+    private RubbishInteraction rInteraction;
 
     private void Start()
     {
-        uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
+        hasSearched = false;
+        matchFound = false;
+        uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
+
+        if (rInteraction == null) 
+        {
+            Debug.Log("Please assign RubbishInteraction script on PlayerManager");
+        }
     }
 
     // (accessed in RubbishInteraction.cs)
@@ -36,7 +54,7 @@ public class PlayerManager : MonoBehaviour
     /// <returns></returns>
     public bool InventoryFull()
     {
-        if (currentlyHolding >= playerCapacity)
+        if (playerInventory.Count >= playerCapacity)
         {
             Debug.Log("Player's inventory is full!");
             return true;
@@ -50,32 +68,82 @@ public class PlayerManager : MonoBehaviour
     /// Updates the player's inventory upon player interaction with rubbish or the bin
     /// a = how many items to add to player inventory count
     /// b = true when player is depositing an item, false when player picks up an item
+    /// c = is either the item the player is disposing of or the bin the player is currently interacting with
     /// </summary>
     /// <param name="a"></param>
-    public void UpdateInventory(int a, bool b, GameObject item)
+    public void UpdateInventory(int a, bool b, GameObject c)
     {
         // picking up litter
+        // adds it to the player's inventory list
         if (b == false)
         {
-            Debug.Log("Picked up litter");
-            currentlyHolding += a;
-            playerInventory.Add(item);
+            //currentlyHolding++;
+            //currentlyHolding += a;
+            playerInventory.Add(c);
         }
 
         // depositing litter
         else
         {
-            Debug.Log("Disposed of litter");
-            currentlyHolding = a;
+            hasSearched = false;
 
-            // might need an exception here
-            int index = playerInventory.IndexOf(item);
+            //currentlyHolding = playerInventory.Count;
+            //currentlyHolding = a;
 
-            Destroy(playerInventory[index]);
-            playerInventory.RemoveAt(index);
-            
+            // removing 'bin' from the end of the bin currently being interacted with's name
+            string binName = c.name.Substring(0, c.name.Length - 3);
+            //Debug.Log("binName: " + binName);
+
+            // do an exists check?
+
+            // if the player inventory list hasn't already been searched for a matching piece of litter corresponding
+            // to the bin the player is currently interacting with
+            if (!hasSearched)
+            {
+                foreach (GameObject item in playerInventory)
+                {
+                    if (item.name.StartsWith(binName))
+                    {
+                        // points on EIM
+                        //Debug.Log("Found matching item: " + item.name);
+                        playerInventory.Remove(item);
+                        matchFound = true;
+                        break;
+                    }
+                }
+
+                if (!matchFound)
+                {
+                    // minus points on EIM
+                    if (rInteraction != null)
+                    {
+                        rInteraction.RubbishIncrease();
+                        Debug.Log("EIM Decreased");
+                    }
+                    
+                    Debug.Log("No matching item was found");
+                    playerInventory.RemoveAt(0);
+                }
+
+                matchFound = false;
+                hasSearched = true;
+                //Debug.Log("hasSearched: " + hasSearched);
+            }
         }
 
-        uiManager.UpdateCapacityUI(currentlyHolding, playerCapacity);
+        uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
+    }
+
+    // to perform check on item being recycled
+
+
+    /// <summary>
+    /// Updates the players' score dependant on proper or inproper recycling
+    /// </summary>
+    /// <param name="score"></param>
+    /// <returns></returns>
+    public int UpdateScore(int score)
+    {
+        return score;
     }
 }

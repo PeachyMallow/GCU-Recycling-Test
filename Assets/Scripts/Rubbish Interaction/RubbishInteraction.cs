@@ -9,10 +9,10 @@ public class RubbishInteraction : MonoBehaviour
 {
     public Text RubbishScore;
     public Text score;
+    [SerializeField]
     private int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
-    [SerializeField]
     private int numRubbishHeld;
 
     [SerializeField]
@@ -91,9 +91,13 @@ public class RubbishInteraction : MonoBehaviour
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && numRubbishHeld > 0 && canDeposit)
                 {
-                    recycledScore++;
-                    recycledHighScore++;
+                    // pass in recycled score to playermanager to increase or decrease dependant on if player recycles
+                    // as of right now, the score increases regardless of bin/rubbish type 
+                    recycledScore++; // comment this out?
+                    recycledHighScore++; // comment this out?
                     score.text = "Rubbish Recycled : " + recycledHighScore;
+
+                    // actually this might be the ticket
                     enviroMeter.value = recycledScore;
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
@@ -141,9 +145,10 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (recycledScore > 0)
         {
+            Debug.Log("RecycledScore before decrease: " + recycledScore);
             recycledScore--;
             enviroMeter.value = recycledScore;
-            //Debug.Log(recycledScore);
+            Debug.Log("RecycledScore after decrease: " + recycledScore);
         }
     }
 
@@ -162,6 +167,15 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes EIM Score dependant on player interaction with the bin
+    /// </summary>
+    public void EIMScore()
+    {
+
+    }
+
+    
     /// <summary>
     /// Current amount of rubbish the player is holding
     /// </summary>
