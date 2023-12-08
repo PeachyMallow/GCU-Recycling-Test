@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
 
             //currentlyHolding += a;
             //added by Euan pls delete if necessary
-            fill.fillAmount = (float)currentlyHolding / playerCapacity;
+            fill.fillAmount = (float)playerInventory.Count / playerCapacity;
         }
 
         // depositing litter
@@ -141,7 +141,7 @@ public class PlayerManager : MonoBehaviour
 
             //currentlyHolding = a;
             //added by Euan pls delete if necessary
-            fill.fillAmount = (float)currentlyHolding / playerCapacity;
+            fill.fillAmount = (float)playerInventory.Count / playerCapacity;
         }
 
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
