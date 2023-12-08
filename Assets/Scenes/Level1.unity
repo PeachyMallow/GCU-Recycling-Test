@@ -21239,6 +21239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Idle_animation
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30770,7 +30774,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCapacity: 8
+  playerInventory: []
   uiManager: {fileID: 1157755236}
+  hasSearched: 0
+  matchFound: 0
+  rInteraction: {fileID: 1863682044}
   fill: {fileID: 341742006}
 --- !u!1001 &1800338572
 PrefabInstance:
@@ -31987,6 +31995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RubbishScore: {fileID: 1600251012}
   score: {fileID: 1395509114}
+  recycledScore: 0
   numRubbishHeld: 0
   radNum: 0
   pickupSource: {fileID: 1863682049}
@@ -32017,7 +32026,6 @@ MonoBehaviour:
   movePosition: 0
   velocity: 0
   fUVelocity: 1
-  usingUpdate: 0
 --- !u!54 &1863682046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35382,7 +35390,6 @@ MonoBehaviour:
   movePosition: 0
   velocity: 0
   fUVelocity: 1
-  usingUpdate: 0
 --- !u!54 &2040514031
 Rigidbody:
   m_ObjectHideFlags: 0

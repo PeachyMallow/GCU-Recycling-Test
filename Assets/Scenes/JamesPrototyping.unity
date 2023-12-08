@@ -1682,7 +1682,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCapacity: 15
+  playerInventory: []
   uiManager: {fileID: 1433710338}
+  hasSearched: 0
+  matchFound: 0
+  rInteraction: {fileID: 1315552850}
+  fill: {fileID: 0}
 --- !u!4 &609361868
 Transform:
   m_ObjectHideFlags: 0
@@ -3193,7 +3198,6 @@ MonoBehaviour:
   movePosition: 0
   velocity: 0
   fUVelocity: 1
-  usingUpdate: 0
 --- !u!23 &1315552843
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3321,12 +3325,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RubbishScore: {fileID: 1959566519}
   score: {fileID: 2103688100}
+  recycledScore: 0
+  numRubbishHeld: 0
   radNum: 0
+  pickupSource: {fileID: 0}
+  pickupClip: {fileID: 0}
+  disposeSource: {fileID: 0}
+  disposeClip: {fileID: 0}
   victoryMenuUI: {fileID: 576504138}
   gameOverMenuUI: {fileID: 2039445897}
   Autopickup: 0
   enviroMeter: {fileID: 1588111919}
   playerManager: {fileID: 609361867}
+  keyPressed: 0
+  canDeposit: 0
 --- !u!1 &1355825584
 GameObject:
   m_ObjectHideFlags: 0

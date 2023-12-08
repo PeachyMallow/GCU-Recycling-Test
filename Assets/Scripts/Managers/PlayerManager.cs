@@ -44,7 +44,13 @@ public class PlayerManager : MonoBehaviour
     {
         hasSearched = false;
         matchFound = false;
-        fill.fillAmount = 0;
+
+        if (fill  != null)
+        {
+            fill.fillAmount = 0;
+        }
+        
+        else { Debug.Log("Please assign 'PlayerCapacityFull' on PlayerManager script. UI > PlayerCapacity > PlayerCapacityFull"); }
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
 
         if (rInteraction == null) 
@@ -88,7 +94,13 @@ public class PlayerManager : MonoBehaviour
 
             //currentlyHolding += a;
             //added by Euan pls delete if necessary
-            fill.fillAmount = (float)playerInventory.Count / playerCapacity;
+
+            if (fill != null)
+            {
+                fill.fillAmount = (float)playerInventory.Count / playerCapacity;
+            }
+
+            else { Debug.Log("Please assign 'PlayerCapacityFull' on PlayerManager script. UI > PlayerCapacity > PlayerCapacityFull"); }
         }
 
         // depositing litter
@@ -141,7 +153,13 @@ public class PlayerManager : MonoBehaviour
 
             //currentlyHolding = a;
             //added by Euan pls delete if necessary
-            fill.fillAmount = (float)playerInventory.Count / playerCapacity;
+            
+            if (fill != null)
+            {
+                fill.fillAmount = (float)playerInventory.Count / playerCapacity;
+            }
+
+            else { Debug.Log("Please assign 'PlayerCapacityFull' on PlayerManager script. UI > PlayerCapacity > PlayerCapacityFull"); }
         }
 
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
