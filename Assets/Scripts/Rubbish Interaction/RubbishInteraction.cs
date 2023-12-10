@@ -53,8 +53,6 @@ public class RubbishInteraction : MonoBehaviour
         recycledScore = 5;
         recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
-        RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
-        score.text = "Rubbish Recycled : " + recycledHighScore;
         Console.WriteLine("Auto Pickup Active");
         keyPressed = false;
         canDeposit = false;
