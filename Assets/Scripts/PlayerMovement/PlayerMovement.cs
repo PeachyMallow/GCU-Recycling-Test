@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
 
-    [SerializeField]
     private Animator animator;
 
     private void Start()
@@ -52,14 +51,12 @@ public class PlayerMovement : MonoBehaviour
         // idle anim
         if (moveDir == Vector3.zero)
         {
-            Debug.Log("Idle");
             animator.SetFloat("Speed", 0);
         }
 
         // walking anim
         else
         {
-            Debug.Log("Walking");
             animator.SetFloat("Speed", 0.2f);
         }
 
@@ -70,8 +67,6 @@ public class PlayerMovement : MonoBehaviour
             angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0.0f);
         }
-
-        //Debug.Log("Move Direction: " + moveDir);
     }
 
     private void FixedUpdate()
