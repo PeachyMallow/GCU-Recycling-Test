@@ -29912,7 +29912,7 @@ Animator:
   m_GameObject: {fileID: 1863682041}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b8edfe1b775d98448bdc5054be4dc3f7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 76fc87a2306d0234fb4cc17afb21ed9f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -29961,10 +29961,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSmoothTime: 0.1
   maxSpeed: 13.5
-  movePosition: 0
-  velocity: 0
-  fUVelocity: 1
-  animator: {fileID: 0}
 --- !u!54 &1863682046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33191,10 +33187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSmoothTime: 0.1
   maxSpeed: 13.5
-  movePosition: 0
-  velocity: 0
-  fUVelocity: 1
-  animator: {fileID: 0}
 --- !u!54 &2040514031
 Rigidbody:
   m_ObjectHideFlags: 0
