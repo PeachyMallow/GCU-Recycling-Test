@@ -54,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool usingUpdate;
 
+    [SerializeField]
+    private Animator animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -80,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
             angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0.0f);
         }
+
+        //Debug.Log("Move Direction: " + moveDir);
     }
 
     private void FixedUpdate()
