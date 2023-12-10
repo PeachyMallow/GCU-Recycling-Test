@@ -4,19 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-//using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class RubbishInteraction : MonoBehaviour
 {
     public Text RubbishScore;
     public Text score;
-    [SerializeField]
     private int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
-
-    [SerializeField]
     private int numRubbishHeld;
     public float radNum = 0f;
 
@@ -44,11 +40,9 @@ public class RubbishInteraction : MonoBehaviour
     private PlayerManager playerManager;
 
     // true when player presses E
-    [SerializeField]
     private bool keyPressed;
 
     // required to deposit one item at a time
-    [SerializeField]
     private bool canDeposit;
 
     void Start()
@@ -68,9 +62,6 @@ public class RubbishInteraction : MonoBehaviour
 
     private void Update()
     {
-
-        Debug.Log("RecycledScore: " + recycledScore);
-
         // when the player is depositing rubbish
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -106,27 +97,27 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
-            // checks if the bin is full
+            // is the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && numRubbishHeld > 0 && canDeposit)
                 {
-                    // if the player has deposited litter in the correct bin
-                    EIMScore(playerManager.Recycled());
-                    
+                    // unsure if needed?
                     //recycledScore++;
                     //recycledHighScore++;
-                    
-
-                    score.text = "Rubbish Recycled : " + recycledHighScore;
-                    enviroMeter.value = recycledScore;
+                   
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
                     playerManager.UpdateInventory(holding, true, RubbishBin.gameObject);
-                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;
+                    Debug.Log("Score: " + recycledScore);
+
+                    // unsure if needed?
+                    /*score.text = "Rubbish Recycled : " + recycledHighScore;
+                    enviroMeter.value = recycledScore;
+                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;*/
+
                     disposeSource.PlayOneShot(disposeClip);
-                    Debug.Log(recycledScore);
                 }
 
                 else if (keyPressed && numRubbish <= 0)
@@ -147,8 +138,10 @@ public class RubbishInteraction : MonoBehaviour
         }
     }
 
-    // checks if the player's inventory is full
-    // if not, then the player will pick up rubbish
+    /// <summary>
+    /// If player's inventory is not full, then player will pick up rubbish
+    /// </summary>
+    /// <param name="Rubbish"></param>
     private void RubbishPickup(GameObject Rubbish)
     {
         if (!playerManager.InventoryFull())
@@ -158,7 +151,6 @@ public class RubbishInteraction : MonoBehaviour
             playerManager.UpdateInventory(1, false, Rubbish.gameObject);
             pickupSource.PlayOneShot(pickupClip);
             Rubbish.gameObject.SetActive(false);
-            //Destroy(Rubbish.gameObject);
 
             RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
         }
@@ -232,14 +224,5 @@ public class RubbishInteraction : MonoBehaviour
             Autopickup = true;
             Debug.Log("Auto Pickup Active");
         }
-    }
-    
-    /// <summary>
-    /// Current amount of rubbish the player is holding
-    /// </summary>
-    /// <returns></returns>
-    public int CurrentAmountOfRubbish()
-    {
-        return numRubbishHeld;
     }
 }

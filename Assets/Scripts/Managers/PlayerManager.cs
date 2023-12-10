@@ -24,15 +24,10 @@ public class PlayerManager : MonoBehaviour
     private UIManager uiManager;
 
     // true when player's inventory has been searched for a matching piece of litter respective to what bin they are currently at
-    [SerializeField]
     private bool hasSearched;
 
     // true when a matching piece of rubbish is found for the bin the player is currently at
-    [SerializeField]
     private bool matchFound;
-
-    [SerializeField]
-    private bool hasRecycled;
 
     [Header("Drag RubbishInteraction script here")]
     [SerializeField]
@@ -89,12 +84,12 @@ public class PlayerManager : MonoBehaviour
     public void UpdateInventory(int a, bool b, GameObject c)
     {
         // picking up litter
-        // adds it to the player's inventory list
         if (b == false)
         {
             playerInventory.Add(c);
 
-            //added by Euan pls delete if necessary
+            // player capacity UI
+            // move to UIManager.cs? 
             if (fill != null)
             {
                 fill.fillAmount = (float)playerInventory.Count / playerCapacity;
@@ -115,13 +110,16 @@ public class PlayerManager : MonoBehaviour
             // to the bin the player is currently interacting with
             if (!hasSearched)
             {
+                GameObject litter = playerInventory[0];
+                Debug.Log("First item in list: " +  litter);
+
                 foreach (GameObject item in playerInventory)
                 {
                     if (item.name.StartsWith(binName))
                     {
-                        // points on EIM
-                        hasRecycled = true;
+                        rInteraction.EIMScore(true);
                         playerInventory.Remove(item);
+                        Destroy(item);
                         matchFound = true;
                         break;
                     }
@@ -129,21 +127,21 @@ public class PlayerManager : MonoBehaviour
 
                 if (!matchFound)
                 {
-                    // minus points on EIM
                     if (rInteraction != null)
                     {
                         rInteraction.EIMScore(false);
                     }
                     
                     playerInventory.RemoveAt(0);
+                    Destroy(litter);
                 }
 
-                hasRecycled = false;
                 matchFound = false;
                 hasSearched = true;
             }
 
-            //added by Euan pls delete if necessary
+            // updates player capacity UI
+            // move to UIManager.cs? 
             if (fill != null)
             {
                 fill.fillAmount = (float)playerInventory.Count / playerCapacity;
@@ -153,22 +151,5 @@ public class PlayerManager : MonoBehaviour
         }
 
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
-    }
-
-    // true when player has recycled, false if player disposes of item incorrectly
-    public bool Recycled()
-    {
-        return hasRecycled;
-    }
-
-
-    /// <summary>
-    /// Updates the players' score dependant on proper or inproper recycling
-    /// </summary>
-    /// <param name="score"></param>
-    /// <returns></returns>
-    public int UpdateScore(int score)
-    {
-        return score;
     }
 }
