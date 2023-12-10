@@ -16,8 +16,8 @@ public class PlayerManager : MonoBehaviour
     //private int currentlyHolding;
 
     // player's inventory
-    [SerializeField]
-    private List<GameObject> playerInventory = new List<GameObject>();
+    //[SerializeField]
+    public List<GameObject> playerInventory = new List<GameObject>();
 
     [Header("Drag UI Manager GameObject here")]
     [SerializeField]
@@ -152,4 +152,17 @@ public class PlayerManager : MonoBehaviour
 
         uiManager.UpdateCapacityUI(playerInventory.Count, playerCapacity);
     }
+
+    //public List CurrentInventory()
+    //{
+    //    if (playerInventory.Count > 0)
+    //    {
+    //        return playerInventory;
+    //    }
+
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
 }

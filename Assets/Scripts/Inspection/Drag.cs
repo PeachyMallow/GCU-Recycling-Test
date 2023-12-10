@@ -25,6 +25,7 @@ public class Drag : MonoBehaviour
             transform.RotateAround(transform.position, Vector3.up, offset.x * rotationSpeed);
             transform.RotateAround(transform.position, Vector3.left, offset.y * rotationSpeed);
         }
+
         lastPos = Input.mousePosition;
     }
 }
