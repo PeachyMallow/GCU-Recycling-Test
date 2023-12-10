@@ -31,35 +31,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
 
-    //// saves what has been set in the inspector as the speed to be used
-    //private float maxSpeed;
-
-    // these are all false, but bools in c# are automatically declared false so no need to initialize
-    
-    // does not work with current rotation so removed visibility in the inspector
-    private bool addForce;
-
-    [Header("Pick one at a time to test different types of movement")]
-    [SerializeField]
-    private bool movePosition;
-
-    [SerializeField]
-    private bool velocity;
-
-    [SerializeField]
-    private bool fUVelocity;
-
-    // does not work with current rotation so removed visibility in the inspector
-    private bool playerTransform;
-
-    private bool usingUpdate;
-
     [SerializeField]
     private Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -71,9 +49,18 @@ public class PlayerMovement : MonoBehaviour
         // calculates the direction in which the player should move based on that input
         moveDir = new Vector3(hInput, 0.0f, vInput).normalized;
 
-        if (usingUpdate)
+        // idle anim
+        if (moveDir == Vector3.zero)
         {
-            Movement();
+            Debug.Log("Idle");
+            animator.SetFloat("Speed", 0);
+        }
+
+        // walking anim
+        else
+        {
+            Debug.Log("Walking");
+            animator.SetFloat("Speed", 0.2f);
         }
 
         // beca note: need to revisit this to understand it better
@@ -89,10 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!usingUpdate)
-        {
-            Movement();
-        }
+        Movement();
 
         // beca note: need to revisit this to understand it better
         if (moveDir.magnitude >= 0.1f)
@@ -105,41 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        if (addForce || movePosition || playerTransform || fUVelocity)
-        {
-            usingUpdate = false; 
-
-            //if (addForce)
-            //{
-            //    Vector3 move = (transform.forward * vInput + transform.right * hInput).normalized;
-            //    Vector3 hVel = rb.velocity;
-            //    rb.AddForce(move * maxSpeed - hVel, ForceMode.VelocityChange);
-            //}
-
-            if (movePosition)
-            {
-                moveDir.Normalize();
-                Vector3 newPos = rb.position + moveDir * maxSpeed * Time.fixedDeltaTime;
-                rb.MovePosition(newPos);
-            }
-
-            //if (playerTransform)
-            //{
-            //    transform.Translate(moveDir * maxSpeed * Time.fixedDeltaTime);
-            //}
-
-            // using rigidbody velocity in fixed update
-            if (fUVelocity)
-            {
-                rb.velocity = moveDir * maxSpeed;
-            }
-        }
-
-         // using rigidbody velocity in update
-         if (velocity)
-         {
-             usingUpdate = true;
-             rb.velocity = moveDir * maxSpeed;
-         }
+        rb.velocity = moveDir * maxSpeed;
     }
 }
