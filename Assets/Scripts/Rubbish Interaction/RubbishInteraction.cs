@@ -149,8 +149,6 @@ public class RubbishInteraction : MonoBehaviour
             playerManager.UpdateInventory(1, false, Rubbish.gameObject);
             pickupSource.PlayOneShot(pickupClip);
             Rubbish.gameObject.SetActive(false);
-
-            RubbishScore.text = "Rubbish Collected : " + numRubbishHeld;
         }
     }
 
