@@ -8,9 +8,9 @@ public class InspectionObj : MonoBehaviour
 {
     public GameObject[] inspectionObjects;
 
-    public Text objDescriptionText;
-    public Text objDescriptionText2;
-    public Text objDescriptionText3;
+    //public Text objDescriptionText;
+    //public Text objDescriptionText2;
+    //public Text objDescriptionText3;
 
     private int currentIndex;
 
@@ -23,13 +23,11 @@ public class InspectionObj : MonoBehaviour
         currentIndex = index;
         //Debug.Log("Index: " + index);
         inspectionObjects[index].SetActive(true);
-        var data = inspectionObjects[index].GetComponent<InspectionObjectData>();
-        objDescriptionText.text = data.description;
-        objDescriptionText2.text=data.description1;
-        objDescriptionText3.text=data.description2;
+        //var data = inspectionObjects[index].GetComponent<InspectionObjectData>();
+        //objDescriptionText.text = data.description;
+        //objDescriptionText2.text=data.description1;
+        //objDescriptionText3.text=data.description2;
 
-
-    // copy everything in inspection canvas for new game object, make backup branch 
     }
 
     /// <summary>
