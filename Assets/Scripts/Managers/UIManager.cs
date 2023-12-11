@@ -14,6 +14,12 @@ public class UIManager : MonoBehaviour
     private GameObject inspectionUI;
 
     [SerializeField]
+    private GameObject rightBtn;
+
+    [SerializeField]
+    private GameObject leftBtn;
+
+    [SerializeField]
     private bool inspectionActive;
 
     [SerializeField]
@@ -21,6 +27,21 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> inventory = new List<GameObject>();
+
+    //[SerializeField]
+    // private CanInspect canInspect;
+
+    // size of list
+    [SerializeField]
+    private int size;
+
+    // index of current item
+    [SerializeField]
+    private int index;
+
+    [SerializeField]
+    private GameObject currentItem;
+
 
     private void Start()
     {
@@ -34,9 +55,17 @@ public class UIManager : MonoBehaviour
         {
             if (!inspectionActive)
             {
+                index = 0;
                 inspectionUI.SetActive(true);
                 inspectionActive = true;
-                ItemsToInspect();
+                ItemsToInspect(); // generates list of player's current inventory
+
+                // start on first item in inventory list
+
+                if (inventory.Count > 0)
+                {
+                    CurrentlyInspecting();
+                }
             }
 
             else
@@ -44,6 +73,12 @@ public class UIManager : MonoBehaviour
                 inspectionUI.SetActive(false);
                 inspectionActive = false;
 
+                if (inventory.Count > 0)
+                {
+                    inventory[index].SetActive(false);
+                }
+
+                // clears temp inventory list on inspection close
                 if (inventory.Count > 0)
                 {
                     inventory.Clear();
@@ -64,6 +99,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds player's current inventory to new list
+    /// </summary>
     public void ItemsToInspect()
     {
         Time.timeScale = 0f;
@@ -77,6 +115,62 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public bool InspectionActive()
-    { return inspectionActive; }
+    /// <summary>
+    /// Current item being inspected
+    /// </summary>
+    public void CurrentlyInspecting()
+    {
+        inventory[index].GetComponent<Drag>().AbleToDrag(true);
+        size = inventory.Count;
+        inventory[index].SetActive(true);
+        inventory[index].GetComponent<CanInspect>().Inspecting();
+        currentItem = inventory[index];
+    }
+
+    //public bool InspectionActive()
+    //{ return inspectionActive; }
+
+    // inspection buttons
+    // inspection UI move left button
+    public void MoveLeft()
+    {
+        if (inventory.Count > 0)
+        {
+            inventory.IndexOf(currentItem);
+
+            if (inventory.IndexOf(currentItem) > 0)
+            {
+                ResetDragAbility();
+
+                index = inventory.IndexOf(currentItem) - 1;
+                currentItem = inventory[index];
+                CurrentlyInspecting();
+            }
+        }
+    }
+
+    // inspection UI move right button
+    public void MoveRight()
+    {
+        if (inventory.Count > 0)
+        {
+            inventory.IndexOf(currentItem);
+
+            if (inventory.IndexOf(currentItem) < size - 1)
+            {
+                ResetDragAbility();
+
+                index = inventory.IndexOf(currentItem) + 1;
+                currentItem = inventory[index];
+                CurrentlyInspecting();
+            }
+        }
+    }
+
+    private void ResetDragAbility()
+    {
+        GameObject lastItem = inventory[inventory.IndexOf(currentItem)];
+        lastItem.GetComponent<Drag>().AbleToDrag(false);
+        lastItem.SetActive(false);
+    }
 }
