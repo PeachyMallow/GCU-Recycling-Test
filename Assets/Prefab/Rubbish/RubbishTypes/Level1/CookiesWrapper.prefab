@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6084135642468022747}
   - component: {fileID: 3112922027834608046}
   - component: {fileID: 5717841875557361013}
+  - component: {fileID: -5840537403690113203}
+  - component: {fileID: -5685588026836498932}
   m_Layer: 0
   m_Name: CookiesWrapper
   m_TagString: NonRecyclable
@@ -106,6 +108,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5840537403690113203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21475458325765665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b232fc6d0fbccc84d8f9f6407dbe4d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.1
+  ableToDrag: 0
+--- !u!114 &-5685588026836498932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21475458325765665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da132a181743fb4a84862fe23918dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  offset: 1.2
 --- !u!1 &5243570907318266916
 GameObject:
   m_ObjectHideFlags: 0
