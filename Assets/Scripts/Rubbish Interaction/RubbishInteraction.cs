@@ -11,10 +11,12 @@ public class RubbishInteraction : MonoBehaviour
     public Text RubbishScore;
     public Text score;
     private int recycledScore;
+    public int currentRecycledScore;
     private int recycledHighScore;
     private int numRubbish;
     private int numRubbishHeld;
     public float radNum = 0f;
+    float currentVelocity = 0;
 
     [Header("SFX Here")]
     [SerializeField]
@@ -75,6 +77,9 @@ public class RubbishInteraction : MonoBehaviour
 
         PickupSwitch();
         EndingmenuUI();
+
+        float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
+        enviroMeter.value = currentScore;
     }
 
     private void OnTriggerEnter(Collider Rubbish)
