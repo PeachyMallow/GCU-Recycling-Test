@@ -33846,8 +33846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5aa250c0b4494bb65695c3901bd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   turnSmoothTime: 0.1
-  maxSpeed: 13.5
+  maxSpeed: 15
   uiManager: {fileID: 0}
 --- !u!54 &2040514031
 Rigidbody:
