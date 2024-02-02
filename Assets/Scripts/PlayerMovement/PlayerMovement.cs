@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        moveDir = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), 1);
+        moveDir = Vector3.ClampMagnitude(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")), 1);
 
         #region commentedOut
         //if (uiManager != null)
@@ -104,8 +104,8 @@ public class PlayerMovement : MonoBehaviour
         // movement via rb velocity
         rb.velocity = moveDir * maxSpeed;
 
-        //movement via MovePosition
-        //rb.MovePosition(transform.position + moveDir.normalized * maxSpeed * Time.deltaTime);
+        //movement via MovePosition()
+        //rb.MovePosition(transform.position + (moveDir * maxSpeed * Time.deltaTime));
 
         // beca note: need to revisit this to understand it better
         if (moveDir.magnitude >= 0.1f)
