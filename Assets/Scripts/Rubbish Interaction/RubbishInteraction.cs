@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class RubbishInteraction : MonoBehaviour
     private int numRubbishHeld;
     public float radNum = 0f;
     float currentVelocity = 0;
+    public Vector3 collision = Vector3.zero;
 
     [Header("SFX Here")]
     [SerializeField]
@@ -29,6 +31,7 @@ public class RubbishInteraction : MonoBehaviour
     public GameObject victoryMenuUI;
     public GameObject gameOverMenuUI;
     private GameObject Menu;
+    public GameObject lastHit;
 
     [SerializeField]
     private bool Autopickup;
@@ -80,6 +83,38 @@ public class RubbishInteraction : MonoBehaviour
 
         float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
         enviroMeter.value = currentScore;
+
+        //var Ray = new Ray(this.transform.position, this.transform.forward);
+        //RaycastHit hit;
+        //if (Physics.Raycast(Ray, out hit, 10))
+        //{
+        //    lastHit = hit.transform.gameObject;
+        //    collision = hit.point;
+        //    Debug.Log(gameObject.name);
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+
+        Vector3 raycastDirection = transform.forward;
+        float raycastLength = 3f;
+
+        if (Physics.Raycast(transform.position,transform.forward, out hit, raycastLength))
+        {
+
+            if (hit.collider.CompareTag("Bin"))
+            {
+                Debug.Log(hit.collider.name);
+            }
+            Debug.DrawRay(transform.position, raycastDirection * hit.distance, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, raycastDirection * raycastLength, Color.red);
+        }
+
     }
 
     private void OnTriggerEnter(Collider Rubbish)
