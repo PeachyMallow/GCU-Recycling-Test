@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 651247518930390782}
   - component: {fileID: 7028358600503013516}
   - component: {fileID: 997366362261893270}
-  - component: {fileID: -2273765511904180122}
-  - component: {fileID: -3969285562681457590}
   m_Layer: 0
   m_Name: FoodContainer
   m_TagString: NonRecyclable
@@ -108,34 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2273765511904180122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6216011569501080760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b232fc6d0fbccc84d8f9f6407dbe4d83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 0.1
-  ableToDrag: 0
---- !u!114 &-3969285562681457590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6216011569501080760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da132a181743fb4a84862fe23918dd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
-  offset: 1.7
 --- !u!1 &9001872950968835114
 GameObject:
   m_ObjectHideFlags: 0
