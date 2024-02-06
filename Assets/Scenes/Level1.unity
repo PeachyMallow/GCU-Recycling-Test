@@ -22329,6 +22329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bookshelf (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8121137860471636688, guid: 7d488980d7cff4f4e9117b7666822613, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8935075105282922602, guid: 7d488980d7cff4f4e9117b7666822613, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.72511166
@@ -33846,8 +33850,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5aa250c0b4494bb65695c3901bd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   turnSmoothTime: 0.1
-  maxSpeed: 13.5
+  maxSpeed: 15
   uiManager: {fileID: 0}
 --- !u!54 &2040514031
 Rigidbody:
@@ -33875,7 +33880,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &2040514032
 CapsuleCollider:
   m_ObjectHideFlags: 0
