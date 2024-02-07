@@ -5,53 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject pauseMenu;
+    private UIManager uiManager;
 
-    [SerializeField]
-    private bool isPaused;
-
-    private void Update()
+    private void Start()
     {
-        Debug.Log("TimeScale: " + Time.timeScale);
+        uiManager = GetComponent<UIManager>();
 
-        if (pauseMenu != null)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                TogglePause();
-            }
-        }
-    }
-
-    private void TogglePause()
-    {
-        isPaused = !isPaused;
-
-        if (isPaused) // pause
-        {
-            Time.timeScale = 0f;
-            ShowPauseMenu(true);
-        }
-
-        else // resume
-        {
-            Time.timeScale = 1f;
-            ShowPauseMenu(false);
-        }
-    }
-
-    private void ShowPauseMenu(bool show)
-    {
-        if (pauseMenu != null)
-        {
-            pauseMenu.SetActive(show);
-        }
+        if (uiManager == null) { Debug.Log("UIManager is no longer on same GO as ButtonManager"); }
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("Level1");
+        Time.timeScale = 1.0f;
     }
 
     public void BackToMainMenu()
@@ -62,14 +28,13 @@ public class ButtonManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        ShowPauseMenu(false);
-        isPaused = false;
+        uiManager.ShowPauseMenu(false); // beca note: combine these somehow?
+        uiManager.IsPaused();
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // beca note: might change in future 
         Time.timeScale = 1f;
-        Debug.Log("TimeScale: " + Time.timeScale);
     }
 }

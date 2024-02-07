@@ -22,8 +22,6 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-
-
     // is this needed?
     public void HowToPlay()
     {}

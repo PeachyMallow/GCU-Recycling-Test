@@ -5,13 +5,73 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // player's capacity UI
+    // player's inventory capacity UI
     [Header("Drag the Capacity UI GameObject here")]
     [SerializeField]
     private TextMeshProUGUI capacityGO;
 
-    public GameObject victoryMenuUI;
-    public GameObject gameOverMenuUI;
+    [Header("Drag Win UI here")]
+    [SerializeField]
+    public GameObject winUI;
+
+    [Header("Drag GameOver UI here")]
+    [SerializeField]
+    public GameObject gameOverUI;
+
+    [Header("Drag Pause UI here")]
+    [SerializeField]
+    private GameObject pauseMenu;
+
+    private bool isPaused;
+
+    private void Update()
+    {
+        if (pauseMenu != null)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TogglePause();
+            }
+        }
+    }
+
+    private void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused) // pause
+        {
+            Time.timeScale = 0f;
+            ShowPauseMenu(true);
+        }
+
+        else // resume
+        {
+            Time.timeScale = 1f;
+            ShowPauseMenu(false);
+        }
+    }
+
+    public void IsPaused()
+    {
+        isPaused = false;
+    }
+
+    /// <summary>
+    /// Displays the pause menu dependant on bool parameter
+    /// True - Display the Pause UI
+    /// False - Hide the Pause UI
+    /// </summary>
+    /// <param name="show"></param>
+    public void ShowPauseMenu(bool show)
+    {
+        if (pauseMenu != null)
+        {
+            pauseMenu.SetActive(show);
+        }
+
+        else { Debug.Log("Please assign PauseMenu UI on the ButtonManager"); }
+    }
 
     // updates the player capacity UI when the player has picked up/disposed of rubbish
     // also displays what the player's capacity limit is on screen
@@ -32,9 +92,10 @@ public class UIManager : MonoBehaviour
     {
         if (result)
         {
-            if (victoryMenuUI != null)
+            if (winUI != null)
             {
-                victoryMenuUI.SetActive(true);
+                winUI.SetActive(true);
+                Time.timeScale = 0.0f;
             }
 
             else { Debug.Log("Victory screen has not been assigned in UIManager Inspector"); }
@@ -42,9 +103,10 @@ public class UIManager : MonoBehaviour
 
         else
         {
-            if (gameOverMenuUI != null)
+            if (gameOverUI != null)
             {
-                gameOverMenuUI.SetActive(true);
+                gameOverUI.SetActive(true);
+                Time.timeScale = 0.0f;
             }
 
             else { Debug.Log("GameOver screen has not been assigned in UIManager Inspector"); }
