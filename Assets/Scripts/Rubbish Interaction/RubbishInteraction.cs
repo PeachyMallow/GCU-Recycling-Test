@@ -71,7 +71,7 @@ public class RubbishInteraction : MonoBehaviour
             canDeposit = true;
             keyPressed = true;
         }
-
+        
         //once the player has deposited a piece of rubbish
         else if (Input.GetKeyUp(KeyCode.E))
         {
@@ -98,23 +98,28 @@ public class RubbishInteraction : MonoBehaviour
     {
         RaycastHit hit;
 
-        float raycastLength = 3f; // Adjust the ray lenght here 
+        float raycastLength = 3f; // Adjust the ray length here 
         Vector3 raycastOrigin = transform.position + Vector3.up * 2; // Adjust the ray height here
         Vector3 raycastDirection = transform.forward; // set ray direction
 
-        if (Physics.Raycast(transform.position,raycastDirection, out hit, raycastLength))
+        if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
         {
-            if (hit.collider.CompareTag("Bin"))
+            if (hit.collider.CompareTag("Bin") && keyPressed)
             {
                 Debug.Log(hit.collider.name);
+                canDeposit = true;
+            }
+            else
+            {
+                canDeposit = false;
             }
             Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);
         }
         else
         {
             Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
+            canDeposit = false;
         }
-
     }
 
     private void OnTriggerEnter(Collider Rubbish)
