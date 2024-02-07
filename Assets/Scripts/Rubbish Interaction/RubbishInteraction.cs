@@ -98,21 +98,21 @@ public class RubbishInteraction : MonoBehaviour
     {
         RaycastHit hit;
 
-        Vector3 raycastDirection = transform.forward;
-        float raycastLength = 3f;
+        float raycastLength = 3f; // Adjust the ray lenght here 
+        Vector3 raycastOrigin = transform.position + Vector3.up * 2; // Adjust the ray height here
+        Vector3 raycastDirection = transform.forward; // set ray direction
 
-        if (Physics.Raycast(transform.position,transform.forward, out hit, raycastLength))
+        if (Physics.Raycast(transform.position,raycastDirection, out hit, raycastLength))
         {
-
             if (hit.collider.CompareTag("Bin"))
             {
                 Debug.Log(hit.collider.name);
             }
-            Debug.DrawRay(transform.position, raycastDirection * hit.distance, Color.green);
+            Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);
         }
         else
         {
-            Debug.DrawRay(transform.position, raycastDirection * raycastLength, Color.red);
+            Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
         }
 
     }
