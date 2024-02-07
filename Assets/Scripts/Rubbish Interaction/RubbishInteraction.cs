@@ -24,8 +24,8 @@ public class RubbishInteraction : MonoBehaviour
     public AudioClip disposeClip;
 
     private bool isGameOver;
-    public GameObject victoryMenuUI;
-    public GameObject gameOverMenuUI;
+    //public GameObject victoryMenuUI;
+    //public GameObject gameOverMenuUI;
     private GameObject Menu;
 
     [SerializeField]
@@ -50,7 +50,8 @@ public class RubbishInteraction : MonoBehaviour
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
-        recycledScore = 5;
+        //recycledScore = 5;
+        ResetScore();
         recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
         Console.WriteLine("Auto Pickup Active");
@@ -185,11 +186,30 @@ public class RubbishInteraction : MonoBehaviour
             victoryMenuUI.SetActive(true);
             Time.timeScale = 0f;
         }
+
         else if (enviroMeter.value == 0)
         {
             gameOverMenuUI.SetActive(true);
             Time.timeScale = 0f;
         }
+    }
+
+    /// <summary>
+    /// Returns player's current score
+    /// </summary>
+    /// <returns></returns>
+    public int GetScore()
+    {
+        return recycledScore;
+    }
+
+    /// <summary>
+    /// Resets player's score to 5
+    /// </summary>
+    /// <param name="score"></param>
+    public void ResetScore()
+    {
+        recycledScore = 5;
     }
 
     public void Continue()

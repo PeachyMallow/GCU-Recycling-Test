@@ -5,27 +5,71 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    // Opens each person's respective prototyping scene
-    public void AlexSelect()
+    [SerializeField]
+    private GameObject pauseMenu;
+
+    [SerializeField]
+    private bool isPaused;
+
+    private void Update()
     {
-        SceneManager.LoadScene("AlexPrototyping");
+        Debug.Log("TimeScale: " + Time.timeScale);
+
+        if (pauseMenu != null)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TogglePause();
+            }
+        }
     }
 
-    public void BecaSelect()
+    private void TogglePause()
     {
-        SceneManager.LoadScene("BecaPrototyping");
+        isPaused = !isPaused;
+
+        if (isPaused) // pause
+        {
+            Time.timeScale = 0f;
+            ShowPauseMenu(true);
+        }
+
+        else // resume
+        {
+            Time.timeScale = 1f;
+            ShowPauseMenu(false);
+        }
     }
 
-    public void JamesSelect()
+    private void ShowPauseMenu(bool show)
     {
-        SceneManager.LoadScene("JamesPrototyping");
+        if (pauseMenu != null)
+        {
+            pauseMenu.SetActive(show);
+        }
     }
 
-    /// <summary>
-    /// Goes back to the 'Main' scene
-    /// </summary>
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        ShowPauseMenu(false);
+        isPaused = false;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        Debug.Log("TimeScale: " + Time.timeScale);
     }
 }
