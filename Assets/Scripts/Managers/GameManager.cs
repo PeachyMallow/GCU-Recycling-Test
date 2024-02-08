@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     private bool readyToSpawn;
     #endregion
 
-    [Header("----------------------------\n\nAccess to Rubbish Interaction Script to allow reduction")]
+    [Header("----------------------------\n\nDrag RubbishInteraction script here (currently on Player)")]
     [SerializeField]
     private RubbishInteraction RI;
 
@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
     [Header("Max Capacity of each bin")]
     [SerializeField]
     private int binsMaxCapacity;
-
 
     private void Start()
     {
