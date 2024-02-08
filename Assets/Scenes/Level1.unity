@@ -10572,10 +10572,10 @@ RectTransform:
   m_Children:
   - {fileID: 213816588}
   - {fileID: 758663854}
-  - {fileID: 696209774}
   - {fileID: 1333174323}
   - {fileID: 1064152269}
   - {fileID: 860747983}
+  - {fileID: 696209774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -31532,7 +31532,7 @@ MonoBehaviour:
   isMoving: 0
   turnSmoothTime: 0.1
   maxSpeed: 15
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 1157755236}
 --- !u!54 &2040514031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31597,7 +31597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RubbishScore: {fileID: 0}
   score: {fileID: 0}
-  recycledScore: 0
+  currentRecycledScore: 0
   radNum: 0
   pickupSource: {fileID: 1383990288}
   pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}

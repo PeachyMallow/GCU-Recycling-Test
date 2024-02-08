@@ -81,7 +81,7 @@ public class RubbishInteraction : MonoBehaviour
         }
 
         PickupSwitch();
-        EndingmenuUI();
+        //EndingmenuUI();
 
         float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
         enviroMeter.value = currentScore;
@@ -205,7 +205,6 @@ public class RubbishInteraction : MonoBehaviour
             uiManager.WinOrLose(false);
         }
     }
-
 
     //public void EndingmenuUI()
     //{
