@@ -16,7 +16,7 @@ public class ButtonManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level_1_Office");
         Time.timeScale = 1.0f;
     }
 
