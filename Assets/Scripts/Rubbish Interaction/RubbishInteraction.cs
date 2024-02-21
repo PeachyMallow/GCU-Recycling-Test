@@ -10,7 +10,7 @@ public class RubbishInteraction : MonoBehaviour
 {
     public Text RubbishScore;
     public Text score;
-    private int recycledScore;
+    public int recycledScore;
     private int recycledHighScore;
     private int numRubbish;
     private int numRubbishHeld;
@@ -24,8 +24,8 @@ public class RubbishInteraction : MonoBehaviour
     public AudioClip disposeClip;
 
     private bool isGameOver;
-    public GameObject victoryMenuUI;
-    public GameObject gameOverMenuUI;
+    //public GameObject victoryMenuUI;
+    //public GameObject gameOverMenuUI;
     private GameObject Menu;
 
     [SerializeField]
@@ -39,6 +39,10 @@ public class RubbishInteraction : MonoBehaviour
     [SerializeField]
     private PlayerManager playerManager;
 
+    [Header("Drag UIManager GameObject into here")]
+    [SerializeField]
+    private UIManager uiManager;
+
     // true when player presses E
     private bool keyPressed;
 
@@ -50,7 +54,8 @@ public class RubbishInteraction : MonoBehaviour
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
-        recycledScore = 5;
+        //recycledScore = 5;
+        ResetScore();
         recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
         Console.WriteLine("Auto Pickup Active");
@@ -74,7 +79,7 @@ public class RubbishInteraction : MonoBehaviour
         }
 
         PickupSwitch();
-        EndingmenuUI();
+        //EndingmenuUI();
     }
 
     private void OnTriggerEnter(Collider Rubbish)
@@ -176,20 +181,58 @@ public class RubbishInteraction : MonoBehaviour
                 enviroMeter.value = recycledScore;
             }
         }
+
+        ScoreCheck();
     }
 
-    public void EndingmenuUI()
+    /// <summary>
+    /// Checks if player has reached win or lose threshold everytime they gain/lose a point
+    /// </summary>
+    private void ScoreCheck()
     {
-        if (enviroMeter.value == 10)
+        if (recycledScore >= 10)
         {
-            victoryMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            uiManager.WinOrLose(true);
         }
-        else if (enviroMeter.value == 0)
+
+        else if (recycledScore <= 0)
         {
-            gameOverMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            uiManager.WinOrLose(false);
         }
+    }
+
+
+    //public void EndingmenuUI()
+    //{
+    //    if (enviroMeter.value == 10)
+    //    {
+    //        victoryMenuUI.SetActive(true);
+    //        Time.timeScale = 0f;
+    //    }
+
+    //    else if (enviroMeter.value == 0)
+    //    {
+    //        gameOverMenuUI.SetActive(true);
+    //        Time.timeScale = 0f;
+    //    }
+    //}
+
+    /// <summary>
+    /// Returns player's current score
+    /// </summary>
+    /// <returns></returns>
+    public int GetScore()
+    {
+        return recycledScore;
+    }
+
+    /// <summary>
+    /// Resets player's score to 5
+    /// </summary>
+    /// <param name="score"></param>
+    public void ResetScore()
+    {
+        recycledScore = 5;
     }
 
     public void Continue()

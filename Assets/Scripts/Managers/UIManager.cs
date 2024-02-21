@@ -5,88 +5,72 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // player's capacity UI
+    // player's inventory capacity UI
     [Header("Drag the Capacity UI GameObject here")]
     [SerializeField]
     private TextMeshProUGUI capacityGO;
 
+    [Header("Drag Win UI here")]
     [SerializeField]
-    private GameObject inspectionUI;
+    public GameObject winUI;
 
+    [Header("Drag GameOver UI here")]
     [SerializeField]
-    private GameObject rightBtn;
+    public GameObject gameOverUI;
 
+    [Header("Drag Pause UI here")]
     [SerializeField]
-    private GameObject leftBtn;
+    private GameObject pauseMenu;
 
-    [SerializeField]
-    private bool inspectionActive;
-
-    [SerializeField]
-    private PlayerManager playerManager;
-
-    [SerializeField]
-    private List<GameObject> inventory = new List<GameObject>();
-
-    //[SerializeField]
-    // private CanInspect canInspect;
-
-    // size of list
-    [SerializeField]
-    private int size;
-
-    // index of current item
-    [SerializeField]
-    private int index;
-
-    [SerializeField]
-    private GameObject currentItem;
-
-
-    private void Start()
-    {
-        inspectionUI.SetActive(false);
-    }
+    private bool isPaused;
 
     private void Update()
     {
-        // shows/hides inspection UI
-        if (Input.GetKeyDown(KeyCode.F))
+        if (pauseMenu != null)
         {
-            if (!inspectionActive)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                index = 0;
-                inspectionUI.SetActive(true);
-                inspectionActive = true;
-                ItemsToInspect(); // generates list of player's current inventory
-
-                // start on first item in inventory list
-
-                if (inventory.Count > 0)
-                {
-                    CurrentlyInspecting();
-                }
-            }
-
-            else
-            {
-                inspectionUI.SetActive(false);
-                inspectionActive = false;
-
-                if (inventory.Count > 0)
-                {
-                    inventory[index].SetActive(false);
-                }
-
-                // clears temp inventory list on inspection close
-                if (inventory.Count > 0)
-                {
-                    inventory.Clear();
-                }
-
-                Time.timeScale = 1;
+                TogglePause();
             }
         }
+    }
+
+    private void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused) // pause
+        {
+            Time.timeScale = 0f;
+            ShowPauseMenu(true);
+        }
+
+        else // resume
+        {
+            Time.timeScale = 1f;
+            ShowPauseMenu(false);
+        }
+    }
+
+    public void IsPaused()
+    {
+        isPaused = false;
+    }
+
+    /// <summary>
+    /// Displays the pause menu dependant on bool parameter
+    /// True - Display the Pause UI
+    /// False - Hide the Pause UI
+    /// </summary>
+    /// <param name="show"></param>
+    public void ShowPauseMenu(bool show)
+    {
+        if (pauseMenu != null)
+        {
+            pauseMenu.SetActive(show);
+        }
+
+        else { Debug.Log("Please assign PauseMenu UI on the ButtonManager"); }
     }
 
     // updates the player capacity UI when the player has picked up/disposed of rubbish
@@ -100,77 +84,32 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds player's current inventory to new list
+    /// Shows either the 'Win' or 'Lose' screen dependant on the bool parameter
+    /// result = true: win, result = false: lose
     /// </summary>
-    public void ItemsToInspect()
+    /// <param name="result"></param>
+    public void WinOrLose(bool result)
     {
-        Time.timeScale = 0f;
-
-        if (playerManager.playerInventory.Count > 0)
+        if (result)
         {
-            foreach (GameObject item in playerManager.playerInventory)
+            if (winUI != null)
             {
-                inventory.Add(item);
+                winUI.SetActive(true);
+                Time.timeScale = 0.0f;
             }
+
+            else { Debug.Log("Victory screen has not been assigned in UIManager Inspector"); }
         }
-    }
 
-    /// <summary>
-    /// Current item being inspected
-    /// </summary>
-    public void CurrentlyInspecting()
-    {
-        inventory[index].GetComponent<Drag>().AbleToDrag(true);
-        size = inventory.Count;
-        inventory[index].SetActive(true);
-        inventory[index].GetComponent<CanInspect>().Inspecting();
-        currentItem = inventory[index];
-    }
-
-    //public bool InspectionActive()
-    //{ return inspectionActive; }
-
-    // inspection buttons
-    // inspection UI move left button
-    public void MoveLeft()
-    {
-        if (inventory.Count > 0)
+        else
         {
-            inventory.IndexOf(currentItem);
-
-            if (inventory.IndexOf(currentItem) > 0)
+            if (gameOverUI != null)
             {
-                ResetDragAbility();
-
-                index = inventory.IndexOf(currentItem) - 1;
-                currentItem = inventory[index];
-                CurrentlyInspecting();
+                gameOverUI.SetActive(true);
+                Time.timeScale = 0.0f;
             }
+
+            else { Debug.Log("GameOver screen has not been assigned in UIManager Inspector"); }
         }
-    }
-
-    // inspection UI move right button
-    public void MoveRight()
-    {
-        if (inventory.Count > 0)
-        {
-            inventory.IndexOf(currentItem);
-
-            if (inventory.IndexOf(currentItem) < size - 1)
-            {
-                ResetDragAbility();
-
-                index = inventory.IndexOf(currentItem) + 1;
-                currentItem = inventory[index];
-                CurrentlyInspecting();
-            }
-        }
-    }
-
-    private void ResetDragAbility()
-    {
-        GameObject lastItem = inventory[inventory.IndexOf(currentItem)];
-        lastItem.GetComponent<Drag>().AbleToDrag(false);
-        lastItem.SetActive(false);
     }
 }

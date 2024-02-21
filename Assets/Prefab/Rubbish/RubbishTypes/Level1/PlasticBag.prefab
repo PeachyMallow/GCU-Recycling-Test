@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 8171943564111607069}
   - component: {fileID: 1597050915851110658}
   - component: {fileID: 1892362617430100494}
-  - component: {fileID: 3940673204834689813}
-  - component: {fileID: 8569633700248856477}
   m_Layer: 0
   m_Name: PlasticBag
   m_TagString: NonRecyclable
@@ -108,34 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3940673204834689813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686971695277520664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b232fc6d0fbccc84d8f9f6407dbe4d83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 0.1
-  ableToDrag: 0
---- !u!114 &8569633700248856477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686971695277520664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da132a181743fb4a84862fe23918dd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
-  offset: 1.6
 --- !u!1 &3821141296150527078
 GameObject:
   m_ObjectHideFlags: 0
