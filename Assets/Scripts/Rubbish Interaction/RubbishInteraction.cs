@@ -5,16 +5,20 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class RubbishInteraction : MonoBehaviour
 {
     public Text RubbishScore;
     public Text score;
-    public int recycledScore;
+    private int recycledScore;
+    public int currentRecycledScore;
     private int recycledHighScore;
     private int numRubbish;
     private int numRubbishHeld;
     public float radNum = 0f;
+    float currentVelocity = 0;
+    public Vector3 collision = Vector3.zero;
 
     [Header("SFX Here")]
     [SerializeField]
@@ -27,6 +31,7 @@ public class RubbishInteraction : MonoBehaviour
     //public GameObject victoryMenuUI;
     //public GameObject gameOverMenuUI;
     private GameObject Menu;
+    public GameObject lastHit;
 
     [SerializeField]
     private bool Autopickup;
@@ -71,7 +76,7 @@ public class RubbishInteraction : MonoBehaviour
             canDeposit = true;
             keyPressed = true;
         }
-
+        
         //once the player has deposited a piece of rubbish
         else if (Input.GetKeyUp(KeyCode.E))
         {
@@ -80,6 +85,46 @@ public class RubbishInteraction : MonoBehaviour
 
         PickupSwitch();
         //EndingmenuUI();
+
+        float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
+        enviroMeter.value = currentScore;
+
+        //var Ray = new Ray(this.transform.position, this.transform.forward);
+        //RaycastHit hit;
+        //if (Physics.Raycast(Ray, out hit, 10))
+        //{
+        //    lastHit = hit.transform.gameObject;
+        //    collision = hit.point;
+        //    Debug.Log(gameObject.name);
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+
+        float raycastLength = 3f; // Adjust the ray length here 
+        Vector3 raycastOrigin = transform.position + Vector3.up * 2; // Adjust the ray height here
+        Vector3 raycastDirection = transform.forward; // set ray direction
+
+        if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
+        {
+            if (hit.collider.CompareTag("Bin") && keyPressed)
+            {
+                Debug.Log(hit.collider.name);
+                canDeposit = true;
+            }
+            else
+            {
+                canDeposit = false;
+            }
+            Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
+            canDeposit = false;
+        }
     }
 
     private void OnTriggerEnter(Collider Rubbish)
@@ -200,7 +245,6 @@ public class RubbishInteraction : MonoBehaviour
             uiManager.WinOrLose(false);
         }
     }
-
 
     //public void EndingmenuUI()
     //{
