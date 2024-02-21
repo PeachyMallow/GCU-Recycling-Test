@@ -5,11 +5,30 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    #region capacityVariablesDELETE
+    //------------------------------------------------
+    // will need to remove all of this probably
+    //------------------------------------------------
     // player's inventory capacity UI
     [Header("Drag the Capacity UI GameObject here")]
     [SerializeField]
     private TextMeshProUGUI capacityGO;
+    //------------------------------------------------
+    #endregion
 
+    // inventoryUI
+    public Transform inventorySlotsParent;
+    public Inventory inventory;
+    public InventorySlot[] slots;
+
+    // currently selected object in inventory
+    public int inventoryPos; // could change this to slots.Length?
+    
+
+
+    #region menuScreenVariables
+
+    // menu screens
     [Header("Drag Win UI here")]
     [SerializeField]
     public GameObject winUI;
@@ -24,6 +43,16 @@ public class UIManager : MonoBehaviour
 
     private bool isPaused;
 
+    #endregion
+
+    private void Start()
+    {
+        inventory = Inventory.instance;
+        inventory.onItemChangedCallback += UpdateInventoryUI;
+        slots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
+        inventoryPos = 0;
+    }
+
     private void Update()
     {
         if (pauseMenu != null)
@@ -33,7 +62,64 @@ public class UIManager : MonoBehaviour
                 TogglePause();
             }
         }
+
+        if (Input.GetMouseButtonDown(0)) // reduce inventoryPos by 1
+        {
+            if (inventoryPos > 0) 
+            {
+                inventoryPos--;
+                ScrollHotbar();
+            }
+
+            Debug.Log("Left mouse key pressed");
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (inventoryPos < 8)
+            {
+                inventoryPos++;
+                ScrollHotbar();
+            }
+
+            Debug.Log("Right mouse key pressed");
+        }
     }
+
+    private void UpdateInventoryUI()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < inventory.items.Count)
+            {
+                slots[i].AddItem(inventory.items[i]);
+            }
+
+            else // not sure what this is doing
+            {
+                slots[i].RemoveItem();
+            }
+        }
+    }
+
+    private void ScrollHotbar()
+    {
+
+    }
+
+    #region playerCapacityDELETE
+
+    // updates the player capacity UI when the player has picked up/disposed of rubbish
+    // also displays what the player's capacity limit is on screen
+    public void UpdateCapacityUI(int a, int b)
+    {
+        if (capacityGO != null)
+        {
+            capacityGO.text = a + "\n_\n\n" + b;
+        }
+    }
+
+    #endregion
 
     private void TogglePause()
     {
@@ -73,15 +159,7 @@ public class UIManager : MonoBehaviour
         else { Debug.Log("Please assign PauseMenu UI on the ButtonManager"); }
     }
 
-    // updates the player capacity UI when the player has picked up/disposed of rubbish
-    // also displays what the player's capacity limit is on screen
-    public void UpdateCapacityUI(int a, int b)
-    {
-        if (capacityGO != null)
-        {
-            capacityGO.text = a + "\n_\n\n" + b;
-        }
-    }
+
 
     /// <summary>
     /// Shows either the 'Win' or 'Lose' screen dependant on the bool parameter
