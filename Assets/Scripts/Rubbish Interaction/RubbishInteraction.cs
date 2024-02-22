@@ -157,7 +157,10 @@ public class RubbishInteraction : MonoBehaviour
 
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
-                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject);
+
+                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject); //  <-- old inventory code
+                    Inventory.instance.Remove(uiManager.GetInventoryPos());
+
                     Debug.Log("Score: " + recycledScore);
 
                     // unsure if needed?

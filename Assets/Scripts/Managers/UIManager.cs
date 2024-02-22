@@ -109,6 +109,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //working out removal
+    // if item is currently highlighted (inventoryPos)
+    // and player interacts with bin
+    // remove that item from the hotbar
+
     private void ScrollHotbar()
     {
         slots[inventoryPos].transform.localScale = new Vector3(1.29f, 1.29f, 1.29f);
@@ -117,6 +122,12 @@ public class UIManager : MonoBehaviour
         {
             slots[prevInventoryPos].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
+    }
+
+    // returns inventory position the player has highlighted
+    public int GetInventoryPos()
+    {
+        return inventoryPos;
     }
 
     #region playerCapacityDELETE

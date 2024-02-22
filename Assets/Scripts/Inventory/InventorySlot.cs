@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// handles showing/hiding icons   <---     If nothing is added, maybe change name to InventorySlotIconHandler?
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
-
     private Item item;
 
 
@@ -19,6 +19,11 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.icon;
         icon.enabled = true;
     }
+
+    //public void OnItemRemoval()
+    //{
+    //    Inventory.instance.Remove(item);
+    //}
 
     public void RemoveItem()
     {

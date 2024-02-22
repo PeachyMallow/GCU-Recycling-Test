@@ -72,9 +72,10 @@ public class Inventory : MonoBehaviour
         }        
     }
 
-    public void Remove(Item item)
+    public void Remove(int arrayPos)
     {
-        items.Remove(item);
+        items.Remove(items[arrayPos]);
+        Debug.Log("Item has been removed");
 
         if (onItemChangedCallback != null)
         {
