@@ -4,7 +4,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public Sprite icon = null;
-    new public string name = "New Rubbish";
-    public string recycleType = "Unknown"; // <-- might not need
-    public GameObject item;// <-- don't think I need
+    new public string name = "Rubbish Name";
+    //public string recycleType = "Unknown"; // <-- might not need
+    //public GameObject item;// <-- don't think I need
 }

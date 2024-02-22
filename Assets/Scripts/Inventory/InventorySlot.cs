@@ -5,7 +5,13 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
 
-    Item item;
+    private Item item;
+
+
+    private void Start()
+    {
+        icon.enabled = false;
+    }
 
     public void AddItem(Item newItem)
     {

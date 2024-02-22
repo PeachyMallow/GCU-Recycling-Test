@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6713301912775806655}
   - component: {fileID: 7064233363449156617}
   - component: {fileID: 6951727202660897673}
+  - component: {fileID: -4245129229934271670}
   m_Layer: 0
   m_Name: AppleCore
   m_TagString: FoodWaste
@@ -106,6 +107,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4245129229934271670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084135387239679434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b5fabc4a8286542bcf0001bd2f5df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 4c3dc73ab98a3384fa2ce23287db8b76, type: 2}
 --- !u!1001 &3563314850457223452
 PrefabInstance:
   m_ObjectHideFlags: 0

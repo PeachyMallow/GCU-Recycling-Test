@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 
     // currently selected object in inventory
     public int inventoryPos; // could change this to slots.Length?
-    
+    public int prevInventoryPos;
 
 
     #region menuScreenVariables
@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
         inventory.onItemChangedCallback += UpdateInventoryUI;
         slots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
         inventoryPos = 0;
+        prevInventoryPos = 1;
+        ScrollHotbar();
     }
 
     private void Update()
@@ -63,26 +65,31 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0)) // reduce inventoryPos by 1
+        if (Input.GetMouseButtonDown(0)) // left
         {
             if (inventoryPos > 0) 
             {
+                prevInventoryPos = inventoryPos;
                 inventoryPos--;
-                ScrollHotbar();
             }
 
-            Debug.Log("Left mouse key pressed");
+            if (inventoryPos == 0)
+            {
+
+            }
+
+            ScrollHotbar();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)) // right
         {
-            if (inventoryPos < 8)
+            if (inventoryPos < 7)
             {
+                prevInventoryPos = inventoryPos;
                 inventoryPos++;
-                ScrollHotbar();
             }
 
-            Debug.Log("Right mouse key pressed");
+            ScrollHotbar();
         }
     }
 
@@ -104,7 +111,12 @@ public class UIManager : MonoBehaviour
 
     private void ScrollHotbar()
     {
-
+        slots[inventoryPos].transform.localScale = new Vector3(1.29f, 1.29f, 1.29f);
+        
+        if (prevInventoryPos >= 0)
+        {
+            slots[prevInventoryPos].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
     }
 
     #region playerCapacityDELETE
