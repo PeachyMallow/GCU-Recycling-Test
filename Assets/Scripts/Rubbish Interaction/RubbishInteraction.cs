@@ -76,7 +76,7 @@ public class RubbishInteraction : MonoBehaviour
             canDeposit = true;
             keyPressed = true;
         }
-        
+
         //once the player has deposited a piece of rubbish
         else if (Input.GetKeyUp(KeyCode.E))
         {
@@ -154,10 +154,13 @@ public class RubbishInteraction : MonoBehaviour
                     // unsure if needed?
                     //recycledScore++;
                     //recycledHighScore++;
-                   
+
                     int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
                     numRubbishHeld = holding;
-                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject);
+
+                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject); //  <-- old inventory code
+                    Inventory.instance.Remove(uiManager.GetInventoryPos());
+
                     Debug.Log("Score: " + recycledScore);
 
                     // unsure if needed?
@@ -196,7 +199,8 @@ public class RubbishInteraction : MonoBehaviour
         {
             numRubbish++;
             numRubbishHeld++;
-            playerManager.UpdateInventory(1, false, Rubbish.gameObject);
+            playerManager.UpdateInventory(1, false, Rubbish.gameObject); // <-- old inventory system, might have to remove
+            Inventory.instance.Add(Rubbish.GetComponent<Pickup>().item);
             pickupSource.PlayOneShot(pickupClip);
             Rubbish.gameObject.SetActive(false);
         }
