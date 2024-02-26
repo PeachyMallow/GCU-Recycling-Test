@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5717841875557361013}
   - component: {fileID: -5840537403690113203}
   - component: {fileID: -5685588026836498932}
+  - component: {fileID: 6638164517388582243}
   m_Layer: 0
   m_Name: CookiesWrapper
   m_TagString: NonRecyclable
@@ -136,6 +137,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   offset: 1.2
+--- !u!208 &6638164517388582243
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21475458325765665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5243570907318266916
 GameObject:
   m_ObjectHideFlags: 0
