@@ -13003,6 +13003,12 @@ MonoBehaviour:
   - {fileID: 1156593084}
   - {fileID: 1873563842}
   - {fileID: 766633926}
+  itemsToDrop:
+  - {fileID: 7532212373965900810, guid: 4760b8bd73be7f74ebacbe4ec53b2394, type: 3}
+  - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
+  - {fileID: 6216011569501080760, guid: 7ab99a68d5130474fa6cf4e763301c8b, type: 3}
+  dropDistance: 0.1
+  dropDelay: 10
 --- !u!195 &777372541
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14472,6 +14478,12 @@ MonoBehaviour:
   - {fileID: 1156593084}
   - {fileID: 1873563842}
   - {fileID: 766633926}
+  itemsToDrop:
+  - {fileID: 7532212373965900810, guid: 4760b8bd73be7f74ebacbe4ec53b2394, type: 3}
+  - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
+  - {fileID: 6216011569501080760, guid: 7ab99a68d5130474fa6cf4e763301c8b, type: 3}
+  dropDistance: 0.1
+  dropDelay: 10
 --- !u!195 &825437517
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14671,6 +14683,12 @@ MonoBehaviour:
   - {fileID: 1156593084}
   - {fileID: 1873563842}
   - {fileID: 766633926}
+  itemsToDrop:
+  - {fileID: 7532212373965900810, guid: 4760b8bd73be7f74ebacbe4ec53b2394, type: 3}
+  - {fileID: 6216011569501080760, guid: 7ab99a68d5130474fa6cf4e763301c8b, type: 3}
+  - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
+  dropDistance: 0.1
+  dropDelay: 10
 --- !u!195 &833025992
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -15221,6 +15239,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       propertyPath: m_Name
       value: Player (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       propertyPath: m_TagString
@@ -18307,6 +18329,12 @@ MonoBehaviour:
   - {fileID: 1156593084}
   - {fileID: 1873563842}
   - {fileID: 766633926}
+  itemsToDrop:
+  - {fileID: 7532212373965900810, guid: 4760b8bd73be7f74ebacbe4ec53b2394, type: 3}
+  - {fileID: 6216011569501080760, guid: 7ab99a68d5130474fa6cf4e763301c8b, type: 3}
+  - {fileID: 1686971695277520664, guid: 77bd92e2a91f1fa48b3e3efadee06b3b, type: 3}
+  dropDistance: 0.1
+  dropDelay: 10
 --- !u!195 &1045171603
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19143,6 +19171,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       propertyPath: m_Name
       value: Player (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       propertyPath: m_TagString
@@ -25606,6 +25638,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       propertyPath: m_Name
       value: Player (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       propertyPath: m_TagString
