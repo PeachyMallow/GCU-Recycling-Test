@@ -53,12 +53,6 @@ public class Inventory : MonoBehaviour
         ItemSlots();
     }
 
-
-    private void Update()
-    {
-        
-    }
-
     public void Add(Item item)
     {
         if (!IsInventoryFull())
@@ -104,17 +98,17 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // for now, hides all icon images
-    private void ContainsItem()
-    {
-        //if (itemIcons != null)
-        //{
-        //    foreach (GameObject icons in itemIcons)
-        //    {
-        //        icons.SetActive(false);
-        //    }
-        //}
-    }
+    //// for now, hides all icon images
+    //private void ContainsItem()
+    //{
+    //    //if (itemIcons != null)
+    //    //{
+    //    //    foreach (GameObject icons in itemIcons)
+    //    //    {
+    //    //        icons.SetActive(false);
+    //    //    }
+    //    //}
+    //}
 
     private void ItemSlots()
     {
