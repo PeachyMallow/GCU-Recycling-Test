@@ -40,9 +40,9 @@ public class RubbishInteraction : MonoBehaviour
     public Slider enviroMeter;
 
     // used to update what the player is currently holding
-    [Header("Drag PlayerManager GameObject into here")]
-    [SerializeField]
-    private PlayerManager playerManager;
+    //[Header("Drag PlayerManager GameObject into here")]
+    //[SerializeField]
+    //private PlayerManager playerManager;
 
     [Header("Drag UIManager GameObject into here")]
     [SerializeField]
@@ -150,26 +150,23 @@ public class RubbishInteraction : MonoBehaviour
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
                 // keypress 'E' is controlled in Update()
-                if (keyPressed && numRubbishHeld > 0 && canDeposit)
+                if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
                 {
-                    // unsure if needed?
+                    /*// unsure if needed?
                     //recycledScore++;
-                    //recycledHighScore++;
+                    //recycledHighScore++;*/
 
-                    int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
-                    numRubbishHeld = holding;
+                    Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
-                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject); //  <-- old inventory code
-                    Inventory.instance.Remove(uiManager.GetInventoryPos());
-
-                    Debug.Log("Score: " + recycledScore);
-
-                    // unsure if needed?
-                    /*score.text = "Rubbish Recycled : " + recycledHighScore;
-                    enviroMeter.value = recycledScore;
-                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;*/
+                    numRubbishHeld = Inventory.instance.InventorySize();
 
                     disposeSource.PlayOneShot(disposeClip);
+                    
+                    /*//Debug.Log("Score: " + recycledScore);
+                    // unsure if needed?
+                    score.text = "Rubbish Recycled : " + recycledHighScore;
+                    enviroMeter.value = recycledScore;
+                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;*/
                 }
 
                 else if (keyPressed && numRubbish <= 0)
@@ -196,11 +193,10 @@ public class RubbishInteraction : MonoBehaviour
     /// <param name="Rubbish"></param>
     private void RubbishPickup(GameObject Rubbish)
     {
-        if (!playerManager.InventoryFull())
+        if (!Inventory.instance.IsInventoryFull())
         {
             numRubbish++;
             numRubbishHeld++;
-            playerManager.UpdateInventory(1, false, Rubbish.gameObject); // <-- old inventory system, might have to remove
             Inventory.instance.Add(Rubbish.GetComponent<Pickup>().item);
             pickupSource.PlayOneShot(pickupClip);
             Rubbish.gameObject.SetActive(false);

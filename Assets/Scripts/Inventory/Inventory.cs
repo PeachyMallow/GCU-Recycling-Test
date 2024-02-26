@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -44,13 +46,15 @@ public class Inventory : MonoBehaviour
     //[SerializeField]
     //private List<GameObject> itemIcons = new List<GameObject>(8);
 
-
+    [Header("Drag RubbishInteraction script here")]
+    [SerializeField]
+    private RubbishInteraction rInteraction;
 
 
 
     private void Start()
     {
-        ItemSlots();
+        //ItemSlots();
     }
 
     public void Add(Item item)
@@ -66,10 +70,27 @@ public class Inventory : MonoBehaviour
         }        
     }
 
-    public void Remove(int arrayPos)
+    public void Remove(int arrayPos, GameObject bin)
     {
-        items.Remove(items[arrayPos]);
-        Debug.Log("Item has been removed");
+        // removing 'bin' from the end of the bin currently being interacted with's name
+        string binNameStart = bin.name.Substring(0, bin.name.Length - 3);
+
+        if (arrayPos <= items.Count - 1)
+        {
+            //if (items[arrayPos].)
+            if (items[arrayPos].recyclingType.StartsWith(binNameStart))
+            {
+                rInteraction.EIMScore(true);
+            }
+
+            else { rInteraction.EIMScore(false); }
+
+            items.Remove(items[arrayPos]);
+
+            bin.GetComponent<Bins>().DepositingLitter();
+
+            Debug.Log("Item has been removed");
+        }
 
         if (onItemChangedCallback != null)
         {
@@ -87,7 +108,7 @@ public class Inventory : MonoBehaviour
     {
         if (/*currentItemSlots*/items.Count < inventorySize)
         {
-            Debug.Log("Inventory is not full");
+            //Debug.Log("Inventory is not full");
             return false;
         }
 
@@ -96,6 +117,15 @@ public class Inventory : MonoBehaviour
             Debug.Log("Inventory is full");
             return true;
         }
+    }
+
+    /// <summary>
+    /// Returns the current inventory size
+    /// </summary>
+    /// <returns></returns>
+    public int InventorySize()
+    {
+        return items.Count;
     }
 
     //// for now, hides all icon images

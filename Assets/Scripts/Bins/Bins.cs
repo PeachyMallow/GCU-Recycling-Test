@@ -35,28 +35,48 @@ public class Bins : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds the deposited litter to the binsCapacity (Right now takes all the rubbish the player has in their inventory)
+    /// Adds the deposited litter to the binsCapacity
     /// </summary>
-    public int DepositingLitter(int rubbishHeld)
+    public void DepositingLitter()
     {
-        if (rubbishHeld > 0)
+        if (!isBinFull)
         {
-            if (!isBinFull)
-            {
-                binCurrentlyHolding++ /*+= rubbishHeld*/;
-                rubbishHeld--;
-                return rubbishHeld;
-            }
+            binCurrentlyHolding++ /*+= rubbishHeld*/;
+            //Inventory.instance.InventorySize();
+            //return rubbishHeld;
         }
-
-        else
-        {
-            return rubbishHeld;
-        }
-
-        return 0;
     }
 
+        //else
+        //{
+        //    return rubbishHeld;
+        //}
+
+        //return 0;
+
+    ////old code - don't delete
+    ///// <summary>
+    ///// Adds the deposited litter to the binsCapacity
+    ///// </summary>
+    //public int DepositingLitter(int rubbishHeld)
+    //{
+    //    if (rubbishHeld > 0)
+    //    {
+    //        if (!isBinFull)
+    //        {
+    //            binCurrentlyHolding++ /*+= rubbishHeld*/;
+    //            rubbishHeld--;
+    //            return rubbishHeld;
+    //        }
+    //    }
+
+    //    else
+    //    {
+    //        return rubbishHeld;
+    //    }
+
+    //    return 0;
+    //}
 
     /// <summary>
     /// True if this bin is full
