@@ -3111,7 +3111,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
 --- !u!4 &686483229 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1758328930543745259, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
   m_PrefabInstance: {fileID: 686483228}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &686754046
@@ -3237,11 +3237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683bf113383a6e9458df1cc7069ded29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCapacity: 8
-  playerInventory: []
+  inventory: {fileID: 0}
   uiManager: {fileID: 778846989}
-  rInteraction: {fileID: 979419751}
-  fill: {fileID: 517229826}
 --- !u!114 &700851649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3256,6 +3253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   inventorySize: 8
+  rInteraction: {fileID: 0}
 --- !u!1 &725826206
 GameObject:
   m_ObjectHideFlags: 0
@@ -3285,7 +3283,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 857698122}
   - {fileID: 1243504569}
   - {fileID: 1624300126}
   - {fileID: 1355563253}
@@ -4214,72 +4211,6 @@ Transform:
   - {fileID: 625672387}
   m_Father: {fileID: 1713295822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &857698121
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 725826207}
-    m_Modifications:
-    - target: {fileID: 2233020953187505264, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_Name
-      value: WaterBottle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233020953187505264, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.4020834
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
---- !u!4 &857698122 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2738958423713968864, guid: 534a91a5b6e01c04ebbed07744bac063, type: 3}
-  m_PrefabInstance: {fileID: 857698121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &872164697
 GameObject:
   m_ObjectHideFlags: 0
@@ -4811,7 +4742,6 @@ MonoBehaviour:
   lastHit: {fileID: 0}
   Autopickup: 0
   enviroMeter: {fileID: 612264771}
-  playerManager: {fileID: 700851648}
   uiManager: {fileID: 778846989}
 --- !u!114 &979419752
 MonoBehaviour:
@@ -5378,7 +5308,6 @@ MonoBehaviour:
   lastHit: {fileID: 0}
   Autopickup: 0
   enviroMeter: {fileID: 612264771}
-  playerManager: {fileID: 700851648}
   uiManager: {fileID: 778846989}
 --- !u!114 &1082974693
 MonoBehaviour:
