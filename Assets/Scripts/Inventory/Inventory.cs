@@ -73,9 +73,8 @@ public class Inventory : MonoBehaviour
         // removing 'bin' from the end of the bin currently being interacted with's name
         string binNameStart = bin.name.Substring(0, bin.name.Length - 3);
 
-        if (arrayPos <= items.Count - 1)
+        if (arrayPos <= items.Count - 1) // prevents empty slots from being selected
         {
-            //if (items[arrayPos].)
             if (items[arrayPos].recyclingType.StartsWith(binNameStart))
             {
                 rInteraction.EIMScore(true);
@@ -86,8 +85,6 @@ public class Inventory : MonoBehaviour
             items.Remove(items[arrayPos]);
 
             bin.GetComponent<Bins>().DepositingLitter();
-
-            Debug.Log("Item has been removed");
         }
 
         if (onItemChangedCallback != null)

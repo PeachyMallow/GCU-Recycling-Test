@@ -15,6 +15,12 @@ public class Bins : MonoBehaviour
     [SerializeField]
     private int maxCapacity;
 
+    [Header("Rubbish Disposal SFX")]
+    [SerializeField]
+    private AudioSource disposeSource;
+    [SerializeField]
+    private AudioClip disposeClip;
+
     private void Start()
     {
         binCurrentlyHolding = 0;
@@ -28,12 +34,6 @@ public class Bins : MonoBehaviour
         else { Debug.Log("Bins.cs can't find the GameManager script"); }
     }
 
-
-    private void Update()
-    {
-        
-    }
-
     /// <summary>
     /// Adds the deposited litter to the binsCapacity
     /// </summary>
@@ -42,6 +42,10 @@ public class Bins : MonoBehaviour
         if (!isBinFull)
         {
             binCurrentlyHolding++ /*+= rubbishHeld*/;
+
+            //play dispose audio
+            disposeSource.PlayOneShot(disposeClip);
+
             //Inventory.instance.InventorySize();
             //return rubbishHeld;
         }
