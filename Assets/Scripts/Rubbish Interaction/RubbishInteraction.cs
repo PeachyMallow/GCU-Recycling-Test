@@ -24,8 +24,6 @@ public class RubbishInteraction : MonoBehaviour
     [SerializeField]
     public AudioSource pickupSource;
     public AudioClip pickupClip;
-    public AudioSource disposeSource;
-    public AudioClip disposeClip;
 
     private bool isGameOver;
     //public GameObject victoryMenuUI;
@@ -159,8 +157,6 @@ public class RubbishInteraction : MonoBehaviour
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
                     numRubbishHeld = Inventory.instance.InventorySize();
-
-                    disposeSource.PlayOneShot(disposeClip);
                     
                     /*//Debug.Log("Score: " + recycledScore);
                     // unsure if needed?
