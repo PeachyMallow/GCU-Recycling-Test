@@ -22,8 +22,8 @@ public class UIManager : MonoBehaviour
     public InventorySlot[] slots;
 
     // currently selected object in inventory
-    public int inventoryPos; // could change this to slots.Length?
-    public int prevInventoryPos;
+    private int inventoryPos; // could change this to slots.Length?
+    private int prevInventoryPos;
 
 
     #region menuScreenVariables
