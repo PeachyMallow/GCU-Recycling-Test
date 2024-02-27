@@ -5,27 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    // Opens each person's respective prototyping scene
-    public void AlexSelect()
+    private UIManager uiManager;
+
+    private void Start()
     {
-        SceneManager.LoadScene("AlexPrototyping");
+        uiManager = GetComponent<UIManager>();
+
+        if (uiManager == null) { Debug.Log("UIManager is no longer on same GO as ButtonManager"); }
     }
 
-    public void BecaSelect()
+    public void StartGame()
     {
-        SceneManager.LoadScene("BecaPrototyping");
+        SceneManager.LoadScene("Level_1_Office");
+        Time.timeScale = 1.0f;
     }
 
-    public void JamesSelect()
-    {
-        SceneManager.LoadScene("JamesPrototyping");
-    }
-
-    /// <summary>
-    /// Goes back to the 'Main' scene
-    /// </summary>
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        uiManager.ShowPauseMenu(false); // beca note: combine these somehow?
+        uiManager.IsPaused();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // beca note: might change in future 
+        Time.timeScale = 1f;
     }
 }

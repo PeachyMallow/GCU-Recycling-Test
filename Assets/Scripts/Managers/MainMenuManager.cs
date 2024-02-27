@@ -2,10 +2,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// essentially an audio manager now
 public class MainMenuManager : MonoBehaviour
 {
-    public AudioSource buttonClickAudioSource;
-    public AudioSource backgroundMusicAudioSource;
+    [SerializeField] 
+    private AudioSource buttonClickAudioSource;
+
+    [SerializeField] 
+    private AudioSource backgroundMusicAudioSource;
 
     private bool isAudioMuted = false;
 
@@ -18,22 +22,9 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene("Level1");
-        
-    }
-
+    // is this needed?
     public void HowToPlay()
-    {
-       
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-        
-    }
+    {}
 
     public void ToggleAudio()
     {
@@ -49,6 +40,4 @@ public class MainMenuManager : MonoBehaviour
             backgroundMusicAudioSource.mute = isAudioMuted;
         }
     }
-
-   
 }

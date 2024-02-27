@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class RubbishInteraction : MonoBehaviour
     private int numRubbishHeld;
     public float radNum = 0f;
     float currentVelocity = 0;
+    public Vector3 collision = Vector3.zero;
 
     [Header("SFX Here")]
     [SerializeField]
@@ -26,9 +28,10 @@ public class RubbishInteraction : MonoBehaviour
     public AudioClip disposeClip;
 
     private bool isGameOver;
-    public GameObject victoryMenuUI;
-    public GameObject gameOverMenuUI;
+    //public GameObject victoryMenuUI;
+    //public GameObject gameOverMenuUI;
     private GameObject Menu;
+    public GameObject lastHit;
 
     [SerializeField]
     private bool Autopickup;
@@ -37,9 +40,13 @@ public class RubbishInteraction : MonoBehaviour
     public Slider enviroMeter;
 
     // used to update what the player is currently holding
-    [Header("Drag PlayerManager GameObject into here")]
+    //[Header("Drag PlayerManager GameObject into here")]
+    //[SerializeField]
+    //private PlayerManager playerManager;
+
+    [Header("Drag UIManager GameObject into here")]
     [SerializeField]
-    private PlayerManager playerManager;
+    private UIManager uiManager;
 
     // true when player presses E
     private bool keyPressed;
@@ -52,7 +59,8 @@ public class RubbishInteraction : MonoBehaviour
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
-        recycledScore = 5;
+        //recycledScore = 5;
+        ResetScore();
         recycledHighScore = recycledScore;
         enviroMeter.value = recycledScore;
         Console.WriteLine("Auto Pickup Active");
@@ -73,13 +81,51 @@ public class RubbishInteraction : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.E))
         {
             keyPressed = false;
+            canDeposit = false;   
         }
 
         PickupSwitch();
-        EndingmenuUI();
+        //EndingmenuUI();
 
         float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
         enviroMeter.value = currentScore;
+
+        //var Ray = new Ray(this.transform.position, this.transform.forward);
+        //RaycastHit hit;
+        //if (Physics.Raycast(Ray, out hit, 10))
+        //{
+        //    lastHit = hit.transform.gameObject;
+        //    collision = hit.point;
+        //    Debug.Log(gameObject.name);
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+
+        float raycastLength = 3f; // Adjust the ray length here 
+        Vector3 raycastOrigin = transform.position + Vector3.up * 10; // Adjust the ray height here
+        Vector3 raycastDirection = transform.forward; // set ray direction
+
+        if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
+        {
+            if (hit.collider.CompareTag("Bin") && keyPressed)
+            {
+                Debug.Log(hit.collider.name);
+               // canDeposit = true;
+            }
+            else
+            {
+                //canDeposit = false;
+            }
+            Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
+            canDeposit = false;
+        }
     }
 
     private void OnTriggerEnter(Collider Rubbish)
@@ -104,23 +150,23 @@ public class RubbishInteraction : MonoBehaviour
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
                 // keypress 'E' is controlled in Update()
-                if (keyPressed && numRubbishHeld > 0 && canDeposit)
+                if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
                 {
-                    // unsure if needed?
+                    /*// unsure if needed?
                     //recycledScore++;
-                    //recycledHighScore++;
-                   
-                    int holding = RubbishBin.GetComponent<Bins>().DepositingLitter(numRubbishHeld);
-                    numRubbishHeld = holding;
-                    playerManager.UpdateInventory(holding, true, RubbishBin.gameObject);
-                    Debug.Log("Score: " + recycledScore);
+                    //recycledHighScore++;*/
 
-                    // unsure if needed?
-                    /*score.text = "Rubbish Recycled : " + recycledHighScore;
-                    enviroMeter.value = recycledScore;
-                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;*/
+                    Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
+
+                    numRubbishHeld = Inventory.instance.InventorySize();
 
                     disposeSource.PlayOneShot(disposeClip);
+                    
+                    /*//Debug.Log("Score: " + recycledScore);
+                    // unsure if needed?
+                    score.text = "Rubbish Recycled : " + recycledHighScore;
+                    enviroMeter.value = recycledScore;
+                    RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;*/
                 }
 
                 else if (keyPressed && numRubbish <= 0)
@@ -147,11 +193,11 @@ public class RubbishInteraction : MonoBehaviour
     /// <param name="Rubbish"></param>
     private void RubbishPickup(GameObject Rubbish)
     {
-        if (!playerManager.InventoryFull())
+        if (!Inventory.instance.IsInventoryFull())
         {
             numRubbish++;
             numRubbishHeld++;
-            playerManager.UpdateInventory(1, false, Rubbish.gameObject);
+            Inventory.instance.Add(Rubbish.GetComponent<Pickup>().item);
             pickupSource.PlayOneShot(pickupClip);
             Rubbish.gameObject.SetActive(false);
         }
@@ -181,20 +227,57 @@ public class RubbishInteraction : MonoBehaviour
                 enviroMeter.value = recycledScore;
             }
         }
+
+        ScoreCheck();
     }
 
-    public void EndingmenuUI()
+    /// <summary>
+    /// Checks if player has reached win or lose threshold everytime they gain/lose a point
+    /// </summary>
+    private void ScoreCheck()
     {
-        if (enviroMeter.value == 10)
+        if (recycledScore >= 10)
         {
-            victoryMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            uiManager.WinOrLose(true);
         }
-        else if (enviroMeter.value == 0)
+
+        else if (recycledScore <= 0)
         {
-            gameOverMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            uiManager.WinOrLose(false);
         }
+    }
+
+    //public void EndingmenuUI()
+    //{
+    //    if (enviroMeter.value == 10)
+    //    {
+    //        victoryMenuUI.SetActive(true);
+    //        Time.timeScale = 0f;
+    //    }
+
+    //    else if (enviroMeter.value == 0)
+    //    {
+    //        gameOverMenuUI.SetActive(true);
+    //        Time.timeScale = 0f;
+    //    }
+    //}
+
+    /// <summary>
+    /// Returns player's current score
+    /// </summary>
+    /// <returns></returns>
+    public int GetScore()
+    {
+        return recycledScore;
+    }
+
+    /// <summary>
+    /// Resets player's score to 5
+    /// </summary>
+    /// <param name="score"></param>
+    public void ResetScore()
+    {
+        recycledScore = 5;
     }
 
     public void Continue()

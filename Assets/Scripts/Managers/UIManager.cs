@@ -5,89 +5,132 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // player's capacity UI
+    #region capacityVariablesDELETE
+    //------------------------------------------------
+    // will need to remove all of this probably
+    //------------------------------------------------
+    // player's inventory capacity UI
     [Header("Drag the Capacity UI GameObject here")]
     [SerializeField]
     private TextMeshProUGUI capacityGO;
+    //------------------------------------------------
+    #endregion
 
+    // inventoryUI
+    public Transform inventorySlotsParent;
+    public Inventory inventory;
+    public InventorySlot[] slots;
+
+    // currently selected object in inventory
+    private int inventoryPos; // could change this to slots.Length?
+    private int prevInventoryPos;
+
+
+    #region menuScreenVariables
+
+    // menu screens
+    [Header("Drag Win UI here")]
     [SerializeField]
-    private GameObject inspectionUI;
+    public GameObject winUI;
 
+    [Header("Drag GameOver UI here")]
     [SerializeField]
-    private GameObject rightBtn;
+    public GameObject gameOverUI;
 
+    [Header("Drag Pause UI here")]
     [SerializeField]
-    private GameObject leftBtn;
+    private GameObject pauseMenu;
 
-    [SerializeField]
-    private bool inspectionActive;
+    private bool isPaused;
 
-    [SerializeField]
-    private PlayerManager playerManager;
-
-    [SerializeField]
-    private List<GameObject> inventory = new List<GameObject>();
-
-    //[SerializeField]
-    // private CanInspect canInspect;
-
-    // size of list
-    [SerializeField]
-    private int size;
-
-    // index of current item
-    [SerializeField]
-    private int index;
-
-    [SerializeField]
-    private GameObject currentItem;
-
+    #endregion
 
     private void Start()
     {
-        inspectionUI.SetActive(false);
+        inventory = Inventory.instance;
+        inventory.onItemChangedCallback += UpdateInventoryUI;
+        slots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
+        inventoryPos = 0;
+        prevInventoryPos = 1;
+        ScrollHotbar();
     }
 
     private void Update()
     {
-        // shows/hides inspection UI
-        if (Input.GetKeyDown(KeyCode.F))
+        if (pauseMenu != null)
         {
-            if (!inspectionActive)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                index = 0;
-                inspectionUI.SetActive(true);
-                inspectionActive = true;
-                ItemsToInspect(); // generates list of player's current inventory
+                TogglePause();
+            }
+        }
 
-                // start on first item in inventory list
-
-                if (inventory.Count > 0)
-                {
-                    CurrentlyInspecting();
-                }
+        if (Input.GetMouseButtonDown(0)) // left
+        {
+            if (inventoryPos > 0) 
+            {
+                prevInventoryPos = inventoryPos;
+                inventoryPos--;
             }
 
-            else
+            if (inventoryPos == 0)
             {
-                inspectionUI.SetActive(false);
-                inspectionActive = false;
 
-                if (inventory.Count > 0)
-                {
-                    inventory[index].SetActive(false);
-                }
+            }
 
-                // clears temp inventory list on inspection close
-                if (inventory.Count > 0)
-                {
-                    inventory.Clear();
-                }
+            ScrollHotbar();
+        }
 
-                Time.timeScale = 1;
+        if (Input.GetMouseButtonDown(1)) // right
+        {
+            if (inventoryPos < 7)
+            {
+                prevInventoryPos = inventoryPos;
+                inventoryPos++;
+            }
+
+            ScrollHotbar();
+        }
+    }
+
+    private void UpdateInventoryUI()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < inventory.items.Count)
+            {
+                slots[i].AddItem(inventory.items[i]);
+            }
+
+            else // not sure what this is doing
+            {
+                slots[i].RemoveItem();
             }
         }
     }
+
+    //working out removal
+    // if item is currently highlighted (inventoryPos)
+    // and player interacts with bin
+    // remove that item from the hotbar
+
+    private void ScrollHotbar()
+    {
+        slots[inventoryPos].transform.localScale = new Vector3(1.29f, 1.29f, 1.29f);
+        
+        if (prevInventoryPos >= 0)
+        {
+            slots[prevInventoryPos].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+    }
+
+    // returns inventory position the player has highlighted
+    public int GetInventoryPos()
+    {
+        return inventoryPos;
+    }
+
+    #region playerCapacityDELETE
 
     // updates the player capacity UI when the player has picked up/disposed of rubbish
     // also displays what the player's capacity limit is on screen
@@ -99,78 +142,75 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    private void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused) // pause
+        {
+            Time.timeScale = 0f;
+            ShowPauseMenu(true);
+        }
+
+        else // resume
+        {
+            Time.timeScale = 1f;
+            ShowPauseMenu(false);
+        }
+    }
+
+    public void IsPaused()
+    {
+        isPaused = false;
+    }
+
     /// <summary>
-    /// Adds player's current inventory to new list
+    /// Displays the pause menu dependant on bool parameter
+    /// True - Display the Pause UI
+    /// False - Hide the Pause UI
     /// </summary>
-    public void ItemsToInspect()
+    /// <param name="show"></param>
+    public void ShowPauseMenu(bool show)
     {
-        Time.timeScale = 0f;
-
-        if (playerManager.playerInventory.Count > 0)
+        if (pauseMenu != null)
         {
-            foreach (GameObject item in playerManager.playerInventory)
-            {
-                inventory.Add(item);
-            }
+            pauseMenu.SetActive(show);
         }
+
+        else { Debug.Log("Please assign PauseMenu UI on the ButtonManager"); }
     }
+
+
 
     /// <summary>
-    /// Current item being inspected
+    /// Shows either the 'Win' or 'Lose' screen dependant on the bool parameter
+    /// result = true: win, result = false: lose
     /// </summary>
-    public void CurrentlyInspecting()
+    /// <param name="result"></param>
+    public void WinOrLose(bool result)
     {
-        inventory[index].GetComponent<Drag>().AbleToDrag(true);
-        size = inventory.Count;
-        inventory[index].SetActive(true);
-        inventory[index].GetComponent<CanInspect>().Inspecting();
-        currentItem = inventory[index];
-    }
-
-    //public bool InspectionActive()
-    //{ return inspectionActive; }
-
-    // inspection buttons
-    // inspection UI move left button
-    public void MoveLeft()
-    {
-        if (inventory.Count > 0)
+        if (result)
         {
-            inventory.IndexOf(currentItem);
-
-            if (inventory.IndexOf(currentItem) > 0)
+            if (winUI != null)
             {
-                ResetDragAbility();
-
-                index = inventory.IndexOf(currentItem) - 1;
-                currentItem = inventory[index];
-                CurrentlyInspecting();
+                winUI.SetActive(true);
+                Time.timeScale = 0.0f;
             }
-        }
-    }
 
-    // inspection UI move right button
-    public void MoveRight()
-    {
-        if (inventory.Count > 0)
+            else { Debug.Log("Victory screen has not been assigned in UIManager Inspector"); }
+        }
+
+        else
         {
-            inventory.IndexOf(currentItem);
-
-            if (inventory.IndexOf(currentItem) < size - 1)
+            if (gameOverUI != null)
             {
-                ResetDragAbility();
-
-                index = inventory.IndexOf(currentItem) + 1;
-                currentItem = inventory[index];
-                CurrentlyInspecting();
+                gameOverUI.SetActive(true);
+                Time.timeScale = 0.0f;
             }
-        }
-    }
 
-    private void ResetDragAbility()
-    {
-        GameObject lastItem = inventory[inventory.IndexOf(currentItem)];
-        lastItem.GetComponent<Drag>().AbleToDrag(false);
-        lastItem.SetActive(false);
+            else { Debug.Log("GameOver screen has not been assigned in UIManager Inspector"); }
+        }
     }
 }
