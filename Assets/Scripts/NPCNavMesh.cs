@@ -71,18 +71,19 @@ public class NPCNavMesh : MonoBehaviour
         StartItemDropDelay();
     }
 
+    /// <summary>
+    /// Selects a random item from the array, ensuring it's not the same as the last dropped item
+    /// </summary>
     private void SetRandomItemToDrop()
     {
         if (itemsToDrop.Length > 0)
         {
-            // Select a random item from the array, ensuring it's not the same as the last dropped item
             do
             {
                 int randomIndex = Random.Range(0, itemsToDrop.Length);
                 itemToDrop = itemsToDrop[randomIndex];
             } while (itemToDrop == lastDroppedItem);
 
-            // Update the last dropped item
             lastDroppedItem = itemToDrop;
         }
         else

@@ -104,7 +104,7 @@ public class RubbishInteraction : MonoBehaviour
     {
         RaycastHit hit;
 
-        float raycastLength = 3f; // Adjust the ray length here 
+        float raycastLength = 6f; // Adjust the ray length here 
         Vector3 raycastOrigin = transform.position + Vector3.up * 10; // Adjust the ray height here
         Vector3 raycastDirection = transform.forward; // set ray direction
 
