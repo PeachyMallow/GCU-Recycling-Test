@@ -1,12 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public struct TargetPoint
+{
+    public Transform point;
+    public float delay;
+}
+
 public class NPCNavMesh : MonoBehaviour
 {
-    [SerializeField] private Transform[] targetPositions; // Use an array to store multiple target positions
-    private int currentTargetIndex = 0; // Index to keep track of the current target position
+    [SerializeField] private TargetPoint[] targetPoints; // Array of target points with associated delays
+    [SerializeField] private GameObject[] itemsToDrop; // Array of items to drop
+    [SerializeField] private float dropDistance = 1.0f; // Distance from NPC's position to drop item
+    [SerializeField] private float itemDropDelay = 1.0f; // Delay before dropping another item
+
+    private int currentTargetIndex = 0; // Index to keep track of the current target point
+    private bool isWaiting = false; // Flag to indicate if NPC is currently waiting
+    private bool isItemDropDelaying = false; // Flag to indicate if NPC is currently delaying item drop
+    private GameObject lastDroppedItem; // The last dropped item
+    private GameObject itemToDrop; // The item to drop
+    private float itemDropTimer = 0f; // Timer for item drop delay
 
     private NavMeshAgent agent;
 
@@ -15,20 +30,80 @@ public class NPCNavMesh : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+        MoveToNextTarget();
+    }
+
     private void Update()
     {
-        // Check if there are any target positions
-        if (targetPositions.Length > 0)
+        if (!isWaiting && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
-            // Set the current target position as the agent's destination
-            agent.destination = targetPositions[currentTargetIndex].position;
+            StartCoroutine(WaitAtTarget(targetPoints[currentTargetIndex].delay));
+        }
 
-            // Check if the agent has reached the current target position
-            if (agent.remainingDistance <= agent.stoppingDistance)
+        // Check if item drop delay is active
+        if (isItemDropDelaying)
+        {
+            itemDropTimer += Time.deltaTime;
+            if (itemDropTimer >= itemDropDelay)
             {
-                // Move to the next target position
-                currentTargetIndex = (currentTargetIndex + 1) % targetPositions.Length;
+                isItemDropDelaying = false;
+                itemDropTimer = 0f;
+                DropItem();
             }
         }
     }
+
+    private IEnumerator WaitAtTarget(float delay)
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(delay);
+        MoveToNextTarget();
+        isWaiting = false;
+    }
+
+    private void MoveToNextTarget()
+    {
+        currentTargetIndex = (currentTargetIndex + 1) % targetPoints.Length;
+        agent.destination = targetPoints[currentTargetIndex].point.position;
+        SetRandomItemToDrop();
+        StartItemDropDelay();
+    }
+
+    /// <summary>
+    /// Selects a random item from the array, ensuring it's not the same as the last dropped item
+    /// </summary>
+    private void SetRandomItemToDrop()
+    {
+        if (itemsToDrop.Length > 0)
+        {
+            do
+            {
+                int randomIndex = Random.Range(0, itemsToDrop.Length);
+                itemToDrop = itemsToDrop[randomIndex];
+            } while (itemToDrop == lastDroppedItem);
+
+            lastDroppedItem = itemToDrop;
+        }
+        else
+        {
+            itemToDrop = null;
+        }
+    }
+
+    private void StartItemDropDelay()
+    {
+        isItemDropDelaying = true;
+    }
+
+    private void DropItem()
+    {
+        if (itemToDrop != null)
+        {
+            Vector3 dropPosition = transform.position + Vector3.up * dropDistance;
+            Instantiate(itemToDrop, dropPosition, Quaternion.identity);
+        }
+    }
 }
+
