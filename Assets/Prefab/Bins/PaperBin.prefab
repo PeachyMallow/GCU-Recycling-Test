@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12.12, y: 12.9, z: 11.64}
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Size: {x: 12.12, y: 20.374878, z: 11.64}
+  m_Center: {x: -0.000016896889, y: -2.637434, z: 3.0317776e-14}
 --- !u!114 &9069456510998143039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,11 +68,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4965970ab71a82b4e8c4c33257ba20f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  binFull: {fileID: 0}
+  disposeSource: {fileID: -2682210903649518863}
+  disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
   binCurrentlyHolding: 0
   isBinFull: 0
   maxCapacity: 0
-  disposeSource: {fileID: -2682210903649518863}
-  disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
 --- !u!82 &-2682210903649518863
 AudioSource:
   m_ObjectHideFlags: 0

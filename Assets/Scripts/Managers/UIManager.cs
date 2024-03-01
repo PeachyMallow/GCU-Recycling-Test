@@ -20,6 +20,15 @@ public class UIManager : MonoBehaviour
     public Transform inventorySlotsParent;
     public Inventory inventory;
     public InventorySlot[] slots;
+    [Header("Inventory UI SFX")]
+    [SerializeField]
+    private AudioSource towardsLeftSource;
+    [SerializeField]
+    private AudioSource towardsRightSource;
+    [SerializeField]
+    private AudioClip towardsLeftClip;
+    [SerializeField]
+    private AudioClip towardsRightClip;
 
     // currently selected object in inventory
     private int inventoryPos; // could change this to slots.Length?
@@ -71,11 +80,12 @@ public class UIManager : MonoBehaviour
             {
                 prevInventoryPos = inventoryPos;
                 inventoryPos--;
+                towardsLeftSource.PlayOneShot(towardsLeftClip);
             }
 
             if (inventoryPos == 0)
             {
-
+                
             }
 
             ScrollHotbar();
@@ -87,6 +97,7 @@ public class UIManager : MonoBehaviour
             {
                 prevInventoryPos = inventoryPos;
                 inventoryPos++;
+                towardsRightSource.PlayOneShot(towardsRightClip);
             }
 
             ScrollHotbar();

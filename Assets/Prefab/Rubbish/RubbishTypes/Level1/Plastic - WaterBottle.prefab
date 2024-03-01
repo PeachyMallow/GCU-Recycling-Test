@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2409243074974024065}
   - component: {fileID: 5163443459000763091}
   - component: {fileID: 6698122359253793114}
+  - component: {fileID: 6677289845241941462}
   m_Layer: 0
   m_Name: Plastic - WaterBottle
   m_TagString: Plastic
@@ -28,11 +29,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2162049996848576968}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.01915869, y: 0.027055975, z: 0.5504836, w: 0.8341875}
-  m_LocalPosition: {x: 39.206055, y: -53.458015, z: 0.877861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 133.28958, y: 133.28958, z: 133.28957}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2409122830115926303}
   - {fileID: 2653965887899229312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -122,6 +124,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: eabb72c9c638a0d4085a25d5bdcd5de6, type: 2}
+--- !u!114 &6677289845241941462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162049996848576968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f710593db2970004ab6fe5ae8c9b00d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatStrength: 1
+  freq: 2.8
+  rotationPerSecond: 80
+  rotateY: 0
+  rotateX: 0
+  rotateZ: 0
 --- !u!1 &3144017713359150158
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 3144017713359150158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.6792889, z: -0, w: 0.733871}
-  m_LocalPosition: {x: 0.00649, y: 0.01111, z: 0.00427}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0010696388, y: 0.0010696388, z: 0.0010696388}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -201,6 +221,90 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8.66, y: 9.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &7003774199884852117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2409122830115926303}
+  - component: {fileID: 6857765506332219159}
+  m_Layer: 0
+  m_Name: RubbishHighlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2409122830115926303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003774199884852117}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.70710677, y: -0, z: 0.00000000973465, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.0154, z: 0.00392}
+  m_LocalScale: {x: 0.012001739, y: 0.012001741, z: 0.012001739}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 346379644164928217}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!212 &6857765506332219159
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003774199884852117}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3ac48ba65a0121646a4bf0c6f7bb3539, type: 3}
+  m_Color: {r: 0.8490566, g: 0.18507475, b: 0.17221431, a: 0.627451}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

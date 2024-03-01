@@ -145,11 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4965970ab71a82b4e8c4c33257ba20f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  binFull: {fileID: 0}
+  disposeSource: {fileID: 8177772970241733815}
+  disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
   binCurrentlyHolding: 0
   isBinFull: 0
   maxCapacity: 0
-  disposeSource: {fileID: 8177772970241733815}
-  disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
 --- !u!82 &8177772970241733815
 AudioSource:
   m_ObjectHideFlags: 0
