@@ -24,10 +24,12 @@ public class NPCNavMesh : MonoBehaviour
     private float itemDropTimer = 0f; // Timer for item drop delay
 
     private NavMeshAgent agent;
+    private RubbishInteraction RI;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        RI = FindObjectOfType<RubbishInteraction>();
     }
 
     private void Start()
@@ -103,6 +105,8 @@ public class NPCNavMesh : MonoBehaviour
         {
             Vector3 dropPosition = transform.position + Vector3.up * dropDistance;
             Instantiate(itemToDrop, dropPosition, Quaternion.identity);
+
+            RI.EIMScore(false); // Reduce EIM when item is dropped
         }
     }
 }
