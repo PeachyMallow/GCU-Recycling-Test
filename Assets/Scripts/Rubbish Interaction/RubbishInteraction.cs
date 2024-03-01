@@ -47,6 +47,14 @@ public class RubbishInteraction : MonoBehaviour
     private bool increaseFadeOut = true;
     private bool decreaseFadeIn = true;
     private bool decreaseFadeOut = true;
+    [SerializeField]
+    private AudioSource increaseSource;
+    [SerializeField]
+    private AudioClip increaseClip;
+    [SerializeField]
+    private AudioSource decreaseSource;
+    [SerializeField]
+    private AudioClip decreaseClip;
 
     // used to update what the player is currently holding
     //[Header("Drag PlayerManager GameObject into here")]
@@ -118,6 +126,7 @@ public class RubbishInteraction : MonoBehaviour
                 if (increaseGlowGroup.alpha >= 1)
                 {
                     increaseFadeIn = false;
+                    increaseSource.PlayOneShot(increaseClip);
                     increaseFadeOut = true;
                 }
             }
@@ -143,6 +152,7 @@ public class RubbishInteraction : MonoBehaviour
                 if (decreaseGlowGroup.alpha >= 1)
                 {
                     decreaseFadeIn = false;
+                    decreaseSource.PlayOneShot(decreaseClip);
                     decreaseFadeOut = true;
                 }
             }
