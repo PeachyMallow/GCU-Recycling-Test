@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Bins : MonoBehaviour
 {
+    [Header("Drag bin full asset here")]
+    [SerializeField]
+    private GameObject binFull;
+
+    [Header("Rubbish Disposal SFX")]
+    [SerializeField]
+    private AudioSource disposeSource;
+    [SerializeField]
+    private AudioClip disposeClip;
+
     [Header("All of these variables are for Debugging purposes only")]
     [Header("Amount this bin is holding")]
     [SerializeField]
@@ -15,14 +25,16 @@ public class Bins : MonoBehaviour
     [SerializeField]
     private int maxCapacity;
 
-    [Header("Rubbish Disposal SFX")]
-    [SerializeField]
-    private AudioSource disposeSource;
-    [SerializeField]
-    private AudioClip disposeClip;
 
     private void Start()
     {
+        if (binFull != null)
+        {
+            binFull.SetActive(false);
+        }
+
+        else { Debug.Log("Full bin asset not assigned on " + gameObject.name); }
+
         binCurrentlyHolding = 0;
         isBinFull = false;
 
@@ -91,6 +103,7 @@ public class Bins : MonoBehaviour
         if (binCurrentlyHolding >= maxCapacity)
         {
             isBinFull = true;
+            binFull.SetActive(true);
             return true;
         }
 

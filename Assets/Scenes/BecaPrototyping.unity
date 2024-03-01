@@ -452,7 +452,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19e5e328a027a73499bedc580f2d2c64, type: 2}
+  - {fileID: 2100000, guid: ed98bc246c6c5ca4da2e85061b3da75c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3104,6 +3104,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3639,8 +3667,6 @@ MonoBehaviour:
   inventorySlotsParent: {fileID: 422177495}
   inventory: {fileID: 0}
   slots: []
-  inventoryPos: 0
-  prevInventoryPos: 0
   winUI: {fileID: 0}
   gameOverUI: {fileID: 0}
   pauseMenu: {fileID: 0}
@@ -4737,8 +4763,6 @@ MonoBehaviour:
   collision: {x: 0, y: 0, z: 0}
   pickupSource: {fileID: 979419749}
   pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
-  disposeSource: {fileID: 979419748}
-  disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
   lastHit: {fileID: 0}
   Autopickup: 0
   enviroMeter: {fileID: 612264771}
@@ -5303,8 +5327,6 @@ MonoBehaviour:
   collision: {x: 0, y: 0, z: 0}
   pickupSource: {fileID: 1082974691}
   pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
-  disposeSource: {fileID: 1082974691}
-  disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
   lastHit: {fileID: 0}
   Autopickup: 0
   enviroMeter: {fileID: 612264771}
@@ -8201,7 +8223,7 @@ PrefabInstance:
     - target: {fileID: 5463542178136511278, guid: 2fa65f8da218de1419d2bc619b5ee8d1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ab6a08c1af4a4ff49a71eddfc77e7f24, type: 2}
+      objectReference: {fileID: 2100000, guid: 229aa48afc538424d8f31674360fa3ff, type: 2}
     - target: {fileID: 8079018630363093535, guid: 2fa65f8da218de1419d2bc619b5ee8d1, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
