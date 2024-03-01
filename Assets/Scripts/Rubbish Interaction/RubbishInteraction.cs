@@ -36,6 +36,17 @@ public class RubbishInteraction : MonoBehaviour
 
     [SerializeField]
     public Slider enviroMeter;
+    [SerializeField]
+    [Header("Drag UI Glow Here")]
+    private CanvasGroup increaseGlowGroup;
+    [SerializeField]
+    private CanvasGroup decreaseGlowGroup;
+    [SerializeField]
+    private float fadeSpeed;
+    private bool increaseFadeIn = false;
+    private bool increaseFadeOut = true;
+    private bool decreaseFadeIn = true;
+    private bool decreaseFadeOut = true;
 
     // used to update what the player is currently holding
     //[Header("Drag PlayerManager GameObject into here")]
@@ -64,6 +75,8 @@ public class RubbishInteraction : MonoBehaviour
         Console.WriteLine("Auto Pickup Active");
         keyPressed = false;
         canDeposit = false;
+        increaseFadeIn = false;
+        decreaseFadeIn = false;
     }
 
     private void Update()
@@ -96,13 +109,64 @@ public class RubbishInteraction : MonoBehaviour
         //    collision = hit.point;
         //    Debug.Log(gameObject.name);
         //}
+
+        if (increaseFadeIn == true)
+        {
+            if (increaseGlowGroup.alpha < 1)
+            {
+                increaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
+                if (increaseGlowGroup.alpha >= 1)
+                {
+                    increaseFadeIn = false;
+                    increaseFadeOut = true;
+                }
+            }
+        }
+
+        if (increaseFadeOut == true)
+        {
+            if (increaseGlowGroup.alpha >= 0)
+            {
+                increaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
+                if (increaseGlowGroup.alpha == 0)
+                {
+                    increaseFadeOut = false;
+                }
+            }
+        }
+
+        if (decreaseFadeIn == true)
+        {
+            if (decreaseGlowGroup.alpha < 1)
+            {
+                decreaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
+                if (decreaseGlowGroup.alpha >= 1)
+                {
+                    decreaseFadeIn = false;
+                    decreaseFadeOut = true;
+                }
+            }
+        }
+
+        if (decreaseFadeOut == true)
+        {
+            if (decreaseGlowGroup.alpha >= 0)
+            {
+                decreaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
+                if (decreaseGlowGroup.alpha == 0)
+                {
+                    decreaseFadeOut = false;
+                }
+            }
+        }
+
     }
 
     private void FixedUpdate()
     {
         RaycastHit hit;
 
-        float raycastLength = 3f; // Adjust the ray length here 
+        float raycastLength = 7f; // Adjust the ray length here 
         Vector3 raycastOrigin = transform.position + Vector3.up * 10; // Adjust the ray height here
         Vector3 raycastDirection = transform.forward; // set ray direction
 
@@ -212,6 +276,9 @@ public class RubbishInteraction : MonoBehaviour
             {
                 recycledScore++;
                 enviroMeter.value = recycledScore;
+                increaseFadeIn = true;
+
+
             }
         }
 
@@ -221,6 +288,7 @@ public class RubbishInteraction : MonoBehaviour
             {
                 recycledScore--;
                 enviroMeter.value = recycledScore;
+                decreaseFadeIn = true;
             }
         }
 
