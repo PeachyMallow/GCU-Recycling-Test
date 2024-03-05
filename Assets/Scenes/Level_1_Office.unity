@@ -13694,16 +13694,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capacityGO: {fileID: 0}
-  inventorySlotsParent: {fileID: 0}
+  inventorySlotsParent: {fileID: 207010677}
   inventory: {fileID: 0}
   slots: []
-  towardsLeftSource: {fileID: 0}
-  towardsRightSource: {fileID: 0}
-  towardsLeftClip: {fileID: 0}
-  towardsRightClip: {fileID: 0}
-  winUI: {fileID: 0}
-  gameOverUI: {fileID: 0}
-  pauseMenu: {fileID: 0}
+  towardsLeftSource: {fileID: 1157755237}
+  towardsRightSource: {fileID: 1157755237}
+  towardsLeftClip: {fileID: 8300000, guid: 43507c838007fb5459966da5f718119a, type: 3}
+  towardsRightClip: {fileID: 8300000, guid: 2d9ffcead6376a74a9b266a3d3484834, type: 3}
+  winUI: {fileID: 1960378070}
+  gameOverUI: {fileID: 1149153201}
+  pauseMenu: {fileID: 10511252}
 --- !u!82 &1157755237
 AudioSource:
   m_ObjectHideFlags: 0
