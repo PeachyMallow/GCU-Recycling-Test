@@ -25743,19 +25743,19 @@ MonoBehaviour:
   currentRecycledScore: 0
   radNum: 0
   collision: {x: 0, y: 0, z: 0}
-  pickupSource: {fileID: 0}
-  pickupClip: {fileID: 0}
+  pickupSource: {fileID: 1383990288}
+  pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
   lastHit: {fileID: 0}
   Autopickup: 1
   enviroMeter: {fileID: 213816589}
-  increaseGlowGroup: {fileID: 0}
-  decreaseGlowGroup: {fileID: 0}
-  fadeSpeed: 0
-  increaseSource: {fileID: 0}
-  increaseClip: {fileID: 0}
-  decreaseSource: {fileID: 0}
-  decreaseClip: {fileID: 0}
-  uiManager: {fileID: 0}
+  increaseGlowGroup: {fileID: 1108296830}
+  decreaseGlowGroup: {fileID: 769387571}
+  fadeSpeed: 3
+  increaseSource: {fileID: 2040514038}
+  increaseClip: {fileID: 8300000, guid: fb6899e0988ef8346a73e3454f19e5ff, type: 3}
+  decreaseSource: {fileID: 2040514038}
+  decreaseClip: {fileID: 8300000, guid: 9259f7fd3a64a5845b4d08e520d0e0bc, type: 3}
+  uiManager: {fileID: 1157755236}
 --- !u!82 &2040514037
 AudioSource:
   m_ObjectHideFlags: 0
