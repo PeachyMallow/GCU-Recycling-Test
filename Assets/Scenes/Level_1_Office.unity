@@ -13091,16 +13091,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capacityGO: {fileID: 0}
-  inventorySlotsParent: {fileID: 207010677}
+  inventorySlotsParent: {fileID: 0}
   inventory: {fileID: 0}
   slots: []
-  towardsLeftSource: {fileID: 1157755237}
-  towardsRightSource: {fileID: 1157755238}
-  towardsLeftClip: {fileID: 8300000, guid: 43507c838007fb5459966da5f718119a, type: 3}
-  towardsRightClip: {fileID: 8300000, guid: 2d9ffcead6376a74a9b266a3d3484834, type: 3}
-  winUI: {fileID: 1960378070}
-  gameOverUI: {fileID: 1149153201}
-  pauseMenu: {fileID: 10511252}
+  towardsLeftSource: {fileID: 0}
+  towardsRightSource: {fileID: 0}
+  towardsLeftClip: {fileID: 0}
+  towardsRightClip: {fileID: 0}
+  winUI: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!82 &1157755237
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24542,11 +24542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5aa250c0b4494bb65695c3901bd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDir: {x: 0, y: 0, z: 0}
-  rotationSmoothing: 0.1
+  rotationSmoothing: 0
   maxSpeed: 590
-  moveDrag: 11
-  stopDrag: 45
+  moveDrag: 0
+  stopDrag: 0
 --- !u!54 &2040514031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24614,19 +24613,19 @@ MonoBehaviour:
   currentRecycledScore: 0
   radNum: 0
   collision: {x: 0, y: 0, z: 0}
-  pickupSource: {fileID: 1383990288}
-  pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
+  pickupSource: {fileID: 0}
+  pickupClip: {fileID: 0}
   lastHit: {fileID: 0}
   Autopickup: 1
   enviroMeter: {fileID: 213816589}
-  increaseGlowGroup: {fileID: 1108296830}
-  decreaseGlowGroup: {fileID: 769387571}
-  fadeSpeed: 3
-  increaseSource: {fileID: 2040514042}
-  increaseClip: {fileID: 8300000, guid: fb6899e0988ef8346a73e3454f19e5ff, type: 3}
-  decreaseSource: {fileID: 2040514041}
-  decreaseClip: {fileID: 8300000, guid: 9259f7fd3a64a5845b4d08e520d0e0bc, type: 3}
-  uiManager: {fileID: 1157755236}
+  increaseGlowGroup: {fileID: 0}
+  decreaseGlowGroup: {fileID: 0}
+  fadeSpeed: 0
+  increaseSource: {fileID: 0}
+  increaseClip: {fileID: 0}
+  decreaseSource: {fileID: 0}
+  decreaseClip: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!82 &2040514037
 AudioSource:
   m_ObjectHideFlags: 0
