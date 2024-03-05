@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
 
     // not a temp variable in a method as it needs a wider scope of access
 
-    [SerializeField]
     private Vector3 moveDir;
 
     private float targetAngle;
