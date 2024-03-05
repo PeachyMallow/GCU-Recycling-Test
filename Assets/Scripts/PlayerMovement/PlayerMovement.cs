@@ -46,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
-    private bool isMoving;
-    public bool horizontal;
-    public bool vertical;
+    //private bool isMoving;
+    //public bool horizontal;
+    //public bool vertical;
 
 
     private void Start()
