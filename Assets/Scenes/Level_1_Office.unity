@@ -24542,10 +24542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5aa250c0b4494bb65695c3901bd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSmoothing: 0
+  rotationSmoothing: 0.1
   maxSpeed: 590
-  moveDrag: 0
-  stopDrag: 0
+  moveDrag: 11
+  stopDrag: 45
 --- !u!54 &2040514031
 Rigidbody:
   m_ObjectHideFlags: 0
