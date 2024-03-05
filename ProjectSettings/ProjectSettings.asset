@@ -770,7 +770,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -790,11 +796,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: ea2cdb2e-e836-4f3e-8105-16daa5c21c6b
+  cloudProjectId: bf8c0291-33d4-4179-8a02-e2d131c0f46f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: GCU-Recycling-Test
-  organizationId: jamesmason9292
+  projectName: GCU Recycling Prototyping
+  organizationId: titanlight
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

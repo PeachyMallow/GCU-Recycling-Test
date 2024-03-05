@@ -6,6 +6,8 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.ProBuilder.MeshOperations;
+using Unity.Services.Analytics;
+//using UnityEngine.Analytics;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -73,6 +75,19 @@ public class RubbishInteraction : MonoBehaviour
 
     void Start()
     {
+        //AnalyticsService.Instance.RecordEvent(myEvent);
+
+
+
+
+        //Unity.Services.Analytics.CustomEvent();
+
+        //Analytics.CustomEvent("EventName", new Dictionary<string, object>()
+        //{
+        //    { "property 1", 99 },
+        //    { "property 2", "Green bin"},
+        //});
+
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
@@ -278,7 +293,7 @@ public class RubbishInteraction : MonoBehaviour
     /// if a is true, then increase the score
     /// if a is false, then decrease the score
     /// </summary>
-    public void EIMScore(bool a)
+    public void EIMScore(bool a) // this should be where analytics are called
     {
         if (a)
         {
