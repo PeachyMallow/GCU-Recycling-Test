@@ -7,15 +7,15 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
 
-    // covers both WASD and arrow key input
-    private float hInput;
-    private float vInput;
-
+    //// covers both WASD and arrow key input
+    //private float hInput;
+    //private float vInput;
     // true when player is moving
-    [SerializeField] //        <-----   remove this
-    private bool isMoving;
+    //private bool isMoving;
 
     // not a temp variable in a method as it needs a wider scope of access
+
+    [SerializeField]
     private Vector3 moveDir;
 
     private float targetAngle;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("How much smoothing the player rotation should have")]
     [SerializeField]
-    private float turnSmoothTime;
+    private float rotationSmoothing;
 
     // revisit this and why we need ref
     //[SerializeField]
@@ -36,10 +36,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
 
+    [Header("How much drag the player will have whilst moving")]
+    [SerializeField]
+    private float moveDrag;
+
+    [Header("How quickly the player will stop")]
+    [SerializeField]
+    private float stopDrag;
+
     private Animator animator;
 
-    [SerializeField]
-    private UIManager uiManager;
+    private bool isMoving;
+    public bool horizontal;
+    public bool vertical;
+
 
     private void Start()
     {
@@ -50,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         moveDir = Vector3.ClampMagnitude(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")), 1);
-
+      
         #region commentedOut
         //if (uiManager != null)
         //{
@@ -102,17 +112,22 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // movement via rb velocity
-        rb.velocity = moveDir * maxSpeed;
+        //rb.velocity = moveDir * maxSpeed;
 
         //movement via MovePosition()
         //rb.MovePosition(transform.position + (moveDir * maxSpeed * Time.deltaTime));
 
+        rb.AddForce(moveDir * maxSpeed * Time.deltaTime, ForceMode.VelocityChange);
+
         // beca note: need to revisit this to understand it better
-        if (moveDir.magnitude >= 0.1f)
+        if (moveDir.magnitude >= 0.1f) // player is moving
         {
             targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
-            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, rotationSmoothing);
             transform.rotation = Quaternion.Euler(0f, angle, 0.0f);
+            rb.drag = moveDrag;
         }
+
+        else { rb.drag = stopDrag; }  // snappier stop
     }
 }
