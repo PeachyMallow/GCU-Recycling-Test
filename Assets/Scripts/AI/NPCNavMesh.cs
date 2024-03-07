@@ -104,9 +104,18 @@ public class NPCNavMesh : MonoBehaviour
         if (itemToDrop != null)
         {
             Vector3 dropPosition = transform.position + Vector3.up * dropDistance;
-            Instantiate(itemToDrop, dropPosition, Quaternion.identity);
+            Quaternion itemRotation = Quaternion.identity; // Default rotation (no rotation)
+
+            // Check if the item requires a fixed rotation of -90 degrees
+            if (itemToDrop.GetComponent<RequireFixedRotation>() != null)
+            {
+                itemRotation = Quaternion.Euler(-90f, 0f, 0f); // Fixed rotation of -90 degrees on X-axis
+            }
+
+            Instantiate(itemToDrop, dropPosition, itemRotation);
 
             RI.EIMScore(false); // Reduce EIM when item is dropped
         }
     }
+
 }
