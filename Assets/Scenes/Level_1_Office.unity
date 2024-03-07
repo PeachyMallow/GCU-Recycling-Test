@@ -2588,6 +2588,167 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04, y: 0.03142953, z: 0.0106417695}
   m_Center: {x: 0.013, y: 0.000000059604645, z: 0}
+--- !u!1001 &133929999
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 53.175415
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 53.175415
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 53.175415
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3285.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 291.61
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2210.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6374343250422137068, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 501df614dbccee046a38bbcfff1d1ca5, type: 2}
+    - target: {fileID: 919132149155446097, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_Name
+      value: NPCTest1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3587788796799408565, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+    - {fileID: 3306512618393000541, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 133930001}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 133930003}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 133930002}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+--- !u!1 &133930000 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e6d8dd042522c649a2d541659d6b16b, type: 3}
+  m_PrefabInstance: {fileID: 133929999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &133930001
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133930000}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05281523
+  m_Height: 0.46905333
+  m_Direction: 1
+  m_Center: {x: -0.002913136, y: 0.15131117, z: 0.10633058}
+--- !u!114 &133930002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133930000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d252095e73eb794b9a1580065472e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPoints:
+  - point: {fileID: 1247268933}
+    delay: 0
+  - point: {fileID: 1839904027}
+    delay: 0
+  - point: {fileID: 91345180}
+    delay: 0
+  itemsToDrop:
+  - {fileID: 1980790916}
+  dropDistance: 1
+  itemDropDelay: 1
+--- !u!195 &133930003
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133930000}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 15
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &136722483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9882,11 +10043,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPoints:
   - point: {fileID: 1247268933}
-    delay: 0
+    delay: 3
   - point: {fileID: 1839904027}
-    delay: 0
+    delay: 3
   - point: {fileID: 91345180}
-    delay: 0
+    delay: 3
   itemsToDrop:
   - {fileID: 1980790916}
   dropDistance: 1
@@ -44340,3 +44501,4 @@ SceneRoots:
   - {fileID: 1236852870}
   - {fileID: 871954811}
   - {fileID: 385628817}
+  - {fileID: 133929999}
