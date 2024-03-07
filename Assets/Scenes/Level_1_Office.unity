@@ -4786,6 +4786,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &223220120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6820776178175701797, guid: aea34bca90c0faa4c805c52aa2b98c19, type: 3}
+  m_PrefabInstance: {fileID: 427818686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &226622050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9829,7 +9834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &508259931
 Transform:
   m_ObjectHideFlags: 0
@@ -9884,13 +9889,15 @@ MonoBehaviour:
   - point: {fileID: 1247268933}
     delay: 0
   - point: {fileID: 1839904027}
-    delay: 0
+    delay: 4
   - point: {fileID: 91345180}
     delay: 0
   itemsToDrop:
-  - {fileID: 1980790916}
+  - {fileID: 2058894063}
+  - {fileID: 1159958501}
+  - {fileID: 874471431}
   dropDistance: 1
-  itemDropDelay: 1
+  itemDropDelay: 5
 --- !u!136 &508259934
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12641,6 +12648,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &663667052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3656909001135585998, guid: f73fe0f3230bb6848a3723cd836bb027, type: 3}
+  m_PrefabInstance: {fileID: 267530329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &670425730
 GameObject:
   m_ObjectHideFlags: 0
@@ -15477,6 +15489,11 @@ Transform:
   - {fileID: 1433323464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &874471431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7334820284100017124, guid: 488daedc89b735841a5a5250d92df80c, type: 3}
+  m_PrefabInstance: {fileID: 1404909192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &878299266
 GameObject:
   m_ObjectHideFlags: 0
@@ -15885,6 +15902,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &884559703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9160615717591898977, guid: e84e8c7916fc4aa4f99488c53a7dddb8, type: 3}
+  m_PrefabInstance: {fileID: 1616845278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &886942211
 GameObject:
   m_ObjectHideFlags: 0
@@ -18171,7 +18193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1007120508
 Transform:
   m_ObjectHideFlags: 0
@@ -18222,10 +18244,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d252095e73eb794b9a1580065472e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoints: []
-  itemsToDrop: []
+  targetPoints:
+  - point: {fileID: 95881349}
+    delay: 2
+  - point: {fileID: 360852899}
+    delay: 2
+  - point: {fileID: 1458553279}
+    delay: 2
+  - point: {fileID: 1218753353}
+    delay: 2
+  - point: {fileID: 1413095532}
+    delay: 2
+  - point: {fileID: 388665498}
+    delay: 2
+  itemsToDrop:
+  - {fileID: 884559703}
+  - {fileID: 663667052}
+  - {fileID: 223220120}
   dropDistance: 1
-  itemDropDelay: 1
+  itemDropDelay: 20
 --- !u!136 &1007120511
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21555,6 +21592,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1159958501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6084135387239679434, guid: b31372502a73ede4cae41e9a4569ffd7, type: 3}
+  m_PrefabInstance: {fileID: 675711119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1161530541
 GameObject:
   m_ObjectHideFlags: 0
@@ -23588,6 +23630,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2040514041}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2040514043}
   m_SourcePrefab: {fileID: 100100000, guid: 1769dbe543f7cc545bed26e5e559d58f, type: 3}
 --- !u!1 &1240061095
 GameObject:
@@ -29142,7 +29187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1487157825
 Transform:
   m_ObjectHideFlags: 0
@@ -29194,7 +29239,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d252095e73eb794b9a1580065472e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoints: []
+  targetPoints:
+  - point: {fileID: 1218753353}
+    delay: 0
+  - point: {fileID: 1413095532}
+    delay: 0
   itemsToDrop: []
   dropDistance: 1
   itemDropDelay: 1
@@ -33973,7 +34022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1667689069
 Transform:
   m_ObjectHideFlags: 0
@@ -34025,7 +34074,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d252095e73eb794b9a1580065472e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoints: []
+  targetPoints:
+  - point: {fileID: 360852899}
+    delay: 0
+  - point: {fileID: 1413095532}
+    delay: 0
+  - point: {fileID: 95881349}
+    delay: 0
   itemsToDrop: []
   dropDistance: 1
   itemDropDelay: 1
@@ -39794,11 +39849,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7962738539121877342, guid: 488daedc89b735841a5a5250d92df80c, type: 3}
   m_PrefabInstance: {fileID: 1980790914}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1980790916 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7334820284100017124, guid: 488daedc89b735841a5a5250d92df80c, type: 3}
-  m_PrefabInstance: {fileID: 1980790914}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1991725693
 GameObject:
   m_ObjectHideFlags: 0
@@ -41931,6 +41981,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &2040514043
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040514027}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.23, y: 0.5, z: 0.23}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.47, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2058894063 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3156765506899165611, guid: 87ff35b898a953042a86f88db440b115, type: 3}
