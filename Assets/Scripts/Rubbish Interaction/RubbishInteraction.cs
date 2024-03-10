@@ -124,15 +124,6 @@ public class RubbishInteraction : MonoBehaviour
         float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
         enviroMeter.value = currentScore;
 
-        //var Ray = new Ray(this.transform.position, this.transform.forward);
-        //RaycastHit hit;
-        //if (Physics.Raycast(Ray, out hit, 10))
-        //{
-        //    lastHit = hit.transform.gameObject;
-        //    collision = hit.point;
-        //    Debug.Log(gameObject.name);
-        //}
-
         if (increaseFadeIn == true)
         {
             if (increaseGlowGroup.alpha < 1)
@@ -191,7 +182,7 @@ public class RubbishInteraction : MonoBehaviour
     {
         RaycastHit hit;
 
-        float raycastLength = 7f; // Adjust the ray length here 
+        float raycastLength = 14f; // Adjust the ray length here 
         Vector3 raycastOrigin = transform.position + Vector3.up * 10; // Adjust the ray height here
         Vector3 raycastDirection = transform.forward; // set ray direction
 
