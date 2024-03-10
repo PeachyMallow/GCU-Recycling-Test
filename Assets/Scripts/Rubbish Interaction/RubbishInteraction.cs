@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.ProBuilder.MeshOperations;
 using Unity.Services.Analytics;
-//using UnityEngine.Analytics;
+using UnityEngine.Analytics;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -73,6 +73,8 @@ public class RubbishInteraction : MonoBehaviour
     // required to deposit one item at a time
     private bool canDeposit;
 
+
+
     void Start()
     {
         //AnalyticsService.Instance.RecordEvent(myEvent);
@@ -100,6 +102,7 @@ public class RubbishInteraction : MonoBehaviour
         canDeposit = false;
         increaseFadeIn = false;
         decreaseFadeIn = false;
+
     }
 
     private void Update()
@@ -234,9 +237,15 @@ public class RubbishInteraction : MonoBehaviour
                     //recycledScore++;
                     //recycledHighScore++;*/
 
+                    // Deposit rubbish into the bin
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
-                    numRubbishHeld = Inventory.instance.InventorySize();
+                    // Record the custom event for depositing rubbish
+                    RecordDepositEvent(RubbishBin.name);
+
+                    //Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
+
+                    //numRubbishHeld = Inventory.instance.InventorySize();
                     
                     /*//Debug.Log("Score: " + recycledScore);
                     // unsure if needed?
@@ -261,6 +270,19 @@ public class RubbishInteraction : MonoBehaviour
                 RubbishPickup(RubbishBin.gameObject);
             }
         }
+    }
+    // Method to record a custom event for depositing rubbish
+    private void RecordDepositEvent(string binName)
+    {
+        // Define the parameters for the custom event
+        var eventParams = new Dictionary<string, object>
+        {
+            { "BinName", binName }
+            // Add more parameters if needed
+        };
+
+        // Record the custom event
+        Analytics.CustomEvent("RubbishDeposited", eventParams);
     }
 
     /// <summary>
