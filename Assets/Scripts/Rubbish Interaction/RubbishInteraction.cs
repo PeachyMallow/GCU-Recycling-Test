@@ -168,7 +168,7 @@ public class RubbishInteraction : MonoBehaviour
         RaycastHit hit;
 
         float raycastLength = 14f; // Adjust the ray length here 
-        Vector3 raycastOrigin = transform.position + Vector3.up * 10; // Adjust the ray height here
+        Vector3 raycastOrigin = transform.position + Vector3.up * 6; // Adjust the ray height here
         Vector3 raycastDirection = transform.forward; // set ray direction
 
         if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
@@ -301,7 +301,7 @@ public class RubbishInteraction : MonoBehaviour
     /// </summary>
     private void ScoreCheck()
     {
-        if (recycledScore >= 15)
+        if (recycledScore >= 16)
         {
             uiManager.WinOrLose(true);
         }
@@ -342,7 +342,7 @@ public class RubbishInteraction : MonoBehaviour
     /// <param name="score"></param>
     public void ResetScore()
     {
-        recycledScore = 5;
+        recycledScore = 8;
     }
 
     public void Continue()
