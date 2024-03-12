@@ -90,14 +90,14 @@ public class RubbishInteraction : MonoBehaviour
     private void Update()
     {
         // when the player is depositing rubbish
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             canDeposit = true;
             keyPressed = true;
         }
 
         //once the player has deposited a piece of rubbish
-        else if (Input.GetKeyUp(KeyCode.E))
+        else if (Input.GetKeyUp(KeyCode.Return))
         {
             keyPressed = false;
             canDeposit = false;   
@@ -301,7 +301,7 @@ public class RubbishInteraction : MonoBehaviour
     /// </summary>
     private void ScoreCheck()
     {
-        if (recycledScore >= 10)
+        if (recycledScore >= 15)
         {
             uiManager.WinOrLose(true);
         }
