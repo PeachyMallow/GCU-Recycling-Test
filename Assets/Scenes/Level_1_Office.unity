@@ -41519,6 +41519,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1215053953}
     m_Modifications:
+    - target: {fileID: 647306336861822189, guid: 88f9e83246ffe1740bd1c90500d6f046, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 647306336861822189, guid: 88f9e83246ffe1740bd1c90500d6f046, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 647306336861822189, guid: 88f9e83246ffe1740bd1c90500d6f046, type: 3}
+      propertyPath: m_ImplicitTensor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1145831594040377623, guid: 88f9e83246ffe1740bd1c90500d6f046, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
