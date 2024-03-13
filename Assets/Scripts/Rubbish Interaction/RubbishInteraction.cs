@@ -241,7 +241,17 @@ public class RubbishInteraction : MonoBehaviour
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
                     // Trigger analytics event for depositing rubbish into the incorrect bin
-                    FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name,"Paper");
+                    FindObjectOfType<UGS_Analytics>().CorrectPaperBinDepositEvent(RubbishBin.name, "Paper");
+                    FindObjectOfType<UGS_Analytics>().CorrectFoodBinDepositEvent(RubbishBin.name, "FoodWaste");
+                    FindObjectOfType<UGS_Analytics>().CorrectNonBinDepositEvent(RubbishBin.name, "NonRecyclable");
+                    FindObjectOfType<UGS_Analytics>().CorrectPlasticBinDepositEvent(RubbishBin.name, "Plastic");
+
+                    // Trigger analytics event for depositing rubbish into the incorrect bin
+                    FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name,"FoodWaste", "NonRecyclable","Plastic");
+                    FindObjectOfType<UGS_Analytics>().IncorrectFoodBinDepositEvent(RubbishBin.name, "Paper", "NonRecyclable", "Plastic");
+                    FindObjectOfType<UGS_Analytics>().IncorrectNonBinDepositEvent(RubbishBin.name, "FoodWaste", "Paper", "Plastic");
+                    FindObjectOfType<UGS_Analytics>().IncorrectPlasticBinDepositEvent(RubbishBin.name, "FoodWaste", "NonRecyclable", "Paper");
+                    
                     // Record the custom event for depositing rubbish
                     //RecordDepositEvent(RubbishBin.name);
 
