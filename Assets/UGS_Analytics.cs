@@ -4,9 +4,12 @@ using UnityEngine;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using Unity.Services.Core.Analytics;
+using UnityEngine.Analytics;
+using Unity.VisualScripting;
 
 public class UGS_Analytics : MonoBehaviour
 {
+    private RubbishInteraction RI;
     async void Start()
     {
         try
@@ -18,6 +21,16 @@ public class UGS_Analytics : MonoBehaviour
         {
             Debug.Log(e.ToString());
         }
+    }
+
+    public void IncorrectPaperBinDepositEvent(string binName, string rubbishType)
+    {
+        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
+        {
+            { "BinName", binName },
+            { "RubbishType", rubbishType }
+            // You can add more parameters as needed
+        });
     }
 
     public void GiveConsent()

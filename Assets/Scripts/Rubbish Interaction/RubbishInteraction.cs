@@ -6,9 +6,9 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.ProBuilder.MeshOperations;
-//using Unity.Services.Analytics;
+using Unity.Services.Analytics;
 using UnityEngine.Analytics;
-//using Unity.Services.Core;
+using Unity.Services.Core;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -240,13 +240,15 @@ public class RubbishInteraction : MonoBehaviour
                     // Deposit rubbish into the bin
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
+                    // Trigger analytics event for depositing rubbish into the incorrect bin
+                    FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name,"Paper");
                     // Record the custom event for depositing rubbish
-                    RecordDepositEvent(RubbishBin.name);
+                    //RecordDepositEvent(RubbishBin.name);
 
                     //Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
                     //numRubbishHeld = Inventory.instance.InventorySize();
-                    
+
                     /*//Debug.Log("Score: " + recycledScore);
                     // unsure if needed?
                     score.text = "Rubbish Recycled : " + recycledHighScore;
@@ -271,19 +273,19 @@ public class RubbishInteraction : MonoBehaviour
             }
         }
     }
-    // Method to record a custom event for depositing rubbish
-    private void RecordDepositEvent(string binName)
-    {
-        // Define the parameters for the custom event
-        var eventParams = new Dictionary<string, object>
-        {
-            { "BinName", binName }
-            // Add more parameters if needed
-        };
+    //// Method to record a custom event for depositing rubbish
+    //private void RecordDepositEvent(string binName)
+    //{
+    //    // Define the parameters for the custom event
+    //    var eventParams = new Dictionary<string, object>
+    //    {
+    //        { "BinName", binName }
+    //        // Add more parameters if needed
+    //    };
 
-        // Record the custom event
-        Analytics.CustomEvent("RubbishDeposited", eventParams);
-    }
+    //    // Record the custom event
+    //    Analytics.CustomEvent("RubbishDeposited", eventParams);
+    //}
 
     /// <summary>
     /// If player's inventory is not full, then player will pick up rubbish
