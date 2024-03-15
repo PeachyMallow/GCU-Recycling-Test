@@ -55,6 +55,10 @@ public class RubbishInteraction : MonoBehaviour
     private AudioSource decreaseSource;
     [SerializeField]
     private AudioClip decreaseClip;
+    [SerializeField]
+    private float alphaMeasureIncrease;
+    [SerializeField]
+    private float alphaMeasureDecrease;
 
     // used to update what the player is currently holding
     //[Header("Drag PlayerManager GameObject into here")]
@@ -119,6 +123,7 @@ public class RubbishInteraction : MonoBehaviour
                     increaseFadeIn = false;
                     increaseSource.PlayOneShot(increaseClip);
                     increaseFadeOut = true;
+                    alphaMeasureIncrease = increaseGlowGroup.alpha;
                 }
             }
         }
@@ -131,6 +136,7 @@ public class RubbishInteraction : MonoBehaviour
                 if (increaseGlowGroup.alpha == 0)
                 {
                     increaseFadeOut = false;
+
                 }
             }
         }
@@ -140,11 +146,12 @@ public class RubbishInteraction : MonoBehaviour
             if (decreaseGlowGroup.alpha < 1)
             {
                 decreaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
-                if (decreaseGlowGroup.alpha >= 1)
+                if (decreaseGlowGroup.alpha == 1)
                 {
                     decreaseFadeIn = false;
                     decreaseSource.PlayOneShot(decreaseClip);
                     decreaseFadeOut = true;
+                    alphaMeasureDecrease = decreaseGlowGroup.alpha;
                 }
             }
         }
@@ -168,7 +175,7 @@ public class RubbishInteraction : MonoBehaviour
         RaycastHit hit;
 
         float raycastLength = 14f; // Adjust the ray length here 
-        Vector3 raycastOrigin = transform.position + Vector3.up * 1; // Adjust the ray height here
+        Vector3 raycastOrigin = transform.position + Vector3.up * 5; // Adjust the ray height here
         Vector3 raycastDirection = transform.forward; // set ray direction
 
         if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
