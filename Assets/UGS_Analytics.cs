@@ -6,6 +6,7 @@ using Unity.Services.Core;
 using Unity.Services.Core.Analytics;
 using UnityEngine.Analytics;
 using Unity.VisualScripting;
+using System.Security.Cryptography;
 
 public class UGS_Analytics : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class UGS_Analytics : MonoBehaviour
     #region Incorrect Bin Deposits
     public void IncorrectPaperBinDepositEvent(string RubbishBin, string FoodWaste, string NonRecyclable, string Plastic)
     {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
+        Analytics.CustomEvent("IncorrectPaperBinDepositEvent", new Dictionary<string, object> ()
         {
             { "BinName", RubbishBin }, //used to be binName
             { "RubbishType1", FoodWaste },
