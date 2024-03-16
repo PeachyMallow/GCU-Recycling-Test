@@ -66,14 +66,14 @@ public class UGS_Analytics : MonoBehaviour
     #endregion
 
     #region Incorrect Bin Deposits
-    public void IncorrectPaperBinDepositEvent(string binName, string rubbishType1, string rubbishType2, string rubbishType3)
+    public void IncorrectPaperBinDepositEvent(string RubbishBin, string FoodWaste, string NonRecyclable, string Plastic)
     {
         Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
         {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType1 },
-            { "RubbishType2", rubbishType2 },
-            { "RubbishType3", rubbishType3 }
+            { "BinName", RubbishBin }, //used to be binName
+            { "RubbishType1", FoodWaste },
+            { "RubbishType2", NonRecyclable },
+            { "RubbishType3", Plastic }
             // You can add more parameters as needed
         });
     }
@@ -113,6 +113,7 @@ public class UGS_Analytics : MonoBehaviour
         });
     }
     #endregion
+
     public void GiveConsent()
     {
         // Call if consent has been given by the user
