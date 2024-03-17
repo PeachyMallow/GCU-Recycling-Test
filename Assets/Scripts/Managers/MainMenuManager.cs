@@ -22,6 +22,10 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    // is this needed?
+    public void HowToPlay()
+    {}
+
     public void ToggleAudio()
     {
         isAudioMuted = !isAudioMuted;
@@ -35,10 +39,5 @@ public class MainMenuManager : MonoBehaviour
         {
             backgroundMusicAudioSource.mute = isAudioMuted;
         }
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 }
