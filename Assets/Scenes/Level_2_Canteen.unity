@@ -998,8 +998,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1776638, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.016344193, y: 0.07381294, z: 0.01004642}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!1001 &44807689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13154,10 +13154,30 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6357888740323722295, guid: ed89d8c53014f9c4c8d87662452c0d7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c633793a29622e04aa6927b965d94317, type: 2}
+    - target: {fileID: -5517496295032001438, guid: ed89d8c53014f9c4c8d87662452c0d7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c633793a29622e04aa6927b965d94317, type: 2}
     - target: {fileID: 919132149155446097, guid: ed89d8c53014f9c4c8d87662452c0d7f, type: 3}
       propertyPath: m_Name
       value: Kitchen_assets_Fridge
       objectReference: {fileID: 0}
+    - target: {fileID: 7336784744495623703, guid: ed89d8c53014f9c4c8d87662452c0d7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c633793a29622e04aa6927b965d94317, type: 2}
+    - target: {fileID: 8032750206264916975, guid: ed89d8c53014f9c4c8d87662452c0d7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c633793a29622e04aa6927b965d94317, type: 2}
+    - target: {fileID: 8424073627695423409, guid: ed89d8c53014f9c4c8d87662452c0d7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c633793a29622e04aa6927b965d94317, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22044,10 +22064,54 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6716633912199432474, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: -3477821731311062464, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: -1592289475483123607, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 236247415165773013, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
     - target: {fileID: 919132149155446097, guid: 15e205bad86af16468ef71f72632529a, type: 3}
       propertyPath: m_Name
       value: Kitchen_Big_Sink
       objectReference: {fileID: 0}
+    - target: {fileID: 1603246306389932429, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 3765108852280629433, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 4407187375235809858, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 4431670454091400558, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 6841003676236821729, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 8424073627695423409, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
+    - target: {fileID: 9050817489936365762, guid: 15e205bad86af16468ef71f72632529a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc35793b2315ea540a7b3d93b4d2b72b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28409,8 +28473,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1776638, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.016344193, y: 0.07381294, z: 0.01004642}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!1001 &1019334221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38300,8 +38364,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1776638, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.016344193, y: 0.07381294, z: 0.01004642}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!4 &1316465333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed091a86790701f43bd4a49c4271243e, type: 3}
@@ -43302,8 +43366,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1776638, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.016344193, y: 0.07381294, z: 0.01004642}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!4 &1445277624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3528ce1ba7a19784d92ec104c228b3ad, type: 3}
@@ -43521,8 +43585,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1776638, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.016344193, y: 0.07381294, z: 0.01004642}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!4 &1458433130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed091a86790701f43bd4a49c4271243e, type: 3}
@@ -57046,8 +57110,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1776638, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.016344193, y: 0.07381294, z: 0.01004642}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!43 &1956902386
 Mesh:
   m_ObjectHideFlags: 0
@@ -58311,8 +58375,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.14941606, y: 0.17397018, z: 0.073616825}
-  m_Center: {x: 0.030468065, y: 0.07381294, z: 0.010046422}
+  m_Size: {x: 0.14019157, y: 0.17397018, z: 0.073616825}
+  m_Center: {x: 0.028120203, y: 0.07381294, z: 0.010046422}
 --- !u!1 &2015470301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b9aaf720c7efad740a2456669d99692c, type: 3}
