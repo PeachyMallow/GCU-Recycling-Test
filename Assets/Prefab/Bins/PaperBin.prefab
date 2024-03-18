@@ -75,7 +75,6 @@ MonoBehaviour:
   binCurrentlyHolding: 0
   isBinFull: 0
   maxCapacity: 0
-  binAnimator: {fileID: 7344244507205060204}
 --- !u!82 &-2682210903649518863
 AudioSource:
   m_ObjectHideFlags: 0
@@ -253,6 +252,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5220317736982069205, guid: 601b178cf5e6cf848a2afd8e8ba4bd0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81efd0208f5456a47ad56d59984136f6, type: 2}
     - target: {fileID: 919132149155446097, guid: 601b178cf5e6cf848a2afd8e8ba4bd0e, type: 3}
       propertyPath: m_Name
       value: BlueBin

@@ -9463,12 +9463,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4305328822657105427, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
       insertIndex: -1
       addedObject: {fileID: 783604494}
+    - targetCorrespondingSourceObject: {fileID: 1770474923926596130, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 459667572}
   m_SourcePrefab: {fileID: 100100000, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
 --- !u!4 &459667570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7553704399419731774, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
   m_PrefabInstance: {fileID: 459667569}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &459667571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1770474923926596130, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+  m_PrefabInstance: {fileID: 459667569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &459667572
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459667571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf80579ca3b5e364c93b912d78f3e557, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &460547301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 633ed380d8dc367438cda6c0e3f77fcb, type: 3}
@@ -15427,7 +15456,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783604490}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 12b614b20fce98544b232bc36344dcee, type: 3}
   m_Controller: {fileID: 9100000, guid: a0d14fb919610ee4e814943020a86d8a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
