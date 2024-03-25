@@ -4133,6 +4133,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dd1e5366fe0b434ba34fb9995a1db39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dd1e5366fe0b434ba34fb9995a1db39, type: 3}
       propertyPath: m_LocalPosition.z
       value: -7.78
       objectReference: {fileID: 0}
@@ -4775,6 +4779,8 @@ MonoBehaviour:
   increaseClip: {fileID: 0}
   decreaseSource: {fileID: 0}
   decreaseClip: {fileID: 0}
+  alphaMeasureIncrease: 0
+  alphaMeasureDecrease: 0
   uiManager: {fileID: 778846989}
 --- !u!114 &979419752
 MonoBehaviour:
@@ -5346,6 +5352,8 @@ MonoBehaviour:
   increaseClip: {fileID: 0}
   decreaseSource: {fileID: 0}
   decreaseClip: {fileID: 0}
+  alphaMeasureIncrease: 0
+  alphaMeasureDecrease: 0
   uiManager: {fileID: 778846989}
 --- !u!114 &1082974693
 MonoBehaviour:
