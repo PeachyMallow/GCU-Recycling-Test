@@ -25,6 +25,11 @@ public class Bins : MonoBehaviour
     [SerializeField]
     private int maxCapacity;
 
+   // [SerializeField]
+   // private Animator binAnimator;
+   // private string binShake = "BinShake";
+   // private float shakeDuration; 
+
 
     private void Start()
     {
@@ -56,7 +61,10 @@ public class Bins : MonoBehaviour
             binCurrentlyHolding++ /*+= rubbishHeld*/;
 
             //play dispose audio
+
+            
             disposeSource.PlayOneShot(disposeClip);
+           //binAnimator.Play(binShake, 0, 0.0f);
 
             //Inventory.instance.InventorySize();
             //return rubbishHeld;

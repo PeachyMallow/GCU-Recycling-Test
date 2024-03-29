@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1009103535590208292}
   - component: {fileID: 9069456510998143039}
   - component: {fileID: -2682210903649518863}
+  - component: {fileID: 7344244507205060204}
   m_Layer: 0
   m_Name: PaperBin
   m_TagString: Bin
@@ -170,6 +171,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7344244507205060204
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305328822657105427}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0d14fb919610ee4e814943020a86d8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7408609942200886795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,6 +252,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5220317736982069205, guid: 601b178cf5e6cf848a2afd8e8ba4bd0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81efd0208f5456a47ad56d59984136f6, type: 2}
     - target: {fileID: 919132149155446097, guid: 601b178cf5e6cf848a2afd8e8ba4bd0e, type: 3}
       propertyPath: m_Name
       value: BlueBin

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// REMOVE FUNCTION MAYBE FOR ANALYTICS
 
 public class Inventory : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class Inventory : MonoBehaviour
         }        
     }
 
+    // MAYBE FOR ANALYTICS HERE
+    // where the rubbish & bin interaction happens 
     public void Remove(int arrayPos, GameObject bin)
     {
         // removing 'bin' from the end of the bin currently being interacted with's name
