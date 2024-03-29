@@ -248,7 +248,7 @@ public class RubbishInteraction : MonoBehaviour
 
                     // Trigger analytics event for depositing rubbish into the incorrect bin
                     FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name, "FoodWaste", "NonRecyclable", "Plastic");
-
+                    FindObjectOfType<UGS_Analytics>().IncorrectFoodBinDepositEvent(RubbishBin.name, "Paper", "NonRecyclable", "Plastic");
                     // Record the custom event for depositing rubbish
                     //RecordDepositEvent(RubbishBin.name);
 
