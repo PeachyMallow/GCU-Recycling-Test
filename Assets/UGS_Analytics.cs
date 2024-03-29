@@ -27,7 +27,7 @@ public class UGS_Analytics : MonoBehaviour
     #region Correct Bin Deposits
     public void CorrectPaperBinDepositEvent(string RubbishBin, string Paper)
     {
-        Analytics.CustomEvent("CorrectPaperBinDepositEvent", new Dictionary<string, object>
+        Analytics.CustomEvent("CorrectPaperBinDepositEvent", new Dictionary<string, object>()
         {
             { "RubbishBin", RubbishBin },
             { "Paper", Paper },
