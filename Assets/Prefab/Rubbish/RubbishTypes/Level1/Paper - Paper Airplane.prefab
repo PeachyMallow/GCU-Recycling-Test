@@ -179,6 +179,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7f6c9b37b6812141b3f6b9c870663be, type: 3}
       insertIndex: -1
       addedObject: {fileID: -858245699167816581}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7f6c9b37b6812141b3f6b9c870663be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4016101858233640889}
   m_SourcePrefab: {fileID: 100100000, guid: c7f6c9b37b6812141b3f6b9c870663be, type: 3}
 --- !u!1 &7334820284100017124 stripped
 GameObject:
@@ -249,6 +252,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4f1b0269155794eb38cf22476abd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4016101858233640889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334820284100017124}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f457a9af50a06045854f7714e7a43fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CitemName: Paper plane
+  IitemName: Plastic
+  IitemName1: Food Waste
+  IitemName2: Non Recyclable
 --- !u!4 &7962738539121877342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c7f6c9b37b6812141b3f6b9c870663be, type: 3}

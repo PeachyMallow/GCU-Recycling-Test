@@ -25,44 +25,17 @@ public class UGS_Analytics : MonoBehaviour
     }
 
     #region Correct Bin Deposits
-    public void CorrectPaperBinDepositEvent(string binName, string rubbishType)
+    public void CorrectPaperBinDepositEvent(string RubbishBin, string Paper)
     {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
+        Analytics.CustomEvent("CorrectPaperBinDepositEvent", new Dictionary<string, object>
         {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType },
+            { "RubbishBin", RubbishBin },
+            { "Paper", Paper },
             // You can add more parameters as needed
         });
-    }
-
-    public void CorrectFoodBinDepositEvent(string binName, string rubbishType)
-    {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
-        {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType },
-            // You can add more parameters as needed
-        });
-    }
-
-    public void CorrectPlasticBinDepositEvent(string binName, string rubbishType)
-    {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
-        {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType },
-            // You can add more parameters as needed
-        });
-    }
-
-    public void CorrectNonBinDepositEvent(string binName, string rubbishType)
-    {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
-        {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType },
-            // You can add more parameters as needed
-        });
+        AnalyticsService.Instance.RecordEvent("CorrectPaperBinDepositEvent");
+        AnalyticsService.Instance.RecordEvent(RubbishBin);
+        AnalyticsService.Instance.RecordEvent(Paper);
     }
     #endregion
 
@@ -71,48 +44,19 @@ public class UGS_Analytics : MonoBehaviour
     {
         Analytics.CustomEvent("IncorrectPaperBinDepositEvent", new Dictionary<string, object> ()
         {
-            { "BinName", RubbishBin }, //used to be binName
-            { "RubbishType1", FoodWaste },
-            { "RubbishType2", NonRecyclable },
-            { "RubbishType3", Plastic }
+            { "RubbishBin", RubbishBin }, //used to be binName
+            { "FoodWaste", FoodWaste },
+            { "NonRecyclable", NonRecyclable },
+            { "Plastic", Plastic }
             // You can add more parameters as needed
         });
+        AnalyticsService.Instance.RecordEvent("IncorrectPaperBinDepositEvent");
+        AnalyticsService.Instance.RecordEvent(RubbishBin);
+        AnalyticsService.Instance.RecordEvent(FoodWaste);
+        AnalyticsService.Instance.RecordEvent(NonRecyclable);
+        AnalyticsService.Instance.RecordEvent(Plastic);
     }
-
-    public void IncorrectFoodBinDepositEvent(string binName, string rubbishType1, string rubbishType2, string rubbishType3)
-    {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
-        {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType1 },
-            { "RubbishType2", rubbishType2 },
-            { "RubbishType3", rubbishType3 }
-            // You can add more parameters as needed
-        });
-    }
-
-    public void IncorrectPlasticBinDepositEvent(string binName, string rubbishType1, string rubbishType2, string rubbishType3)
-    {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
-        {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType1 },
-            { "RubbishType2", rubbishType2 },
-            { "RubbishType3", rubbishType3 }
-            // You can add more parameters as needed
-        });
-    }
-    public void IncorrectNonBinDepositEvent(string binName, string rubbishType1, string rubbishType2, string rubbishType3)
-    {
-        Analytics.CustomEvent("IncorrectBinDeposit", new Dictionary<string, object>
-        {
-            { "BinName", binName },
-            { "RubbishType1", rubbishType1 },
-            { "RubbishType2", rubbishType2 },
-            { "RubbishType3", rubbishType3 }
-            // You can add more parameters as needed
-        });
-    }
+ 
     #endregion
 
     public void GiveConsent()

@@ -77,15 +77,12 @@ public class RubbishInteraction : MonoBehaviour
 
     // required to deposit one item at a time
     private bool canDeposit;
-
+    private UGS_Analytics stats;
 
 
     void Start()
     {
         //AnalyticsService.Instance.RecordEvent(myEvent);
-
-
-
 
         //Unity.Services.Analytics.CustomEvent();
 
@@ -93,8 +90,7 @@ public class RubbishInteraction : MonoBehaviour
         //{
         //    { "property 1", 99 },
         //    { "property 2", "Green bin"},
-        //});
-
+        //})
         Autopickup = true;
         numRubbish = 0;
         numRubbishHeld = 0;
@@ -247,18 +243,11 @@ public class RubbishInteraction : MonoBehaviour
                     // Deposit rubbish into the bin
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
-                    // Trigger analytics event for depositing rubbish into the incorrect bin
+                    // Trigger analytics event for depositing rubbish into the correct bin
                     FindObjectOfType<UGS_Analytics>().CorrectPaperBinDepositEvent(RubbishBin.name, "Paper");
-                    FindObjectOfType<UGS_Analytics>().CorrectFoodBinDepositEvent(RubbishBin.name, "FoodWaste");
-                    FindObjectOfType<UGS_Analytics>().CorrectNonBinDepositEvent(RubbishBin.name, "NonRecyclable");
-                    FindObjectOfType<UGS_Analytics>().CorrectPlasticBinDepositEvent(RubbishBin.name, "Plastic");
 
                     // Trigger analytics event for depositing rubbish into the incorrect bin
-                    FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name,"FoodWaste", "NonRecyclable","Plastic");
-                    FindObjectOfType<UGS_Analytics>().IncorrectFoodBinDepositEvent(RubbishBin.name, "Paper", "NonRecyclable", "Plastic");
-                    FindObjectOfType<UGS_Analytics>().IncorrectNonBinDepositEvent(RubbishBin.name, "FoodWaste", "Paper", "Plastic");
-                    FindObjectOfType<UGS_Analytics>().IncorrectPlasticBinDepositEvent(RubbishBin.name, "FoodWaste", "NonRecyclable", "Paper");
-
+                    FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name, "FoodWaste", "NonRecyclable", "Plastic");
 
                     // Record the custom event for depositing rubbish
                     //RecordDepositEvent(RubbishBin.name);
