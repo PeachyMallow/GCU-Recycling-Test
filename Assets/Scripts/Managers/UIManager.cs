@@ -10,17 +10,25 @@ public class UIManager : MonoBehaviour
     // will need to remove all of this probably
     //------------------------------------------------
     // player's inventory capacity UI
-    [Header("Drag the Capacity UI GameObject here")]
-    [SerializeField]
-    private TextMeshProUGUI capacityGO;
+    //[Header("Drag the Capacity UI GameObject here")]
+    //[SerializeField]
+    //private TextMeshProUGUI capacityGO;
     //------------------------------------------------
     #endregion
 
+    #region inventoryVariables
+    [Header("Inventory\n")]
+
     // inventoryUI
+    [Header("Drag Hotbar's Child GO, 'Items' Here")]
     public Transform inventorySlotsParent;
+    [Header("Drag PlayerManager Here")]
     public Inventory inventory;
+    [Header("!!Doesn't need anything assigned!!\nIn play, will show player's inventory")]
     public InventorySlot[] slots;
-    [Header("Inventory UI SFX")]
+
+    // inventory SFX
+    [Header("Inventory SFX")]
     [SerializeField]
     private AudioSource towardsLeftSource;
     [SerializeField]
@@ -33,10 +41,29 @@ public class UIManager : MonoBehaviour
     // currently selected object in inventory
     private int inventoryPos; // could change this to slots.Length?
     private int prevInventoryPos;
+    #endregion
 
+    #region timerVariables
+    [Header("\n----------------------------\n\n\nTimer\n")]
+    
+    // timer UI
+    [Header("Drag the TimerTxt UI GameObject here")]
+    [SerializeField]
+    private TextMeshProUGUI timerGO;
+
+    // holds the GameManager script to access its methods
+    [Header("Drag the GameManager GameObject here")]
+    [SerializeField]
+    private GameManager gM;
+
+    // separating the time into seconds and minutes to use for UI purposes
+    private float mins;
+    private float secs;
+    #endregion
 
     #region menuScreenVariables
 
+    [Header("\n----------------------------\n\n\nMenu Screens\n")]
     // menu screens
     [Header("Drag Win UI here")]
     [SerializeField]
@@ -66,6 +93,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        // pause screen
         if (pauseMenu != null)
         {
             if (Input.GetKeyDown(KeyCode.P))
@@ -74,6 +102,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        // scrolling hotbar
         if (Input.GetKeyDown(KeyCode.LeftBracket)) // left
         {
             if (inventoryPos > 0) 
@@ -83,7 +112,7 @@ public class UIManager : MonoBehaviour
                 towardsLeftSource.PlayOneShot(towardsLeftClip);
             }
 
-            if (inventoryPos == 0)
+            if (inventoryPos == 0) // what is this doing?
             {
                 
             }
@@ -102,8 +131,17 @@ public class UIManager : MonoBehaviour
 
             ScrollHotbar();
         }
+
+        // timer
+        if (timerGO != null)
+        {
+            DisplayTime();
+        }
+
+        else { Debug.Log("Please attach the timer UI to the UI Manager in the Inspector (in the hierarchy UI > Timer > TimerTxt)"); }
     }
 
+    #region inventoryMethods
     private void UpdateInventoryUI()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -113,17 +151,12 @@ public class UIManager : MonoBehaviour
                 slots[i].AddItem(inventory.items[i]);
             }
 
-            else // not sure what this is doing
+            else // not sure what this is doing - might be removing the item visually?
             {
                 slots[i].RemoveItem();
             }
         }
     }
-
-    //working out removal
-    // if item is currently highlighted (inventoryPos)
-    // and player interacts with bin
-    // remove that item from the hotbar
 
     private void ScrollHotbar()
     {
@@ -140,20 +173,21 @@ public class UIManager : MonoBehaviour
     {
         return inventoryPos;
     }
-
-    #region playerCapacityDELETE
-
-    // updates the player capacity UI when the player has picked up/disposed of rubbish
-    // also displays what the player's capacity limit is on screen
-    public void UpdateCapacityUI(int a, int b)
-    {
-        if (capacityGO != null)
-        {
-            capacityGO.text = a + "\n_\n\n" + b;
-        }
-    }
-
     #endregion
+
+    //#region playerCapacityDELETE
+
+    //// updates the player capacity UI when the player has picked up/disposed of rubbish
+    //// also displays what the player's capacity limit is on screen
+    //public void UpdateCapacityUI(int a, int b)
+    //{
+    //    if (capacityGO != null)
+    //    {
+    //        capacityGO.text = a + "\n_\n\n" + b;
+    //    }
+    //}
+
+    //#endregion
 
     private void TogglePause()
     {
@@ -193,8 +227,10 @@ public class UIManager : MonoBehaviour
         else { Debug.Log("Please assign PauseMenu UI on the ButtonManager"); }
     }
 
-
-
+    // -------------------------------------------------
+    // might not need this anymore with game loop change
+    // will use this for timer = GameOver in the meantime
+    // -------------------------------------------------
     /// <summary>
     /// Shows either the 'Win' or 'Lose' screen dependant on the bool parameter
     /// result = true: win, result = false: lose
@@ -223,5 +259,13 @@ public class UIManager : MonoBehaviour
 
             else { Debug.Log("GameOver screen has not been assigned in UIManager Inspector"); }
         }
+    }
+
+    // converts float into minutes and seconds to display correctly
+    private void DisplayTime()
+    {
+        mins = Mathf.FloorToInt(gM.CurrentTime() / 60);
+        secs = Mathf.FloorToInt(gM.CurrentTime() % 60);
+        timerGO.text = string.Format("{0:00}:{1:00}", mins, secs);
     }
 }

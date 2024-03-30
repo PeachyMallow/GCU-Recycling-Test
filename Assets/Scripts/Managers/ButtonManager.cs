@@ -11,12 +11,18 @@ public class ButtonManager : MonoBehaviour
     {
         uiManager = GetComponent<UIManager>();
 
-        if (uiManager == null) { Debug.Log("UIManager is no longer on same GO as ButtonManager"); }
+        if (uiManager == null) { Debug.Log("*Ignore if you have quit to the menu* UIManager is no longer on same GO as ButtonManager"); }
     }
 
-    public void StartGame()
+    public void StartOfficeLevel()
     {
         SceneManager.LoadScene("Level_1_Office");
+        Time.timeScale = 1.0f;
+    }
+
+    public void StartCanteenLevel()
+    {
+        SceneManager.LoadScene("Level_2_Canteen");
         Time.timeScale = 1.0f;
     }
 
