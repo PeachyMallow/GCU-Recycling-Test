@@ -281,24 +281,18 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (a)
         {
-            if (recycledScore > 0)
-            {
-                recycledScore++;
-               // enviroMeter.value = recycledScore;
-                //increaseFadeIn = true;
 
-
-            }
+            recycledScore++;
+            // enviroMeter.value = recycledScore;
+            //increaseFadeIn = true;
         }
 
         else
         {
-            if (recycledScore > 0)
-            {
-                //recycledScore--;
-               // enviroMeter.value = recycledScore;
-                //decreaseFadeIn = true;
-            }
+            recycledScore--;
+            // enviroMeter.value = recycledScore;
+            //decreaseFadeIn = true;
+            
         }
     }
 
