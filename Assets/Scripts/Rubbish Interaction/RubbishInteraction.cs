@@ -11,9 +11,12 @@ public class RubbishInteraction : MonoBehaviour
 {
     public Text RubbishScore;
     public Text score;
-    private int recycledScore;
+    [SerializeField]
+    public int recycledScore;
+    [SerializeField]
     public int currentRecycledScore;
     private int recycledHighScore;
+    public int displayScore;
     private int numRubbish;
     private int numRubbishHeld;
     public float radNum = 0f;
@@ -35,8 +38,7 @@ public class RubbishInteraction : MonoBehaviour
     private bool Autopickup;
 
     [SerializeField]
-    public Slider enviroMeter;
-    [SerializeField]
+   // public Slider enviroMeter;
     [Header("Drag UI Glow Here")]
     private CanvasGroup increaseGlowGroup;
     [SerializeField]
@@ -83,7 +85,7 @@ public class RubbishInteraction : MonoBehaviour
         //recycledScore = 5;
         ResetScore();
         recycledHighScore = recycledScore;
-        enviroMeter.value = recycledScore;
+        //enviroMeter.value = recycledScore;
         Console.WriteLine("Auto Pickup Active");
         keyPressed = false;
         canDeposit = false;
@@ -110,8 +112,7 @@ public class RubbishInteraction : MonoBehaviour
         PickupSwitch();
         //EndingmenuUI();
 
-        float currentScore = Mathf.SmoothDamp(enviroMeter.value, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
-        enviroMeter.value = currentScore;
+        float currentScore = Mathf.SmoothDamp(0, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
 
         if (increaseFadeIn == true)
         {
@@ -283,8 +284,8 @@ public class RubbishInteraction : MonoBehaviour
             if (recycledScore > 0)
             {
                 recycledScore++;
-                enviroMeter.value = recycledScore;
-                increaseFadeIn = true;
+               // enviroMeter.value = recycledScore;
+                //increaseFadeIn = true;
 
 
             }
@@ -294,30 +295,17 @@ public class RubbishInteraction : MonoBehaviour
         {
             if (recycledScore > 0)
             {
-                recycledScore--;
-                enviroMeter.value = recycledScore;
-                decreaseFadeIn = true;
+                //recycledScore--;
+               // enviroMeter.value = recycledScore;
+                //decreaseFadeIn = true;
             }
         }
-
-        ScoreCheck();
     }
 
     /// <summary>
     /// Checks if player has reached win or lose threshold everytime they gain/lose a point
     /// </summary>
-    private void ScoreCheck()
-    {
-        if (recycledScore >= 16)
-        {
-            uiManager.WinOrLose(true);
-        }
 
-        else if (recycledScore <= 0)
-        {
-            uiManager.WinOrLose(false);
-        }
-    }
 
     //public void EndingmenuUI()
     //{
@@ -349,7 +337,7 @@ public class RubbishInteraction : MonoBehaviour
     /// <param name="score"></param>
     public void ResetScore()
     {
-        recycledScore = 8;
+        recycledScore = 1;
     }
 
     public void Continue()
