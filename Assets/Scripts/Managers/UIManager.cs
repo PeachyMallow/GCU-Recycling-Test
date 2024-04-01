@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -81,6 +82,15 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region RubbishInteraction/Score System (Euan's Feel free to delete if replaced)
+    public RubbishInteraction rubbishInteraction;
+    [SerializeField]
+    public TextMeshProUGUI displayScoreGO;
+    public int displayScoreVar;
+    public string displayScoreText;
+    public TextMeshProUGUI displayFinalScore;
+    #endregion
+
     private void Start()
     {
         inventory = Inventory.instance;
@@ -139,6 +149,12 @@ public class UIManager : MonoBehaviour
         }
 
         else { Debug.Log("Please attach the timer UI to the UI Manager in the Inspector (in the hierarchy UI > Timer > TimerTxt)"); }
+
+        //Score??
+        displayScoreVar = (rubbishInteraction.recycledScore * 25) - 25;
+        displayScoreText = displayScoreVar.ToString();
+        displayScoreGO.text = "Score: " + displayScoreText;
+        displayFinalScore.text = "Final Score: " + displayScoreText;
     }
 
     #region inventoryMethods

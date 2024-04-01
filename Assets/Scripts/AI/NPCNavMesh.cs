@@ -113,8 +113,6 @@ public class NPCNavMesh : MonoBehaviour
             }
 
             Instantiate(itemToDrop, dropPosition, itemRotation);
-
-            RI.EIMScore(false); // Reduce EIM when item is dropped
         }
     }
 
