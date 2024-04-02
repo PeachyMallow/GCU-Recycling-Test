@@ -59,7 +59,7 @@ public class UGS_Analytics : MonoBehaviour
 
     public void IncorrectFoodBinDepositEvent(string RubbishBin, string Paper, string NonRecyclable, string Plastic)
     {
-        Analytics.CustomEvent("IncorrectPaperBinDepositEvent", new Dictionary<string, object>()
+        Analytics.CustomEvent("IncorrectFoodBinDepositEvent", new Dictionary<string, object>()
         {
             { "RubbishBin", RubbishBin }, //used to be binName
             { "Paper", Paper },
@@ -67,7 +67,7 @@ public class UGS_Analytics : MonoBehaviour
             { "Plastic", Plastic }
             // You can add more parameters as needed
         });
-        AnalyticsService.Instance.RecordEvent("IncorrectPaperBinDepositEvent");
+        AnalyticsService.Instance.RecordEvent("IncorrectFoodBinDepositEvent");
         AnalyticsService.Instance.RecordEvent(RubbishBin);
         AnalyticsService.Instance.RecordEvent(Paper);
         AnalyticsService.Instance.RecordEvent(NonRecyclable);
