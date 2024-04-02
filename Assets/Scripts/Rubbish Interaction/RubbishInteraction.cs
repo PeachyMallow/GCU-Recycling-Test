@@ -243,12 +243,21 @@ public class RubbishInteraction : MonoBehaviour
                     // Deposit rubbish into the bin
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
-                    // Trigger analytics event for depositing rubbish into the correct bin
-                    FindObjectOfType<UGS_Analytics>().CorrectPaperBinDepositEvent(RubbishBin.name, "Paper");
+                    #region // Trigger analytics event for depositing rubbish into the correct bin
 
-                    // Trigger analytics event for depositing rubbish into the incorrect bin
-                    FindObjectOfType<UGS_Analytics>().IncorrectPaperBinDepositEvent(RubbishBin.name, "FoodWaste", "NonRecyclable", "Plastic");
-                    FindObjectOfType<UGS_Analytics>().IncorrectFoodBinDepositEvent(RubbishBin.name, "Paper", "NonRecyclable", "Plastic");
+                    FindObjectOfType<UGS_Analytics>().Correct_Paper_Bin_Deposit(RubbishBin.name, "Paper");
+                    FindObjectOfType<UGS_Analytics>().Correct_Food_Bin_Deposit(RubbishBin.name, "FoodWaste");
+                    FindObjectOfType<UGS_Analytics>().Correct_General_Waste_Bin_Deposit(RubbishBin.name, "NonRecyclable");
+                    FindObjectOfType<UGS_Analytics>().Correct_Plastic_Bin_Deposit(RubbishBin.name, "Plastic");
+                    #endregion
+
+                    #region      // Trigger analytics event for depositing rubbish into the incorrect bin
+                    FindObjectOfType<UGS_Analytics>().Incorrect_Paper_Bin_Deposit(RubbishBin.name, "FoodWaste", "NonRecyclable", "Plastic");
+                    FindObjectOfType<UGS_Analytics>().Incorrect_Food_Bin_Deposit(RubbishBin.name, "Paper", "NonRecyclable", "Plastic");
+                    FindObjectOfType<UGS_Analytics>().Incorrect_General_Waste_Bin_Deposit(RubbishBin.name, "Paper", "FoodWaste", "Plastic");
+                    FindObjectOfType<UGS_Analytics>().Incorrect_Plastic_Bin_Deposit(RubbishBin.name, "Paper", "NonRecyclable", "FoodWaste");
+                    #endregion
+
                     // Record the custom event for depositing rubbish
                     //RecordDepositEvent(RubbishBin.name);
 
