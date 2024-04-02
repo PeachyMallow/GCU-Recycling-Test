@@ -3051,9 +3051,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2538985ca476bb7418771ffedd961714, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5cf7526c1e869c34b8dbc9ed2cf8bf9d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.072
+  m_Volume: 0.104
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21622,8 +21622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RI: {fileID: 136148314}
   binsMaxCapacity: 10
-  timer: 150
+  timer: 180
   uIManager: {fileID: 1157755236}
+  levelMusic: {fileID: 136148306}
 --- !u!4 &1123941666
 Transform:
   m_ObjectHideFlags: 0

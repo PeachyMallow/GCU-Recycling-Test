@@ -94,6 +94,13 @@ public class GameManager : MonoBehaviour
 
     // is the timer active
     private bool timerActive;
+
+    //Audio Management with Timer
+    [Header("Drag Level Music Audio Source here")]
+    [SerializeField]
+    AudioSource levelMusic;
+
+
     #endregion
 
     private void Start()
@@ -104,6 +111,7 @@ public class GameManager : MonoBehaviour
         // timer
         totalTime = timer;
         timerActive = true;
+        levelMusic.pitch = 1f;
 
         if (uIManager == null)
         {
@@ -146,6 +154,22 @@ public class GameManager : MonoBehaviour
                 timerActive = false;
                 uIManager.WinOrLose(false);
             }
+
+        if (timer <= 60)
+            {
+                levelMusic.pitch = 1.19f;
+            }
+
+        if (timer <= 30)
+            {
+                levelMusic.pitch = 1.31f;
+            }
+
+        if (timer <= 15)
+            {
+                levelMusic.pitch = 1.56f;
+            }
+
         }
         #endregion
     }
