@@ -66,9 +66,20 @@ public class UIManager : MonoBehaviour
 
     [Header("\n----------------------------\n\n\nMenu Screens\n")]
     // menu screens
-    [Header("Drag Win UI here")]
+    [Header("Win Screen")]
     [SerializeField]
     public GameObject winUI;
+    public GameObject starOne;
+    public GameObject starTwo;
+    public GameObject starThree;
+    public Sprite starFull;
+    public Sprite starEmpty;
+
+    [Header("Enter Value as ORIGINAL - NOT x25")]
+    [SerializeField]
+    public float starOneThresh;
+    public float starTwoThresh;
+    public float starThreeThresh;
 
     [Header("Drag GameOver UI here")]
     [SerializeField]

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.UI.Image;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -99,6 +100,9 @@ public class GameManager : MonoBehaviour
     [Header("Drag Level Music Audio Source here")]
     [SerializeField]
     AudioSource levelMusic;
+    [SerializeField]
+    public Slider timerSlider;
+
 
 
     #endregion
@@ -112,6 +116,9 @@ public class GameManager : MonoBehaviour
         totalTime = timer;
         timerActive = true;
         levelMusic.pitch = 1f;
+        timerSlider.maxValue = totalTime;
+        timerSlider.value = totalTime;
+
 
         if (uIManager == null)
         {
@@ -146,6 +153,7 @@ public class GameManager : MonoBehaviour
             if (timer > 0)
             {
                 Timer();
+                timerSlider.value = timer;
             }
 
             else
@@ -228,6 +236,7 @@ public class GameManager : MonoBehaviour
     private float Timer()
     {
         return timer -= Time.deltaTime;
+
     }
 
     /// <summary>

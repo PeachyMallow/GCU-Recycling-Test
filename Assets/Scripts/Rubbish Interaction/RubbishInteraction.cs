@@ -37,8 +37,9 @@ public class RubbishInteraction : MonoBehaviour
     [SerializeField]
     private bool Autopickup;
 
+
     [SerializeField]
-   // public Slider enviroMeter;
+    // public Slider enviroMeter;
     [Header("Drag UI Glow Here")]
     private CanvasGroup increaseGlowGroup;
     [SerializeField]
@@ -49,6 +50,8 @@ public class RubbishInteraction : MonoBehaviour
     private bool increaseFadeOut = true;
     private bool decreaseFadeIn = true;
     private bool decreaseFadeOut = true;
+    [SerializeField]
+    private GameObject depositBinBag;
     [SerializeField]
     private AudioSource increaseSource;
     [SerializeField]
@@ -106,14 +109,15 @@ public class RubbishInteraction : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Return))
         {
             keyPressed = false;
-            canDeposit = false;   
+            canDeposit = false;
         }
 
         PickupSwitch();
         //EndingmenuUI();
 
         float currentScore = Mathf.SmoothDamp(0, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
-
+   
+        #region Score UI Green & Red Glow
         if (increaseFadeIn == true)
         {
             if (increaseGlowGroup.alpha < 1)
@@ -142,6 +146,7 @@ public class RubbishInteraction : MonoBehaviour
             }
         }
 
+
         if (decreaseFadeIn == true)
         {
             if (decreaseGlowGroup.alpha < 1)
@@ -168,7 +173,40 @@ public class RubbishInteraction : MonoBehaviour
                 }
             }
         }
+        #endregion
 
+        #region Star UI Management
+        if (recycledScore >= uiManager.starOneThresh)
+        {
+            uiManager.starOne.GetComponent<Image>().sprite = uiManager.starFull;
+        }
+
+        if (recycledScore <= uiManager.starOneThresh)
+        {
+            uiManager.starOne.GetComponent<Image>().sprite = uiManager.starEmpty;
+        }
+
+        if (recycledScore >= uiManager.starTwoThresh)
+        {
+           uiManager.starTwo.GetComponent<Image>().sprite = uiManager.starFull;
+        }
+
+        if (recycledScore <= uiManager.starTwoThresh)
+        {
+            uiManager.starTwo.GetComponent<Image>().sprite = uiManager.starEmpty;
+        }
+
+        if (recycledScore >= uiManager.starThreeThresh)
+        {
+           uiManager.starThree.GetComponent<Image>().sprite = uiManager.starFull;
+        }
+
+        if (recycledScore <= uiManager.starThreeThresh)
+        {
+            uiManager.starThree.GetComponent<Image>().sprite = uiManager.starEmpty;
+        }
+        #endregion
+  
     }
 
     private void FixedUpdate()
@@ -184,7 +222,7 @@ public class RubbishInteraction : MonoBehaviour
             if (hit.collider.CompareTag("Bin") && keyPressed)
             {
                 Debug.Log(hit.collider.name);
-               // canDeposit = true;
+                // canDeposit = true;
             }
             else
             {
@@ -196,6 +234,7 @@ public class RubbishInteraction : MonoBehaviour
         {
             Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
             canDeposit = false;
+            depositBinBag.SetActive(false);
         }
     }
 
@@ -215,22 +254,25 @@ public class RubbishInteraction : MonoBehaviour
     // these check if the player is in contact with the bins allowing for a deposit 
     private void OnTriggerStay(Collider RubbishBin)
     {
+
+
         if (RubbishBin.tag == "Bin")
         {
+
             // is the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
+                depositBinBag.SetActive(true);
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
                 {
                     /*// unsure if needed?
                     //recycledScore++;
                     //recycledHighScore++;*/
-
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
                     numRubbishHeld = Inventory.instance.InventorySize();
-                    
+
                     /*//Debug.Log("Score: " + recycledScore);
                     // unsure if needed?
                     score.text = "Rubbish Recycled : " + recycledHighScore;
@@ -242,9 +284,16 @@ public class RubbishInteraction : MonoBehaviour
                 {
                     Console.WriteLine("No rubbish to deposit");
                 }
+
+                if (numRubbish <= 0)
+                {
+                    depositBinBag.SetActive(false);
+                }
             }
 
             canDeposit = false;
+
+
         }
 
         if (Autopickup == false)
@@ -284,15 +333,15 @@ public class RubbishInteraction : MonoBehaviour
 
             recycledScore++;
             // enviroMeter.value = recycledScore;
-            //increaseFadeIn = true;
+            increaseFadeIn = true;
         }
 
         else
         {
             recycledScore--;
             // enviroMeter.value = recycledScore;
-            //decreaseFadeIn = true;
-            
+            decreaseFadeIn = true;
+
         }
     }
 

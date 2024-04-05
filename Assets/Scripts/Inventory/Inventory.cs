@@ -49,11 +49,24 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private RubbishInteraction rInteraction;
 
+    [Header("Drag 'InvFull' to here")]
+    [SerializeField]
+    private GameObject InventoryFullText;
+
+
 
 
     private void Start()
     {
         //ItemSlots();
+    }
+
+    private void Update()
+    {
+        if (!IsInventoryFull())
+        {
+            InventoryFullText.SetActive(false);
+        }
     }
 
     public void Add(Item item)
@@ -112,6 +125,7 @@ public class Inventory : MonoBehaviour
 
         else
         {
+            InventoryFullText.SetActive(true);
             Debug.Log("Inventory is full");
             return true;
         }
