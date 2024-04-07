@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 142a69263b8d571488759ffdc4555875, type: 2}
 --- !u!1001 &2662247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1848,7 +1848,7 @@ GameObject:
   m_Name: Wall Left (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &56261282
@@ -2275,6 +2275,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6fe616e5f5f4ae0498f7cd65968fe64f, type: 3}
       propertyPath: m_Name
       value: canteen window
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6fe616e5f5f4ae0498f7cd65968fe64f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6fe616e5f5f4ae0498f7cd65968fe64f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2939,6 +2947,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
       propertyPath: m_Name
       value: grey_floor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8191,7 +8203,7 @@ GameObject:
   m_Name: Wall Left (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &211378386
@@ -11092,7 +11104,7 @@ GameObject:
   m_Name: Wall Left (61)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &277754490
@@ -17580,7 +17592,7 @@ GameObject:
   m_Name: Wall Left (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &453239337
@@ -18921,6 +18933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grey_floor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19907,7 +19923,7 @@ GameObject:
   m_Name: Wall Left (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &529939627
@@ -21031,6 +21047,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
       propertyPath: m_Name
       value: grey_floor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24646,6 +24666,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: wood_wall (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f9319435f0139447984a593d74599a0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f9319435f0139447984a593d74599a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25461,7 +25489,7 @@ GameObject:
   m_Name: Wall Left (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &713435403
@@ -31680,6 +31708,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: lift (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e659050223470224cbed468e13a34d36, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e659050223470224cbed468e13a34d36, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33828,7 +33864,7 @@ GameObject:
   m_Name: Wall Left (70)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &954406597
@@ -35012,7 +35048,7 @@ GameObject:
   m_Name: Wall Left (60)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &975651917
@@ -38843,7 +38879,7 @@ GameObject:
   m_Name: Wall Left (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1063192716
@@ -40339,7 +40375,7 @@ GameObject:
   m_Name: Wall Left (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1095661762
@@ -41099,7 +41135,7 @@ GameObject:
   m_Name: Wall Left (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1103452001
@@ -45490,7 +45526,7 @@ GameObject:
   m_Name: Wall Left (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1218962059
@@ -46510,7 +46546,7 @@ GameObject:
   m_Name: Wall Left (69)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1239793245
@@ -47411,7 +47447,7 @@ GameObject:
   m_Name: Wall Left (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1255260033
@@ -49726,7 +49762,7 @@ GameObject:
   m_Name: Wall Left (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1323027860
@@ -51537,7 +51573,7 @@ GameObject:
   m_Name: Wall Left (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1357022067
@@ -55133,7 +55169,7 @@ GameObject:
   m_Name: Wall Left (59)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1462452296
@@ -59858,6 +59894,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: wood_wall (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f9319435f0139447984a593d74599a0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f9319435f0139447984a593d74599a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60603,6 +60647,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
       propertyPath: m_Name
       value: grey_floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83516a75334e7fd4da8d706411092c37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65456,7 +65504,7 @@ GameObject:
   m_Name: Wall Left (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1817951300
@@ -66043,7 +66091,7 @@ GameObject:
   m_Name: Wall Left (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1836542071
@@ -69133,6 +69181,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: wood_wall (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f9319435f0139447984a593d74599a0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f9319435f0139447984a593d74599a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -69859,6 +69915,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall with windows
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb66ca3843cc89d4eb65ce7d246f62e3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb66ca3843cc89d4eb65ce7d246f62e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70560,6 +70624,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 780f547420aef24438248aece3085f2d, type: 3}
       propertyPath: m_Name
       value: second wall with windows
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 780f547420aef24438248aece3085f2d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 780f547420aef24438248aece3085f2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -73619,6 +73691,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall with windows (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb66ca3843cc89d4eb65ce7d246f62e3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb66ca3843cc89d4eb65ce7d246f62e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73799,7 +73879,7 @@ GameObject:
   m_Name: Wall Left (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &2101471576
