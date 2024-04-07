@@ -8835,6 +8835,7 @@ MonoBehaviour:
   timer: 160
   uIManager: {fileID: 1172020880}
   levelMusic: {fileID: 1019891395}
+  timerSlider: {fileID: 0}
 --- !u!4 &248549676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed091a86790701f43bd4a49c4271243e, type: 3}
@@ -14320,6 +14321,7 @@ MonoBehaviour:
   items: []
   inventorySize: 8
   rInteraction: {fileID: 1019891391}
+  InventoryFullText: {fileID: 0}
 --- !u!114 &387719805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28432,7 +28434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e659050223470224cbed468e13a34d36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3168.8
+      value: -3169.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e659050223470224cbed468e13a34d36, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33889,6 +33891,7 @@ MonoBehaviour:
   increaseGlowGroup: {fileID: 1487658901}
   decreaseGlowGroup: {fileID: 1407034024}
   fadeSpeed: 3
+  depositBinBag: {fileID: 0}
   increaseSource: {fileID: 1019891394}
   increaseClip: {fileID: 8300000, guid: fb6899e0988ef8346a73e3454f19e5ff, type: 3}
   decreaseSource: {fileID: 1019891393}
@@ -40808,6 +40811,14 @@ MonoBehaviour:
   timerGO: {fileID: 314466695}
   gM: {fileID: 246084076}
   winUI: {fileID: 511458313}
+  starOne: {fileID: 0}
+  starTwo: {fileID: 0}
+  starThree: {fileID: 0}
+  starFull: {fileID: 0}
+  starEmpty: {fileID: 0}
+  starOneThresh: 0
+  starTwoThresh: 0
+  starThreeThresh: 0
   gameOverUI: {fileID: 1374255260}
   pauseMenu: {fileID: 302182462}
   rubbishInteraction: {fileID: 1019891391}
