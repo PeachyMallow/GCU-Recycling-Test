@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     private Rigidbody rb;
 
     // starting Y Rotation of Door
-    [SerializeField]
+    //[SerializeField]
     private float startYRot;
 
     // true when NPC or Player is in contact with a door
-    [SerializeField]
+    //[SerializeField]
     private bool doorContact;
 
     // how fast the door should move 
+    [Header("How fast the door should shut")]
     [SerializeField]
     private float moveSpeed;
 
     // just to check in inspector 
-    [SerializeField]
+    //[SerializeField]
     private bool isDoorinStartRot;
+
+    //[Header("How much weight the door should have when moving")]
+    //[SerializeField]
+    private float angularDragValue;
 
     private void Start()
     {
@@ -29,38 +34,36 @@ public class Doors : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
         //startPos = transform.rotation;
         startYRot = transform.rotation.y;
+        angularDragValue = rb.angularDrag;
     }
 
     private void FixedUpdate()
     {
-        Debug.Log("Mathf.Abs: " + Mathf.Abs(transform.rotation.y - startYRot));
+        //Debug.Log("Mathf.Abs: " + Mathf.Abs(transform.rotation.y - startYRot));
         //Debug.Log("StartRot, CurrentYRot: " + startYRot + " : " + transform.rotation.y);
 
         // if the door isn't in contact with NPC or player
         if (!doorContact)
         {
-            //Debug.Log("Door not in contact with anything");
-
             if (!IsDoorInStartRot())
             {
                 ReturnToStartPos();
             }
+        }
 
-            
             ////if currentPos is not equal to startPos 
             //if (transform.rotation.y != startYRot)
             //{
             //    //Debug.Log("door is not at starting Y position");
             //    ReturnToStartPos();
-            //}
-        }
+            //}        
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("NPC"))
         {
-            rb.angularDrag = 0.5f;
+            rb.angularDrag = angularDragValue;
             doorContact = true;
         }
     }
@@ -82,7 +85,7 @@ public class Doors : MonoBehaviour
         else
         {
             isDoorinStartRot = false;
-            rb.angularDrag = 0.5f;
+            //rb.angularDrag = 0.5f;
             return false; 
         }
     }
