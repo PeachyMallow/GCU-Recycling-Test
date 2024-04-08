@@ -130,6 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  startYRot: 0
+  doorContact: 0
+  moveSpeed: 45
+  isDoorinStartRot: 0
 --- !u!65 &8808383677199450734
 BoxCollider:
   m_ObjectHideFlags: 0
