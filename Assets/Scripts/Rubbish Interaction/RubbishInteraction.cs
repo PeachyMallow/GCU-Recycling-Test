@@ -230,8 +230,9 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
+            var bin = RubbishBin.GetComponent<Bins>();
             // is the bin is full?
-            if (!RubbishBin.GetComponent<Bins>().IsBinFull())
+            if (!bin.IsBinFull())
             {
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
@@ -240,9 +241,28 @@ public class RubbishInteraction : MonoBehaviour
                     //recycledScore++;
                     //recycledHighScore++;*/
 
+                    string binType;
+                    string recyclingType;
                     // Deposit rubbish into the bin
-                    Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
+                    Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject, out binType, out recyclingType);
 
+                    switch(binType)
+                    {
+                        case "Paper":
+                            FindObjectOfType<UGS_Analytics>().Correct_Paper_Bin_Deposit(recyclingType);
+                            break;
+                        case "FoodWaste":
+                            FindObjectOfType<UGS_Analytics>().Correct_Food_Bin_Deposit( binType, "FoodWaste");
+                            break;
+                        case "NonRecyclable":
+                            FindObjectOfType<UGS_Analytics>().Correct_General_Waste_Bin_Deposit(RubbishBin.name, binType);
+                            break;
+                        case "Plastic":
+                            FindObjectOfType<UGS_Analytics>().Correct_Plastic_Bin_Deposit(RubbishBin.name, binType);
+                            break;
+                    }
+
+                    /*
                     #region // Trigger analytics event for depositing rubbish into the correct bin
 
                     FindObjectOfType<UGS_Analytics>().Correct_Paper_Bin_Deposit(RubbishBin.name, "Paper");
@@ -250,7 +270,7 @@ public class RubbishInteraction : MonoBehaviour
                     FindObjectOfType<UGS_Analytics>().Correct_General_Waste_Bin_Deposit(RubbishBin.name, "NonRecyclable");
                     FindObjectOfType<UGS_Analytics>().Correct_Plastic_Bin_Deposit(RubbishBin.name, "Plastic");
                     #endregion
-
+                    */
                     #region      // Trigger analytics event for depositing rubbish into the incorrect bin
                     FindObjectOfType<UGS_Analytics>().Incorrect_Paper_Bin_Deposit(RubbishBin.name, "FoodWaste", "NonRecyclable", "Plastic");
                     FindObjectOfType<UGS_Analytics>().Incorrect_Food_Bin_Deposit(RubbishBin.name, "Paper", "NonRecyclable", "Plastic");

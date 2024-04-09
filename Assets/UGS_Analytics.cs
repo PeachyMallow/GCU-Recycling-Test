@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 public class UGS_Analytics : MonoBehaviour
 {
     private RubbishInteraction RI;
+    private Inventory I;
     async void Start()
     {
         try
@@ -25,17 +26,15 @@ public class UGS_Analytics : MonoBehaviour
     }
 
     #region Correct Bin Deposits
-    public void Correct_Paper_Bin_Deposit(string RubbishBin, string Paper)
+    public void Correct_Paper_Bin_Deposit( string recyclingType)
     {
         Analytics.CustomEvent("Correct_Paper_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin },
-            { "Paper", Paper },
+            { "Paper", recyclingType },
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Correct_Paper_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(Paper);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
 
     public void Correct_Food_Bin_Deposit(string RubbishBin, string FoodWaste)
