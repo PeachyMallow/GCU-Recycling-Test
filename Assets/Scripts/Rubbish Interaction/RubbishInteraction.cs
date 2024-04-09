@@ -80,6 +80,9 @@ public class RubbishInteraction : MonoBehaviour
     // required to deposit one item at a time
     private bool canDeposit;
 
+    [SerializeField]
+    private Animator animator;
+
     void Start()
     {
         Autopickup = true;
@@ -269,6 +272,7 @@ public class RubbishInteraction : MonoBehaviour
                     /*// unsure if needed?
                     //recycledScore++;
                     //recycledHighScore++;*/
+                    GetComponent<Animator>().Play("Deposit", -1, 0f);
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
                     numRubbishHeld = Inventory.instance.InventorySize();
@@ -283,6 +287,7 @@ public class RubbishInteraction : MonoBehaviour
                 else if (keyPressed && numRubbish <= 0)
                 {
                     Console.WriteLine("No rubbish to deposit");
+                    //animator.SetBool("isRecycling", false);
                 }
 
                 if (numRubbish <= 0)
