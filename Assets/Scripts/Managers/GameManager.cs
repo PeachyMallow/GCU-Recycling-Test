@@ -109,6 +109,10 @@ public class GameManager : MonoBehaviour
     [Header("Enter time in seconds")]
     [SerializeField]
     private float timer;
+    [SerializeField]
+    private AudioSource truckSource;
+    [SerializeField]
+    private AudioClip truckClip;
 
     [Header("Drag UIManager GameObject Here")]
     [SerializeField]
@@ -188,23 +192,25 @@ public class GameManager : MonoBehaviour
                 uIManager.WinOrLose(false);
             }
 
-        if (timer <= 60)
+        if (timer <= totalTime/2f)
             {
                 levelMusic.pitch = 1.19f;
             }
 
-        if (timer <= 30)
+        if (timer == 30)
             {
                 levelMusic.pitch = 1.31f;
             }
 
-        if (timer <= 15)
+        if (timer == 15)
             {
                 levelMusic.pitch = 1.56f;
             }
 
         }
         #endregion
+
+
     }
 
     #region itemSpawnMethods
