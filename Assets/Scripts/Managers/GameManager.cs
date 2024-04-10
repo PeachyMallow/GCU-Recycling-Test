@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
+using TMPro;
 //using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -71,7 +72,30 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private RubbishInteraction RI;
 
-    // bins
+
+    #region Starting Countdown
+    [Header("Drag Countdown TextMeshPro here")]
+    [SerializeField]
+    public TextMeshProUGUI countdownText;
+    [SerializeField]
+    private AudioSource threeSfxSource;
+    [SerializeField]
+    private AudioSource twoSfxSource;
+    [SerializeField]
+    private AudioSource oneSfxSource;
+    [SerializeField]
+    private AudioSource goSfxSource;
+    [SerializeField]
+    private AudioClip threeSFX;
+    [SerializeField]
+    private AudioClip twoSFX;
+    [SerializeField]
+    private AudioClip oneSFX;
+    [SerializeField]
+    private AudioClip goSFX;
+
+    #endregion
+
     [Header("\n----------------------------\n\n\nBin Capacity\n")]
 
     [Header("Max Capacity of each bin")]
@@ -109,6 +133,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(Countdown());
         //readyToSpawn = false;
         //delayOccurred = false;
 
@@ -226,8 +251,34 @@ public class GameManager : MonoBehaviour
     //}
     #endregion
 
-    // accesses value set for binsMaxCapacity 
-    public int MaxCapacity()
+    IEnumerator Countdown()
+    {
+        // Pause the game's time
+        Time.timeScale = 0f;
+
+        countdownText.text = "3";
+        threeSfxSource.PlayOneShot(threeSFX);
+        yield return new WaitForSecondsRealtime(1f);
+
+        countdownText.text = "2";
+        twoSfxSource.PlayOneShot(twoSFX);
+        yield return new WaitForSecondsRealtime(1f);
+
+        countdownText.text = "1";
+        oneSfxSource.PlayOneShot(oneSFX);
+        yield return new WaitForSecondsRealtime(1f);
+
+        countdownText.text = "Go!";
+        goSfxSource.PlayOneShot(goSFX);
+        yield return new WaitForSecondsRealtime(1f);
+
+        // Resume the game's time
+        countdownText.text = "";
+        Time.timeScale = 1f;
+    }
+
+        // accesses value set for binsMaxCapacity 
+        public int MaxCapacity()
     {
         return binsMaxCapacity;
     }
