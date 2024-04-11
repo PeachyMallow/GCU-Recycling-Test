@@ -26,10 +26,15 @@ public class NPCNavMesh : MonoBehaviour
     private NavMeshAgent agent;
     private RubbishInteraction RI;
 
+    [SerializeField]
+    private Animator animator;
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         RI = FindObjectOfType<RubbishInteraction>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Start()
@@ -41,6 +46,7 @@ public class NPCNavMesh : MonoBehaviour
     {
         if (!isWaiting && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
+            animator.SetFloat("Speed", 0); // idle anim
             StartCoroutine(WaitAtTarget(targetPoints[currentTargetIndex].delay));
         }
 
@@ -60,6 +66,7 @@ public class NPCNavMesh : MonoBehaviour
     private IEnumerator WaitAtTarget(float delay)
     {
         isWaiting = true;
+       
         yield return new WaitForSeconds(delay);
         MoveToNextTarget();
         isWaiting = false;
@@ -67,6 +74,7 @@ public class NPCNavMesh : MonoBehaviour
 
     private void MoveToNextTarget()
     {
+        animator.SetFloat("Speed", 0.2f); // walking anim
         currentTargetIndex = (currentTargetIndex + 1) % targetPoints.Length;
         agent.destination = targetPoints[currentTargetIndex].point.position;
         SetRandomItemToDrop();
