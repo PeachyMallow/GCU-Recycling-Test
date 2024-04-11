@@ -26,10 +26,15 @@ public class NPCNavMesh : MonoBehaviour
     private NavMeshAgent agent;
     private RubbishInteraction RI;
 
+    [SerializeField]
+    private Animator animator;
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         RI = FindObjectOfType<RubbishInteraction>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Start()
