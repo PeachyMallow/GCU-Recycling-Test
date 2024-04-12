@@ -46,20 +46,32 @@ public class UIManager : MonoBehaviour
 
     #region timerVariables
     [Header("\n----------------------------\n\n\nTimer\n")]
-    
-    // timer UI
-    [Header("Drag the TimerTxt UI GameObject here")]
+
+    [Header("Truck Handler (Image)")]
+    [Header("Drag Handle (Truck) GameObject here")]
     [SerializeField]
-    private TextMeshProUGUI timerGO;
+    private GameObject truck;
+
+    [SerializeField]
+    private Vector3 truckStartScale;
+
+    [SerializeField]
+    private Vector3 truckEndScale;
+
+
+    //// timer UI
+    //[Header("Drag the TimerTxt UI GameObject here")]
+    //[SerializeField]
+    //private TextMeshProUGUI timerGO;
 
     // holds the GameManager script to access its methods
     [Header("Drag the GameManager GameObject here")]
     [SerializeField]
     private GameManager gM;
 
-    // separating the time into seconds and minutes to use for UI purposes
-    private float mins;
-    private float secs;
+    //// separating the time into seconds and minutes to use for UI purposes
+    //private float mins;
+    //private float secs;
     #endregion
 
     #region menuScreenVariables
@@ -104,16 +116,25 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        // inventory
         inventory = Inventory.instance;
         inventory.onItemChangedCallback += UpdateInventoryUI;
         slots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>();
         inventoryPos = 0;
         prevInventoryPos = 1;
         ScrollHotbar();
+
+        // timer truck handle
+        truckStartScale = truck.transform.localScale;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            PulseScaleAnim(2);
+        }
+
         // pause screen
         if (pauseMenu != null)
         {
@@ -153,13 +174,13 @@ public class UIManager : MonoBehaviour
             ScrollHotbar();
         }
 
-        // timer
-        if (timerGO != null)
-        {
-            DisplayTime();
-        }
+        //// timer
+        //if (timerGO != null)
+        //{
+        //    DisplayTime();
+        //}
 
-        else { Debug.Log("Please attach the timer UI to the UI Manager in the Inspector (in the hierarchy UI > Timer > TimerTxt)"); }
+        //else { Debug.Log("Please attach the timer UI to the UI Manager in the Inspector (in the hierarchy UI > Timer > TimerTxt)"); }
 
         //Score??
         displayScoreVar = (rubbishInteraction.recycledScore * 25) - 25;
@@ -288,11 +309,27 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // converts float into minutes and seconds to display correctly
-    private void DisplayTime()
+    public void PulseScaleAnim(float time, bool a)
     {
-        mins = Mathf.FloorToInt(gM.CurrentTime() / 60);
-        secs = Mathf.FloorToInt(gM.CurrentTime() % 60);
-        timerGO.text = string.Format("{0:00}:{1:00}", mins, secs);
+        if (a)
+        {
+            // calculation first for size to scale up to? 
+            truckEndScale = truckStartScale * 1.132f; // put this in lerp instead of endscale
+
+            truck.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, 0.25f);
+        }
+
+        else
+        {
+
+        }
     }
+
+    //// converts float into minutes and seconds to display correctly
+    //private void DisplayTime()
+    //{
+    //    mins = Mathf.FloorToInt(gM.CurrentTime() / 60);
+    //    secs = Mathf.FloorToInt(gM.CurrentTime() % 60);
+    //    timerGO.text = string.Format("{0:00}:{1:00}", mins, secs);
+    //}
 }

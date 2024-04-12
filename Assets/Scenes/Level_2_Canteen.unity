@@ -6421,6 +6421,7 @@ MonoBehaviour:
   - {fileID: 6084135387239679434, guid: 1156d4181b2c8ae468ae4007326c8f45, type: 3}
   dropDistance: 3
   itemDropDelay: 15
+  animator: {fileID: 0}
 --- !u!136 &155806198
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7277,8 +7278,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -11093,10 +11094,14 @@ MonoBehaviour:
   oneSFX: {fileID: 8300000, guid: d24be80180d1ca549919de970c008cb0, type: 3}
   goSFX: {fileID: 8300000, guid: 4716b2d72eeda9245a5061430618599d, type: 3}
   binsMaxCapacity: 10
-  timer: 160
+  timer: 65
+  thresh1: 0
+  thresh2: 0
+  thresh3: 0
   truckSource: {fileID: 246084081}
   truckClip: {fileID: 8300000, guid: 5816554eed6e7264cbd89d384ae4ca65, type: 3}
   uIManager: {fileID: 1172020880}
+  timerActive: 0
   levelMusic: {fileID: 1019891395}
   timerSlider: {fileID: 1654874850}
 --- !u!82 &246084077
@@ -21397,7 +21402,7 @@ GameObject:
   - component: {fileID: 508286070}
   - component: {fileID: 508286069}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: Handle (Truck)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28049,6 +28054,7 @@ MonoBehaviour:
   - {fileID: 6084135387239679434, guid: 1156d4181b2c8ae468ae4007326c8f45, type: 3}
   dropDistance: 3
   itemDropDelay: 15
+  animator: {fileID: 0}
 --- !u!136 &717720988
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -47485,7 +47491,9 @@ MonoBehaviour:
   towardsRightSource: {fileID: 1172020879}
   towardsLeftClip: {fileID: 8300000, guid: 43507c838007fb5459966da5f718119a, type: 3}
   towardsRightClip: {fileID: 8300000, guid: 2d9ffcead6376a74a9b266a3d3484834, type: 3}
-  timerGO: {fileID: 1112923830}
+  truck: {fileID: 508286067}
+  truckStartScale: {x: 0, y: 0, z: 0}
+  truckEndScale: {x: 0, y: 0, z: 0}
   gM: {fileID: 246084076}
   winUI: {fileID: 372453564}
   starOne: {fileID: 1666867653}
@@ -61594,6 +61602,7 @@ MonoBehaviour:
   - {fileID: 6084135387239679434, guid: 5da9587d3c6b75b4796ae5753d3c7aa8, type: 3}
   dropDistance: 3
   itemDropDelay: 15
+  animator: {fileID: 0}
 --- !u!136 &1532923284
 CapsuleCollider:
   m_ObjectHideFlags: 0

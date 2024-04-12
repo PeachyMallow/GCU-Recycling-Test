@@ -109,8 +109,19 @@ public class GameManager : MonoBehaviour
     [Header("Enter time in seconds")]
     [SerializeField]
     private float timer;
+
+    [Header("Truck Handler (Audio)")]
+
+    [SerializeField]
+    private bool thresh1;
+    [SerializeField]
+    private bool thresh2;
+    [SerializeField]
+    private bool thresh3;
+
     [SerializeField]
     private AudioSource truckSource;
+
     [SerializeField]
     private AudioClip truckClip;
 
@@ -122,6 +133,7 @@ public class GameManager : MonoBehaviour
     private float totalTime;
 
     // is the timer active
+    [SerializeField]
     private bool timerActive;
 
     //Audio Management with Timer
@@ -130,9 +142,6 @@ public class GameManager : MonoBehaviour
     AudioSource levelMusic;
     [SerializeField]
     public Slider timerSlider;
-
-
-
     #endregion
 
     private void Start()
@@ -147,7 +156,6 @@ public class GameManager : MonoBehaviour
         levelMusic.pitch = 1f;
         timerSlider.maxValue = totalTime;
         timerSlider.value = totalTime;
-
 
         if (uIManager == null)
         {
@@ -183,6 +191,22 @@ public class GameManager : MonoBehaviour
             {
                 Timer();
                 timerSlider.value = timer;
+
+                if (timer >= (totalTime / 2f - 1) && timer <= (totalTime / 2f + 1))
+                {
+                    TimerSFX(1);
+                    //Debug.Log("wee");
+                }
+
+                else if (timer >= 29 && timer <= 31)
+                {
+                    TimerSFX(2);
+                }
+
+                else if (timer >= 14 && timer <= 16)
+                {
+                    TimerSFX(3);
+                }
             }
 
             else
@@ -192,24 +216,61 @@ public class GameManager : MonoBehaviour
                 uIManager.WinOrLose(false);
             }
 
-        if (timer <= totalTime/2f)
-            {
-                levelMusic.pitch = 1.19f;
-            }
+            //if (timer == totalTime/2f)
+            //{
+            //    Debug.Log("Time threshold 1 reached");
+            //    // truck noise, visual
+            //    uIManager.PulseScaleAnim(2f);
+            //    levelMusic.pitch = 1.19f;
+            //}
 
-        if (timer == 30)
-            {
-                levelMusic.pitch = 1.31f;
-            }
+            //// these two aren't called
+            //if (timer == 30)
+            //{
+            //    Debug.Log("Time threshold 2 reached");
+            //    // truck noise, visual
+            //    uIManager.PulseScaleAnim(2f);
+            //    levelMusic.pitch = 1.31f;
+            //}
 
-        if (timer == 15)
-            {
-                levelMusic.pitch = 1.56f;
-            }
+            //if (timer == 15)
+            //{
+            //    Debug.Log("Time threshold 3 reached");
+            //    // truck noise, visual
+            //    uIManager.PulseScaleAnim(2f);
+            //    levelMusic.pitch = 1.56f;
+            //}
 
+            //if (timer == totalTime / 2f)
+            //{
+
+            //    Debug.Log("Time threshold 1 reached");
+            //    // truck noise, visual
+            //    //uIManager.PulseScaleAnim(2f);
+            //    TimerSFX(1);
+            //    //levelMusic.pitch = 1.19f;
+            //}
+
+            //// these two aren't called
+            //else if (timer == 30)
+            //{
+            //    Debug.Log("Time threshold 2 reached");
+            //    // truck noise, visual
+            //    //uIManager.PulseScaleAnim(2f);
+            //    TimerSFX(2);
+            //   // levelMusic.pitch = 1.31f;
+            //}
+
+            //else if (timer == 15)
+            //{
+            //    Debug.Log("Time threshold 3 reached");
+            //    // truck noise, visual
+            //    //uIManager.PulseScaleAnim(2f);
+            //    TimerSFX(3);
+            //   // levelMusic.pitch = 1.56f;
+            //}
         }
         #endregion
-
 
     }
 
@@ -284,7 +345,7 @@ public class GameManager : MonoBehaviour
     }
 
         // accesses value set for binsMaxCapacity 
-        public int MaxCapacity()
+    public int MaxCapacity()
     {
         return binsMaxCapacity;
     }
@@ -293,7 +354,25 @@ public class GameManager : MonoBehaviour
     private float Timer()
     {
         return timer -= Time.deltaTime;
+    }
 
+    private void TimerSFX(int threshold)
+    {
+        uIManager.PulseScaleAnim(2f);
+
+        switch (threshold)
+        {
+            case 1:
+                levelMusic.pitch = 1.19f;
+                break;
+            case 2:
+                levelMusic.pitch = 1.31f;
+                break;
+            case 3:
+                levelMusic.pitch = 1.56f;
+                break;
+                // default?
+        }
     }
 
     /// <summary>
