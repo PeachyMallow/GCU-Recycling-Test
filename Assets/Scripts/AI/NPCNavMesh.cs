@@ -39,6 +39,7 @@ public class NPCNavMesh : MonoBehaviour
 
     private void Start()
     {
+        animator.SetBool("isNPC", true); // Sets NPC to be True in Animator
         MoveToNextTarget();
     }
 
