@@ -37,7 +37,7 @@ public class RubbishInteraction : MonoBehaviour
     [SerializeField]
     private bool Autopickup;
 
-
+    #region All UI Variables
     [SerializeField]
     // public Slider enviroMeter;
     [Header("Drag UI Glow Here")]
@@ -51,7 +51,7 @@ public class RubbishInteraction : MonoBehaviour
     private bool decreaseFadeIn = true;
     private bool decreaseFadeOut = true;
     [SerializeField]
-    private GameObject depositBinBag;
+    private GameObject depositIcon;
     [SerializeField]
     private AudioSource increaseSource;
     [SerializeField]
@@ -64,6 +64,7 @@ public class RubbishInteraction : MonoBehaviour
     private float alphaMeasureIncrease;
     [SerializeField]
     private float alphaMeasureDecrease;
+    #endregion
 
     // used to update what the player is currently holding
     //[Header("Drag PlayerManager GameObject into here")]
@@ -79,6 +80,7 @@ public class RubbishInteraction : MonoBehaviour
 
     // required to deposit one item at a time
     private bool canDeposit;
+    public GameObject Player;
 
     [SerializeField]
     private Animator animator;
@@ -237,7 +239,7 @@ public class RubbishInteraction : MonoBehaviour
         {
             Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
             canDeposit = false;
-            depositBinBag.SetActive(false);
+            depositIcon.SetActive(false);
         }
     }
 
@@ -265,7 +267,7 @@ public class RubbishInteraction : MonoBehaviour
             // is the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
-                depositBinBag.SetActive(true);
+                depositIcon.SetActive(true);
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
                 {
@@ -292,7 +294,7 @@ public class RubbishInteraction : MonoBehaviour
 
                 if (numRubbish <= 0)
                 {
-                    depositBinBag.SetActive(false);
+                    depositIcon.SetActive(false);
                 }
             }
 
