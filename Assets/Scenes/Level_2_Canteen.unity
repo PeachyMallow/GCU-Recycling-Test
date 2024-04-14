@@ -11170,18 +11170,21 @@ MonoBehaviour:
   RI: {fileID: 1019891391}
   countdownText: {fileID: 168577454}
   threeSfxSource: {fileID: 246084077}
-  twoSfxSource: {fileID: 246084080}
-  oneSfxSource: {fileID: 246084079}
+  twoSfxSource: {fileID: 246084077}
+  oneSfxSource: {fileID: 246084077}
   goSfxSource: {fileID: 246084078}
   threeSFX: {fileID: 8300000, guid: 8d6845ece44a033408412b7a0fa47a9b, type: 3}
   twoSFX: {fileID: 8300000, guid: 9e10ff3c4f498f946a4a8777eaa00c81, type: 3}
   oneSFX: {fileID: 8300000, guid: d24be80180d1ca549919de970c008cb0, type: 3}
   goSFX: {fileID: 8300000, guid: 4716b2d72eeda9245a5061430618599d, type: 3}
   binsMaxCapacity: 10
-  timer: 160
+  timer: 65
+  timeAsInt: 0
   truckSource: {fileID: 246084081}
   truckClip: {fileID: 8300000, guid: 5816554eed6e7264cbd89d384ae4ca65, type: 3}
   uIManager: {fileID: 1172020880}
+  halfTime: 0
+  timerActive: 0
   levelMusic: {fileID: 1019891395}
   timerSlider: {fileID: 1654874850}
 --- !u!82 &246084077
@@ -11579,8 +11582,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5816554eed6e7264cbd89d384ae4ca65, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.682
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -21482,7 +21485,7 @@ GameObject:
   - component: {fileID: 508286070}
   - component: {fileID: 508286069}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: Handle (Truck)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47797,7 +47800,14 @@ MonoBehaviour:
   towardsRightSource: {fileID: 1172020879}
   towardsLeftClip: {fileID: 8300000, guid: 43507c838007fb5459966da5f718119a, type: 3}
   towardsRightClip: {fileID: 8300000, guid: 2d9ffcead6376a74a9b266a3d3484834, type: 3}
-  timerGO: {fileID: 1112923830}
+  truck: {fileID: 508286067}
+  truckStartScale: {x: 0, y: 0, z: 0}
+  truckEndScale: {x: 0, y: 0, z: 0}
+  truckShrinking: 0
+  overallTimeElapsed: 0
+  scaleTimeElapsed: 0
+  lerpDuration: 2
+  scaleDuration: 0.35
   gM: {fileID: 246084076}
   winUI: {fileID: 372453564}
   starOne: {fileID: 1666867653}

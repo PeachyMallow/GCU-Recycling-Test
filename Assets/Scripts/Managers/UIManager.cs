@@ -58,6 +58,30 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Vector3 truckEndScale;
 
+    [SerializeField]
+    private bool truckShrinking;
+
+    // from tut
+    [SerializeField]
+    private float overallTimeElapsed;
+
+    [SerializeField]
+    private float scaleTimeElapsed;
+
+    [SerializeField]
+    private float lerpDuration;
+
+    [SerializeField]
+    private float scaleDuration;
+    //[SerializeField]
+    //private float startValue = 0;
+
+    //[SerializeField]
+    //float endValue = 10;
+
+    //[SerializeField]
+    //float valueToLerp;
+
 
     //// timer UI
     //[Header("Drag the TimerTxt UI GameObject here")]
@@ -126,13 +150,15 @@ public class UIManager : MonoBehaviour
 
         // timer truck handle
         truckStartScale = truck.transform.localScale;
+        truckEndScale = truckStartScale * 1.132f; // put this in lerp instead of endscale?
+        //scaleDuration = lerpDuration;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            PulseScaleAnim(2); // error cause param change
+            StartCoroutine(TruckGrow());
         }
 
         // pause screen
@@ -309,21 +335,123 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void PulseScaleAnim(float time/*, bool a*/)
+    public void TruckThresholdAnim()
     {
+        while (overallTimeElapsed < lerpDuration)
+        {
+            Debug.Log("Pulse called");
+            StartCoroutine(TruckGrow());
+        }
+    }
+
+    // change to coroutine
+    public IEnumerator TruckGrow(/*float time, bool a*/)
+    {
+        //Debug.Log("Pulse called"); // checking amount of calls
+        
         //if (a)
         //{
             // calculation first for size to scale up to? 
-            truckEndScale = truckStartScale * 1.132f; // put this in lerp instead of endscale
+           
+        //truck.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, 0.2f);
 
-            truck.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, 0.25f);
+
+        // sets the 'truckShrinking' bool dependant on the truck's current scale
+        // true when the truck's scale is at it's largest
+        // false when the truck's scale is at it's smallest
+
+        //if (truck.transform.localScale == truckEndScale) { truckShrinking = true; }
+
+        //else { truckShrinking = false; }
+
+        //overallTimeElapsed = 0;
+        scaleTimeElapsed = 0;
+        //truckShrinking = false;
+
+        while (overallTimeElapsed < lerpDuration)
+        {
+            while (scaleTimeElapsed < scaleDuration)
+            {
+                //if (!truckShrinking)
+                //{
+                truck.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, scaleTimeElapsed / scaleDuration);
+                scaleTimeElapsed += Time.deltaTime;
+                overallTimeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            // yield return new WaitForSeconds(scaleDuration);
+
+            StartCoroutine(TruckShrink());
+
+            //truckShrinking = true;
+
+
+
+        }
+
+        //timeElapsed = 5;
+        //truck.transform.localScale = truckEndScale;
+        //if (Mathf.Abs(truck.transform.localScale.x - truckEndScale.x) <= 0.001f)
+        //   {
+        //  Debug.Log("Truck is fully scaled up");
+        //  truck.transform.localScale = truckEndScale;
+        //  truckShrinking = true;
+        //timeElapsed = 0;
+        //  }
+        //}
+
+        // else
+        //{
+        //truck.transform.localScale = Vector3.Lerp(truckEndScale, truckStartScale, timeElapsed / lerpDuration);
+
+        //if (Mathf.Abs(truck.transform.localScale.x - truckStartScale.x) <= 0.001f)
+        //{
+        //    Debug.Log("Truck is fully scaled down");
+        //    truck.transform.localScale = truckStartScale;
+        //    truckShrinking = false;
+        //}
+        //}
+
+        //timeElapsed += Time.deltaTime;
         //}
 
         //else
         //{
+        //    truck.transform.localScale = truckEndScale;
+        //    //lerpDuration = timeElapsed + 0.1f; // maybe not needed
+        //    truckShrinking = true;
+        //    timeElapsed = 0.0f;
+        //}
 
+        //if (truck.transform.localScale == truckEndScale)
+        // {
+        //   truck.transform.localScale = Vector3.Lerp(truckEndScale, truckStartScale, timeElapsed / lerpDuration);
         //}
     }
+
+    IEnumerator TruckShrink()
+    {
+        scaleTimeElapsed = 0;
+
+        while (scaleTimeElapsed < scaleDuration)
+        {
+            //if (!truckShrinking)
+            //{
+            truck.transform.localScale = Vector3.Lerp(truckEndScale, truckStartScale, scaleTimeElapsed / scaleDuration);
+            scaleTimeElapsed += Time.deltaTime;
+            overallTimeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        
+        StartCoroutine(TruckGrow());
+    }
+
+    // converts time type from float to int
+    //private void TimeToInt()
+    //{
+    //    timeAsInt = Mathf.FloorToInt(gM.CurrentTime());
+    //}
 
     //// converts float into minutes and seconds to display correctly
     //private void DisplayTime()

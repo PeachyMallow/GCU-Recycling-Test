@@ -110,13 +110,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float timer;
 
+    [SerializeField]
+    private int timeAsInt;
+
     [Header("Truck Handler (Audio)")]
 
-    [SerializeField]
+    // three bool below are used to make the 'truck' audio play once
     private bool thresh1;
-    [SerializeField]
     private bool thresh2;
-    [SerializeField]
     private bool thresh3;
 
     [SerializeField]
@@ -131,6 +132,9 @@ public class GameManager : MonoBehaviour
 
     // saves the time alotted in the inspector to reset the timer
     private float totalTime;
+
+    [SerializeField]
+    private int halfTime;
 
     // is the timer active
     [SerializeField]
@@ -156,6 +160,7 @@ public class GameManager : MonoBehaviour
         levelMusic.pitch = 1f;
         timerSlider.maxValue = totalTime;
         timerSlider.value = totalTime;
+        halfTime = (int)(totalTime / 2);
 
         if (uIManager == null)
         {
@@ -190,23 +195,24 @@ public class GameManager : MonoBehaviour
             if (timer > 0)
             {
                 Timer();
+                TimeToInt();
                 timerSlider.value = timer;
 
-                if (timer >= (totalTime / 2f - 1) && timer <= (totalTime / 2f + 1))
+
+                if (timeAsInt == halfTime && !thresh1)
                 {
                     TimerSFX(1);
-                    //Debug.Log("wee");
                 }
 
-                else if (timer >= 29 && timer <= 31)
+                else if (timeAsInt == 30 && !thresh2) // 30
                 {
                     TimerSFX(2);
                 }
 
-                else if (timer >= 14 && timer <= 16)
+                else if (timeAsInt == 15 && !thresh3) // 15
                 {
                     TimerSFX(3);
-                }
+                }   
             }
 
             else
@@ -216,6 +222,7 @@ public class GameManager : MonoBehaviour
                 uIManager.WinOrLose(false);
             }
 
+            #region timerspare
             //if (timer == totalTime/2f)
             //{
             //    Debug.Log("Time threshold 1 reached");
@@ -270,6 +277,7 @@ public class GameManager : MonoBehaviour
             //   // levelMusic.pitch = 1.56f;
             //}
         }
+        #endregion
         #endregion
 
     }
@@ -338,6 +346,7 @@ public class GameManager : MonoBehaviour
         countdownText.text = "Go!";
         goSfxSource.PlayOneShot(goSFX);
         yield return new WaitForSecondsRealtime(1f);
+        
 
         // Resume the game's time
         countdownText.text = "";
@@ -358,22 +367,28 @@ public class GameManager : MonoBehaviour
 
     private void TimerSFX(int threshold)
     {
-        uIManager.PulseScaleAnim(2f);
+        uIManager.StartCoroutine("TruckGrow"); 
 
         switch (threshold)
         {
             case 1:
-                Debug.Log("Threshold 1 met");
+                truckSource.PlayOneShot(truckClip);
                 levelMusic.pitch = 1.19f;
+                thresh1 = true;
                 break;
+
             case 2:
-                Debug.Log("Threshold 2 met");
+                truckSource.PlayOneShot(truckClip);
                 levelMusic.pitch = 1.31f;
+                thresh2 = true;
                 break;
+
             case 3:
-                Debug.Log("Threshold 3 met");
+                truckSource.PlayOneShot(truckClip);
                 levelMusic.pitch = 1.56f;
+                thresh3 = true;
                 break;
+
                 // default?
         }
     }
@@ -385,6 +400,12 @@ public class GameManager : MonoBehaviour
     public float CurrentTime()
     {
         return timer;
+    }
+
+    // converts time type from float to int
+    private void TimeToInt()
+    {
+        timeAsInt = Mathf.FloorToInt(timer);
     }
 
     // will start the timer from the time set in the inspector 
