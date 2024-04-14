@@ -363,12 +363,15 @@ public class GameManager : MonoBehaviour
         switch (threshold)
         {
             case 1:
+                Debug.Log("Threshold 1 met");
                 levelMusic.pitch = 1.19f;
                 break;
             case 2:
+                Debug.Log("Threshold 2 met");
                 levelMusic.pitch = 1.31f;
                 break;
             case 3:
+                Debug.Log("Threshold 3 met");
                 levelMusic.pitch = 1.56f;
                 break;
                 // default?

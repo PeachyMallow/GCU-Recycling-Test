@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            PulseScaleAnim(2);
+            PulseScaleAnim(2); // error cause param change
         }
 
         // pause screen
@@ -309,20 +309,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void PulseScaleAnim(float time, bool a)
+    public void PulseScaleAnim(float time/*, bool a*/)
     {
-        if (a)
-        {
+        //if (a)
+        //{
             // calculation first for size to scale up to? 
             truckEndScale = truckStartScale * 1.132f; // put this in lerp instead of endscale
 
             truck.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, 0.25f);
-        }
+        //}
 
-        else
-        {
+        //else
+        //{
 
-        }
+        //}
     }
 
     //// converts float into minutes and seconds to display correctly
