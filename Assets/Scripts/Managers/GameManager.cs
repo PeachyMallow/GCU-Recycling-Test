@@ -110,15 +110,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float timer;
 
-    [SerializeField]
+    // allows for accurate comparison of ints when using time-based thresholds for the truck timer slider
     private int timeAsInt;
 
     [Header("Truck Handler (Audio)")]
 
-    // three bool below are used to make the 'truck' audio play once
+    // -------------------
+    // make the 'truck' audio play once
     private bool thresh1;
     private bool thresh2;
     private bool thresh3;
+    // -------------------
 
     [SerializeField]
     private AudioSource truckSource;
@@ -133,17 +135,17 @@ public class GameManager : MonoBehaviour
     // saves the time alotted in the inspector to reset the timer
     private float totalTime;
 
-    [SerializeField]
+    // holds half of the current levels time
     private int halfTime;
 
     // is the timer active
-    [SerializeField]
     private bool timerActive;
 
     //Audio Management with Timer
     [Header("Drag Level Music Audio Source here")]
     [SerializeField]
     AudioSource levelMusic;
+
     [SerializeField]
     public Slider timerSlider;
     #endregion
@@ -151,8 +153,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Countdown());
-        //readyToSpawn = false;
-        //delayOccurred = false;
 
         // timer
         totalTime = timer;
@@ -170,25 +170,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        #region litterUpdate
-        //if (litterParent != null && litter != null)
-        //{
-        //    if (!delayOccurred)
-        //    {
-        //        StartCoroutine(SpawnStartDelay());
-        //    }
-
-        //    if (readyToSpawn)
-        //    {
-        //        readyToSpawn = false;
-        //        InstantiateItem();
-        //        RI.EIMScore(false);
-        //    }
-        //}
-
-        //else { Debug.Log("Please assign litter prefab and/or litterParent into the hierarchy on GameManager script"); }
-        #endregion
-
         #region timerUpdate
         if (timerActive)
         {
@@ -198,21 +179,20 @@ public class GameManager : MonoBehaviour
                 TimeToInt();
                 timerSlider.value = timer;
 
-
                 if (timeAsInt == halfTime && !thresh1)
                 {
                     TimerSFX(1);
                 }
 
-                else if (timeAsInt == 60 && !thresh2) // 30
+                else if (timeAsInt == 30 && !thresh2)
                 {
                     TimerSFX(2);
                 }
 
-                //else if (timeAsInt == 45 && !thresh3) // 15
-                //{
-                //    TimerSFX(3);
-                //}   
+                else if (timeAsInt == 15 && !thresh3)
+                {
+                    TimerSFX(3);
+                }
             }
 
             else
@@ -221,110 +201,9 @@ public class GameManager : MonoBehaviour
                 timerActive = false;
                 uIManager.WinOrLose(false);
             }
-
-            #region timerspare
-            //if (timer == totalTime/2f)
-            //{
-            //    Debug.Log("Time threshold 1 reached");
-            //    // truck noise, visual
-            //    uIManager.PulseScaleAnim(2f);
-            //    levelMusic.pitch = 1.19f;
-            //}
-
-            //// these two aren't called
-            //if (timer == 30)
-            //{
-            //    Debug.Log("Time threshold 2 reached");
-            //    // truck noise, visual
-            //    uIManager.PulseScaleAnim(2f);
-            //    levelMusic.pitch = 1.31f;
-            //}
-
-            //if (timer == 15)
-            //{
-            //    Debug.Log("Time threshold 3 reached");
-            //    // truck noise, visual
-            //    uIManager.PulseScaleAnim(2f);
-            //    levelMusic.pitch = 1.56f;
-            //}
-
-            //if (timer == totalTime / 2f)
-            //{
-
-            //    Debug.Log("Time threshold 1 reached");
-            //    // truck noise, visual
-            //    //uIManager.PulseScaleAnim(2f);
-            //    TimerSFX(1);
-            //    //levelMusic.pitch = 1.19f;
-            //}
-
-            //// these two aren't called
-            //else if (timer == 30)
-            //{
-            //    Debug.Log("Time threshold 2 reached");
-            //    // truck noise, visual
-            //    //uIManager.PulseScaleAnim(2f);
-            //    TimerSFX(2);
-            //   // levelMusic.pitch = 1.31f;
-            //}
-
-            //else if (timer == 15)
-            //{
-            //    Debug.Log("Time threshold 3 reached");
-            //    // truck noise, visual
-            //    //uIManager.PulseScaleAnim(2f);
-            //    TimerSFX(3);
-            //   // levelMusic.pitch = 1.56f;
-            //}
         }
         #endregion
-        #endregion
-
     }
-
-    #region itemSpawnMethods
-
-    // beca note: why won't this summary show?
-    /// <summary>
-    /// Generates a random X & Z point from the limits set in the inspector & takes the input from the inspector for the Y axis
-    /// then generates a random piece of litter to be spawned
-    /// </summary>
-    /// <returns></returns>
-    //private void InstantiateItem()
-    //{
-    //    float rX = Random.Range(xMin, xMax);
-    //    float rZ = Random.Range(zMin, zMax);
-    //    litterPos = new Vector3 (rX, litterPosY, rZ);
-
-    //    // which piece of litter is to be spawned
-    //    int num = Random.Range(0, litter.Length);
-    //    //Debug.Log(litter[num]);
-
-    //    Instantiate(litter[num], litterPos, Quaternion.identity, litterParent);
-    //    StartCoroutine(SpawnTimer());
-    //}
-
-    /// <summary>
-    /// How often litter should spawn
-    /// </summary>
-    /// <returns></returns>
-    //private IEnumerator SpawnTimer()
-    //{
-    //    yield return new WaitForSeconds(litterSpawnTime);
-    //    readyToSpawn = true;
-    //}
-
-    /// <summary>
-    /// How long before items should start spawning into the scene after startup
-    /// </summary>
-    /// <returns></returns>
-    //private IEnumerator SpawnStartDelay()
-    //{
-    //    delayOccurred = true;
-    //    yield return new WaitForSeconds(startDelay);
-    //    readyToSpawn = true;
-    //}
-    #endregion
 
     IEnumerator Countdown()
     {
@@ -351,9 +230,10 @@ public class GameManager : MonoBehaviour
         // Resume the game's time
         countdownText.text = "";
         Time.timeScale = 1f;
+        levelMusic.Play();
     }
 
-        // accesses value set for binsMaxCapacity 
+    // accesses value set for binsMaxCapacity 
     public int MaxCapacity()
     {
         return binsMaxCapacity;
@@ -393,36 +273,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Public method for other scripts to access the Timer's current time
-    /// </summary>
-    /// <returns></returns>
-    public float CurrentTime()
-    {
-        return timer;
-    }
-
     // converts time type from float to int
     private void TimeToInt()
     {
         timeAsInt = Mathf.FloorToInt(timer);
-    }
-
-    // will start the timer from the time set in the inspector 
-    public void StartTimer()
-    {
-
-    }
-
-    // will reset the timer to the time set in the inspector 
-    public void ResetTimer()
-    {
-        timer = totalTime;
-    }
-
-    public bool IsTimeUp()
-    {
-        return timer <= 0;
     }
 
     #endregion
