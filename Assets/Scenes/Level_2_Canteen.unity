@@ -47800,14 +47800,15 @@ MonoBehaviour:
   towardsRightSource: {fileID: 1172020879}
   towardsLeftClip: {fileID: 8300000, guid: 43507c838007fb5459966da5f718119a, type: 3}
   towardsRightClip: {fileID: 8300000, guid: 2d9ffcead6376a74a9b266a3d3484834, type: 3}
-  truck: {fileID: 508286067}
+  truckGO: {fileID: 508286067}
   truckStartScale: {x: 0, y: 0, z: 0}
   truckEndScale: {x: 0, y: 0, z: 0}
-  truckShrinking: 0
   overallTimeElapsed: 0
   scaleTimeElapsed: 0
   lerpDuration: 2
   scaleDuration: 0.35
+  numTimesToScale: 0
+  scaleCounter: 0
   gM: {fileID: 246084076}
   winUI: {fileID: 372453564}
   starOne: {fileID: 1666867653}

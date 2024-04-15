@@ -204,15 +204,15 @@ public class GameManager : MonoBehaviour
                     TimerSFX(1);
                 }
 
-                else if (timeAsInt == 30 && !thresh2) // 30
+                else if (timeAsInt == 60 && !thresh2) // 30
                 {
                     TimerSFX(2);
                 }
 
-                else if (timeAsInt == 15 && !thresh3) // 15
-                {
-                    TimerSFX(3);
-                }   
+                //else if (timeAsInt == 45 && !thresh3) // 15
+                //{
+                //    TimerSFX(3);
+                //}   
             }
 
             else
@@ -367,7 +367,7 @@ public class GameManager : MonoBehaviour
 
     private void TimerSFX(int threshold)
     {
-        uIManager.StartCoroutine("TruckGrow"); 
+        uIManager.TruckTimeThresholdAnim(); 
 
         switch (threshold)
         {
