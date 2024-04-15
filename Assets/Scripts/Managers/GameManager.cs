@@ -367,7 +367,7 @@ public class GameManager : MonoBehaviour
 
     private void TimerSFX(int threshold)
     {
-        uIManager.TruckTimeThresholdAnim(); 
+        uIManager.StartCoroutine("ThresholdAnim"); // make variable to hold coroutine?
 
         switch (threshold)
         {

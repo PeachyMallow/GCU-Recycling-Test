@@ -86,10 +86,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private float scaleTimer;
 
-    //[SerializeField]
-    //private bool tTimer;
+    [SerializeField]
+    private bool timerAnimActive;
 
-    
+
 
     //[SerializeField]
     //private float startValue = 0;
@@ -176,15 +176,15 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(overallTimeElapsed);
 
         if (Input.GetKeyDown(KeyCode.T)) //                                                         <-------- TEMP
         {
             if (overallTimeElapsed < lerpDuration)
             {
+                StartCoroutine(ThresholdAnim());
                 //truckAnimActive = true;
                 //Timer(overallTimeElapsed);
-                TruckTimeThresholdAnim();
+                //TruckTimeThresholdAnim();
                 //StartCoroutine(ThresholdAnim());
             }
 
@@ -365,8 +365,12 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < numTimesToScale; i++)
         {
-            StartCoroutine(ThresholdAnim());
-            //StopCoroutine(ThresholdAnim());
+            //Debug.Log("I: " + i);
+            //if (!timerAnimActive)
+            //{
+                Debug.Log("I in if: " + i);
+                StartCoroutine(ThresholdAnim());
+            //}
         }
 
         //if (overallTimeElapsed < lerpDuration)
@@ -476,30 +480,29 @@ public class UIManager : MonoBehaviour
         //overallTimeElapsed = 0;
 
         //while (overallTimeElapsed < lerpDuration)
-       // {
+        // {
 
-            //overallTimeElapsed += Time.deltaTime;
+        //overallTimeElapsed += Time.deltaTime;
 
-            //if (Mathf.Abs(truckGO.transform.localScale.x - truckEndScale.x) <= 0.001f)
-            //{
-            // truckGO.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, scaleTimeElapsed / scaleDuration);
-            // scaleTimeElapsed += Time.deltaTime;
+        //if (Mathf.Abs(truckGO.transform.localScale.x - truckEndScale.x) <= 0.001f)
+        //{
+        // truckGO.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, scaleTimeElapsed / scaleDuration);
+        // scaleTimeElapsed += Time.deltaTime;
 
-            // yield return null;
-            //}
+        // yield return null;
+        //}
 
+        //timerAnimActive = true;
+        while (scaleCounter < numTimesToScale)
+        { 
             scaleTimeElapsed = 0;
-            
-            //Debug.Log("In main loop");
 
             while (scaleTimeElapsed < scaleDuration)
             {
-                //Debug.Log("In grow loop");
                 truckGO.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, scaleTimeElapsed / scaleDuration);
-                //Timer(overallTimeElapsed);
                 scaleTimeElapsed += Time.deltaTime;
                 overallTimeElapsed += Time.deltaTime;
-                
+
                 yield return null;
             }
 
@@ -507,16 +510,19 @@ public class UIManager : MonoBehaviour
 
             while (scaleTimeElapsed < scaleDuration)
             {
-                //Debug.Log("In shrink loop");
                 truckGO.transform.localScale = Vector3.Lerp(truckEndScale, truckStartScale, scaleTimeElapsed / scaleDuration);
-                //Timer(overallTimeElapsed);
                 scaleTimeElapsed += Time.deltaTime;
                 overallTimeElapsed += Time.deltaTime;
-                
+
                 yield return null;
             }
-            
-       // }
+
+            scaleCounter++;
+        }
+
+        scaleCounter = 0;
+        //timerAnimActive = false;
+        // }
 
         //StartCoroutine(TruckShrink());
     }
