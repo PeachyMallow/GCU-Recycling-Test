@@ -51,13 +51,13 @@ public class UGS_Analytics : MonoBehaviour
     }
     public void Correct_Plastic_Bin_Deposit(string RubbishBin, string Plastic)
     {
-        Analytics.CustomEvent("Correct_Food_Bin_Deposit", new Dictionary<string, object>()
+        Analytics.CustomEvent("Correct_Plastic_Bin_Deposit", new Dictionary<string, object>()
         {
             { "RubbishBin", RubbishBin },
             { "Paper", Plastic },
             // You can add more parameters as needed
         });
-        AnalyticsService.Instance.RecordEvent("Correct_Food_Bin_Deposit");
+        AnalyticsService.Instance.RecordEvent("Correct_Plastic_Bin_Deposit");
         AnalyticsService.Instance.RecordEvent(RubbishBin);
         AnalyticsService.Instance.RecordEvent(Plastic);
     }
