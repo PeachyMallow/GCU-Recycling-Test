@@ -22,6 +22,10 @@ public class RubbishInteraction : MonoBehaviour
     public float radNum = 0f;
     float currentVelocity = 0;
     public Vector3 collision = Vector3.zero;
+    public Animator binAnimator;
+
+    [SerializeField]
+    public bool binShakeBool;
 
     [Header("SFX Here")]
     [SerializeField]
@@ -267,6 +271,8 @@ public class RubbishInteraction : MonoBehaviour
             // is the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
+                binAnimator = RubbishBin.GetComponent<Animator>();
+                binAnimator.SetBool("binShakingBool", true);
                 depositIcon.SetActive(true);
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
@@ -294,6 +300,7 @@ public class RubbishInteraction : MonoBehaviour
 
                 if (numRubbish <= 0)
                 {
+                    binShakeBool = false;
                     depositIcon.SetActive(false);
                 }
             }

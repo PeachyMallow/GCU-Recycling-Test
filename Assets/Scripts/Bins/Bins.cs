@@ -25,6 +25,8 @@ public class Bins : MonoBehaviour
     [SerializeField]
     private int maxCapacity;
 
+    private RubbishInteraction rubbishInteraction;
+
    // [SerializeField]
    // private Animator binAnimator;
    // private string binShake = "BinShake";
