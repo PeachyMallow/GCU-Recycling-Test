@@ -19071,6 +19071,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fd97dfd31f8661544800c1fc1e10c5a8, type: 3}
   m_PrefabInstance: {fileID: 426899655}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &429631458 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7971349864280435859, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
+  m_PrefabInstance: {fileID: 480776614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &429975095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9047325663255826503, guid: 104ecd9bc6a2c2d41bb5d625f7150a40, type: 3}
@@ -39970,7 +39975,7 @@ MonoBehaviour:
   displayScore: 0
   radNum: 0
   collision: {x: 0, y: 0, z: 0}
-  binAnimator: {fileID: 0}
+  binAnimator: {fileID: 429631458}
   binShakeBool: 0
   pickupSource: {fileID: 278036779}
   pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
