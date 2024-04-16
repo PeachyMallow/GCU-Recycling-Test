@@ -37,112 +37,91 @@ public class UGS_Analytics : MonoBehaviour
         AnalyticsService.Instance.RecordEvent(recyclingType);
     }
 
-    public void Correct_Food_Bin_Deposit(string RubbishBin, string FoodWaste)
+    public void Correct_Food_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Correct_Food_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin },
-            { "Paper", FoodWaste },
+            { "FoodWaste", recyclingType },
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Correct_Food_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(FoodWaste);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
-    public void Correct_Plastic_Bin_Deposit(string RubbishBin, string Plastic)
+    public void Correct_Plastic_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Correct_Plastic_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin },
-            { "Paper", Plastic },
+            { "Plastic", recyclingType},
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Correct_Plastic_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(Plastic);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
 
-    public void Correct_General_Waste_Bin_Deposit(string RubbishBin, string NonRecyclable)
+    public void Correct_General_Waste_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Correct_General_Waste_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin },
-            { "Paper", NonRecyclable },
+            { "NonRecyclable", recyclingType },
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Correct_General_Waste_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(NonRecyclable);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
     #endregion
 
     #region Incorrect Bin Deposits
-    public void Incorrect_Paper_Bin_Deposit(string RubbishBin, string FoodWaste, string NonRecyclable, string Plastic)
+    public void Incorrect_Paper_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Incorrect_Paper_Bin_Deposit", new Dictionary<string, object> ()
         {
-            { "RubbishBin", RubbishBin }, //used to be binName
-            { "FoodWaste", FoodWaste },
-            { "NonRecyclable", NonRecyclable },
-            { "Plastic", Plastic }
+            { "FoodWaste", recyclingType },
+            { "NonRecyclable", recyclingType },
+            { "Plastic", recyclingType }
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Incorrect_Paper_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(FoodWaste);
-        AnalyticsService.Instance.RecordEvent(NonRecyclable);
-        AnalyticsService.Instance.RecordEvent(Plastic);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
 
-    public void Incorrect_Food_Bin_Deposit(string RubbishBin, string Paper, string NonRecyclable, string Plastic)
+    public void Incorrect_Food_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Incorrect_Food_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin }, //used to be binName
-            { "Paper", Paper },
-            { "NonRecyclable", NonRecyclable },
-            { "Plastic", Plastic }
+            { "Paper", recyclingType },
+            { "NonRecyclable", recyclingType },
+            { "Plastic", recyclingType }
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Incorrect_Food_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(Paper);
-        AnalyticsService.Instance.RecordEvent(NonRecyclable);
-        AnalyticsService.Instance.RecordEvent(Plastic);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
 
-    public void Incorrect_General_Waste_Bin_Deposit(string RubbishBin, string FoodWaste, string paper, string Plastic)
+    public void Incorrect_General_Waste_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Incorrect_General_Waste_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin }, //used to be binName
-            { "FoodWaste", FoodWaste },
-            { "NonRecyclable", paper },
-            { "Plastic", Plastic }
+            { "FoodWaste", recyclingType },
+            { "NonRecyclable", recyclingType },
+            { "Plastic", recyclingType }
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Incorrect_General_Waste_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(FoodWaste);
-        AnalyticsService.Instance.RecordEvent(paper);
-        AnalyticsService.Instance.RecordEvent(Plastic);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
+
     }
 
-    public void Incorrect_Plastic_Bin_Deposit(string RubbishBin, string FoodWaste, string NonRecyclable, string Paper)
+    public void Incorrect_Plastic_Bin_Deposit(string recyclingType)
     {
         Analytics.CustomEvent("Incorrect_Plastic_Bin_Deposit", new Dictionary<string, object>()
         {
-            { "RubbishBin", RubbishBin }, //used to be binName
-            { "FoodWaste", FoodWaste },
-            { "NonRecyclable", NonRecyclable },
-            { "Paper", Paper }
+            { "FoodWaste", recyclingType },
+            { "NonRecyclable", recyclingType },
+            { "Paper", recyclingType }
             // You can add more parameters as needed
         });
         AnalyticsService.Instance.RecordEvent("Incorrect_Plastic_Bin_Deposit");
-        AnalyticsService.Instance.RecordEvent(RubbishBin);
-        AnalyticsService.Instance.RecordEvent(FoodWaste);
-        AnalyticsService.Instance.RecordEvent(NonRecyclable);
-        AnalyticsService.Instance.RecordEvent(Paper);
+        AnalyticsService.Instance.RecordEvent(recyclingType);
     }
     #endregion
 
