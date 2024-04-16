@@ -54,10 +54,11 @@ public class UIManager : MonoBehaviour
     private Vector3 truckStartScale;
     private Vector3 truckEndScale;
 
-    [SerializeField]
-    private float overallTimeElapsed;
+    //[SerializeField]
+    //private float overallTimeElapsed;
 
-    [SerializeField]
+    //[SerializeField]
+    // how long the truck has been scaling up or scaling down
     private float scaleTimeElapsed;
 
     [Header("How long the truck animation should be overall")]
@@ -68,10 +69,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private float scaleDuration;
 
+    // calculated in Start() dependant on what is set in the inspector for lerpDuration & scaleDuration
     private int numTimesToScale;
 
     // how many times the truck has scaled up then down
-    [SerializeField]
     private int scaleCounter;
 
     // holds the GameManager script to access its methods
@@ -139,13 +140,13 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) //                                                         <-------- TEMP
-        {
-            if (overallTimeElapsed < lerpDuration)
-            {
-                StartCoroutine(ThresholdAnim());
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.T)) //                                                         <-------- TEMP
+        //{
+        //    if (overallTimeElapsed < lerpDuration)
+        //    {
+        //        StartCoroutine(ThresholdAnim());
+        //    }
+        //}
 
         // pause screen
         if (pauseMenu != null)
@@ -313,7 +314,7 @@ public class UIManager : MonoBehaviour
             {
                 truckGO.transform.localScale = Vector3.Lerp(truckStartScale, truckEndScale, scaleTimeElapsed / scaleDuration);
                 scaleTimeElapsed += Time.deltaTime;
-                overallTimeElapsed += Time.deltaTime;
+                //overallTimeElapsed += Time.deltaTime;
 
                 yield return null;
             }
@@ -324,7 +325,7 @@ public class UIManager : MonoBehaviour
             {
                 truckGO.transform.localScale = Vector3.Lerp(truckEndScale, truckStartScale, scaleTimeElapsed / scaleDuration);
                 scaleTimeElapsed += Time.deltaTime;
-                overallTimeElapsed += Time.deltaTime;
+                //overallTimeElapsed += Time.deltaTime;
 
                 yield return null;
             }

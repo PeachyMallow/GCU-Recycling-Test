@@ -11215,7 +11215,6 @@ MonoBehaviour:
   truckClip: {fileID: 8300000, guid: 5816554eed6e7264cbd89d384ae4ca65, type: 3}
   uIManager: {fileID: 1172020880}
   levelMusic: {fileID: 290888590}
-  levelBGMusic: {fileID: 8300000, guid: 577a641a1c871594e956fce57d095203, type: 3}
   timerSlider: {fileID: 1654874850}
 --- !u!82 &246084077
 AudioSource:
@@ -47959,11 +47958,8 @@ MonoBehaviour:
   towardsLeftClip: {fileID: 8300000, guid: 43507c838007fb5459966da5f718119a, type: 3}
   towardsRightClip: {fileID: 8300000, guid: 2d9ffcead6376a74a9b266a3d3484834, type: 3}
   truckGO: {fileID: 508286067}
-  overallTimeElapsed: 0
-  scaleTimeElapsed: 0
   lerpDuration: 2
   scaleDuration: 0.35
-  scaleCounter: 0
   gM: {fileID: 246084076}
   winUI: {fileID: 372453564}
   starOne: {fileID: 1666867653}
