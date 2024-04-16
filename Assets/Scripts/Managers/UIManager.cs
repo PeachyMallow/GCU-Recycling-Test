@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
         }
 
         // scrolling hotbar
-        if (Input.GetKeyDown(KeyCode.LeftBracket)) // left
+        if (Input.GetKeyDown(KeyCode.H)) // left
         {
             if (inventoryPos > 0) 
             {
@@ -175,7 +175,7 @@ public class UIManager : MonoBehaviour
             ScrollHotbar();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightBracket)) // right
+        if (Input.GetKeyDown(KeyCode.J)) // right
         {
             if (inventoryPos < 7)
             {

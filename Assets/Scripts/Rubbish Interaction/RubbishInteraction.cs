@@ -104,14 +104,14 @@ public class RubbishInteraction : MonoBehaviour
     private void Update()
     {
         // when the player is depositing rubbish
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             canDeposit = true;
             keyPressed = true;
         }
 
         //once the player has deposited a piece of rubbish
-        else if (Input.GetKeyUp(KeyCode.Return))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             keyPressed = false;
             canDeposit = false;
