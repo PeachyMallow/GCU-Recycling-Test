@@ -22,8 +22,8 @@ public class RubbishInteraction : MonoBehaviour
     public float radNum = 0f;
     float currentVelocity = 0;
     public Vector3 collision = Vector3.zero;
-    //[SerializeField]
-    //public Animator binAnimator;//   <----- commented out for score glow work
+    [SerializeField]
+    public Animator binAnimator;
 
     [SerializeField]
     public bool binShakeBool;
@@ -45,32 +45,6 @@ public class RubbishInteraction : MonoBehaviour
     #region All UI Variables
     //[SerializeField]
     // public Slider enviroMeter;
-
-    // ----------------------------------------------------------------------------------
-
-    //                                                                  <----- old score glow 
-
-    //[Header("Drag UI Glow Here")]
-    //[SerializeField]
-    //private CanvasGroup increaseGlowGroup;
-    //[SerializeField]
-    //private CanvasGroup decreaseGlowGroup;
-
-    //[SerializeField]
-    //private float alphaMeasureIncrease;
-    //[SerializeField]
-    //private float alphaMeasureDecrease;
-
-    //[SerializeField]
-    //private float fadeSpeed;
-
-    //private bool increaseFadeIn = false;
-    //private bool increaseFadeOut = true;
-    //private bool decreaseFadeIn = true;
-    //private bool decreaseFadeOut = true;
-
-
-    // ----------------------------------------------------------------------------------
 
     [SerializeField]
     private GameObject depositIcon;
@@ -116,10 +90,6 @@ public class RubbishInteraction : MonoBehaviour
         Console.WriteLine("Auto Pickup Active");
         keyPressed = false;
         canDeposit = false;
-
-        //                                                                  <----- score glow 
-        //increaseFadeIn = false;
-        //decreaseFadeIn = false;
     }
 
     private void Update()
@@ -142,67 +112,6 @@ public class RubbishInteraction : MonoBehaviour
         //EndingmenuUI();
 
         float currentScore = Mathf.SmoothDamp(0, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
-
-     
-        //                                                                  <----- score glow
-        // old score glow code
-        #region Score UI Green & Red Glow
-
-        //if (increaseFadeIn == true)
-        //{
-        //    if (increaseGlowGroup.alpha < 1)
-        //    {
-        //        increaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
-        //        if (increaseGlowGroup.alpha >= 1)
-        //        {
-        //            increaseFadeIn = false;
-        //            increaseSource.PlayOneShot(increaseClip);
-        //            increaseFadeOut = true;
-        //            alphaMeasureIncrease = increaseGlowGroup.alpha;
-        //        }
-        //    }
-        //}
-
-        //if (increaseFadeOut == true)
-        //{
-        //    if (increaseGlowGroup.alpha >= 0)
-        //    {
-        //        increaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
-        //        if (increaseGlowGroup.alpha == 0)
-        //        {
-        //            increaseFadeOut = false;
-
-        //        }
-        //    }
-        //}
-
-        //if (decreaseFadeIn == true)
-        //{
-        //    if (decreaseGlowGroup.alpha < 1)
-        //    {
-        //        decreaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
-        //        if (decreaseGlowGroup.alpha == 1)
-        //        {
-        //            decreaseFadeIn = false;
-        //            decreaseSource.PlayOneShot(decreaseClip);
-        //            decreaseFadeOut = true;
-        //            alphaMeasureDecrease = decreaseGlowGroup.alpha;
-        //        }
-        //    }
-        //}
-
-        //if (decreaseFadeOut == true)
-        //{
-        //    if (decreaseGlowGroup.alpha >= 0)
-        //    {
-        //        decreaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
-        //        if (decreaseGlowGroup.alpha == 0)
-        //        {
-        //            decreaseFadeOut = false;
-        //        }
-        //    }
-        //}
-        #endregion
 
         #region Star UI Management
         if (recycledScore >= uiManager.starOneThresh)
@@ -289,7 +198,7 @@ public class RubbishInteraction : MonoBehaviour
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
                 // binAnimator = RubbishBin.GetComponent<Animator>();
-                //binAnimator.SetBool("binShakingBool", true);//   <----- commented out for score glow work
+                binAnimator.SetBool("binShakingBool", true);
                 depositIcon.SetActive(true);
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
@@ -317,7 +226,7 @@ public class RubbishInteraction : MonoBehaviour
 
                 if (numRubbish <= 0)
                 {
-                    //binAnimator.SetBool("binShakingBool", false);//   <----- commented out for score glow work
+                    binAnimator.SetBool("binShakingBool", false);
                     depositIcon.SetActive(false);
                 }
             }
@@ -351,20 +260,17 @@ public class RubbishInteraction : MonoBehaviour
     }
 
     /// <summary>
-    /// Changes EIM Score dependant on player interaction with the bin
+    /// Changes Score dependant on player interaction with the bin
     /// if a is true, then increase the score
     /// if a is false, then decrease the score
     /// </summary>
-    public void EIMScore(bool a)
+    public void Score(bool a)
     {
         if (a)
         {
-
             recycledScore++;
             // enviroMeter.value = recycledScore;
-            //increaseFadeIn = true;//                                                                  <----- score glow
-            //uiManager.ScoreGlowTransparency(true);
-            //uiManager.StartCoroutine("ScoreDepositGlow");
+            
             StartCoroutine(uiManager.ScoreDepositGlow(true));
         }
 
@@ -372,11 +278,8 @@ public class RubbishInteraction : MonoBehaviour
         {
             recycledScore--;
             // enviroMeter.value = recycledScore;
-            //decreaseFadeIn = true;//                                                                  <----- score glow
-            //uiManager.ScoreGlowTransparency(false);
-            //uiManager.StartCoroutine("ScoreDepositGlow");
+            
             StartCoroutine(uiManager.ScoreDepositGlow(false));
-            //uiManager.StartCoroutine("IncorrectDepositGlow");
         }
     }
 

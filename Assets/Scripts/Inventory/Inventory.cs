@@ -26,24 +26,10 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-
     public List<Item> items = new List<Item>();
-
 
     // total items that can be held in the hotbar
     public int inventorySize = 8;
-
-    //// parent GO of the items
-    //[SerializeField]
-    //private GameObject itemsParent;
-
-    //// the current items the player has in their inventory
-    //[SerializeField]
-    //private List<GameObject> currentItemSlots = new List<GameObject>(8); 
-
-    //// the icons of the items the player currently has in their inventory 
-    //[SerializeField]
-    //private List<GameObject> itemIcons = new List<GameObject>(8);
 
     [Header("Drag RubbishInteraction script here")]
     [SerializeField]
@@ -53,13 +39,6 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject InventoryFullText;
 
-
-
-
-    private void Start()
-    {
-        //ItemSlots();
-    }
 
     private void Update()
     {
@@ -93,10 +72,10 @@ public class Inventory : MonoBehaviour
         {
             if (items[arrayPos].recyclingType.StartsWith(binNameStart))
             {
-                rInteraction.EIMScore(true);
+                rInteraction.Score(true);
             }
 
-            else { rInteraction.EIMScore(false); }
+            else { rInteraction.Score(false); }
 
             items.Remove(items[arrayPos]);
 
@@ -117,16 +96,14 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool IsInventoryFull()
     {
-        if (/*currentItemSlots*/items.Count < inventorySize)
+        if (items.Count < inventorySize)
         {
-            //Debug.Log("Inventory is not full");
             return false;
         }
 
         else
         {
             InventoryFullText.SetActive(true);
-            Debug.Log("Inventory is full");
             return true;
         }
     }
@@ -138,52 +115,5 @@ public class Inventory : MonoBehaviour
     public int InventorySize()
     {
         return items.Count;
-    }
-
-    //// for now, hides all icon images
-    //private void ContainsItem()
-    //{
-    //    //if (itemIcons != null)
-    //    //{
-    //    //    foreach (GameObject icons in itemIcons)
-    //    //    {
-    //    //        icons.SetActive(false);
-    //    //    }
-    //    //}
-    //}
-
-    private void ItemSlots()
-    {
-        //// if the itemsParent has been assigned
-        //if (itemsParent != null)
-        //{
-        //    // adds all the child game objects to the currentItems list
-        //    foreach (Transform item in itemsParent.transform)
-        //    {
-        //        currentItemSlots.Add(item.gameObject);
-        //    }
-
-        //    ItemIcons();
-        //}
-
-        //else
-        //{
-        //    Debug.Log("Hotbar items parent hasn't been assigned in GameManager");
-        //}
-    }
-
-    // accesses each item slots corresponding icon
-    private void ItemIcons()
-    {
-        //if (currentItemSlots != null)
-        //{
-        //    for (int i = 0; i < currentItemSlots.Count; i++)
-        //    {
-        //        GameObject icon = currentItemSlots[i].transform.GetChild(0).gameObject;
-        //        itemIcons.Add(icon);
-        //    }
-
-        //    ContainsItem();
-        //}
     }
 }

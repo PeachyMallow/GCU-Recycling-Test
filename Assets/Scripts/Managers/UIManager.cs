@@ -112,37 +112,32 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI displayFinalScore;
     #endregion
 
-    
 
-    //                                                                  <----- new score glow
+
     [Header("\n----------------------------\n\n\nScore Glow\n")]
 
-    [Header("Drag Score Glows here")] // could have one score glow and change its colour as well? 
+    [Header("Drag 'ScoreGlowImg' here")]
     [SerializeField]
-    private Image scoreGreenGlow;
+    private Image glowImage;
 
-    [SerializeField]
-    private Image scoreRedGlow;
-
-    [SerializeField]
-    private bool glowInProgress;
-
-    [SerializeField]
-    private int glowCounter;
-
+    [Header("Set the glow's goal opacity here")]
     [SerializeField]
     private float maxGlowTransparency;
 
+    [Header("Set how fast the glow should fade in/out here")]
     [SerializeField]
     private float fadeSpeed;
 
+    [Header("Set correct & incorrect deposit colours here")]
     [SerializeField]
-    Color currentColour;
-
+    private Color correctDepositColour;
     [SerializeField]
-    Image currentImage;
+    private Color incorrectDepositColour;
 
-
+    private bool glowInProgress;
+    private int glowCounter;
+    private Color currentColour;
+    private Image currentImage;
 
     private void Start()
     {
@@ -208,76 +203,33 @@ public class UIManager : MonoBehaviour
         displayFinalScore.text = "Final Score: " + displayScoreText;
     }
 
-    //                                                                                  <----- new score glow
     /// <summary>
-    /// Changes score glow transparency dependant on bool passed
-    /// true - transparency will increase
-    /// false - transparency will decrease
+    /// Changes 'Score Glow' dependant on if the bool passed is true or false
+    /// true - green glow (set in inspector 'correctDepositColour')
+    /// false - red glow (set in inspector 'incorrectDepositColour')
     /// </summary>
-    /// <param name="increasing"></param>
-    //public void ScoreGlowTransparency(bool transparencyIncrease/*, Color glowColour*/)
-    //{
-    //    Debug.Log("ScoreGlowTransparency method called");
-    //    scoreGreenGlow & scoreRedGlow
-
-    //    Color glowColour = scoreGreenGlow.color;
-    //    float aZero = 0.0f;
-    //    float aOne = 1.0f;
-
-    //    if (transparencyIncrease)
-    //    {
-    //        if (glowColour.a != 1)
-    //        {
-    //            Debug.Log("glow increasing");
-    //            Debug.Log(glowColour.a);
-    //             increase transparency
-    //            glowColour.a = 1f;
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //         decrease transparency
-    //        if (glowColour.a != 0)
-    //        {
-    //            Debug.Log("glow decreasing");
-    //            Debug.Log(glowColour.a);
-    //            glowColour.a = 0f;
-    //        }
-    //    }
-    //}
-
+    /// <param name="correctDeposit"></param>
+    /// <returns></returns>
     public IEnumerator ScoreDepositGlow(bool correctDeposit)
     {
-        Debug.Log("In coroutine");
-
-        //Color currentColour;
-        //Image currentImage;
-
         // sets the corresponding score glow colour
         if (correctDeposit) // green
         { 
-            currentColour = scoreGreenGlow.color;
-            currentImage = scoreGreenGlow;
+            currentColour = correctDepositColour;
         }
         
         else // red
         { 
-            currentColour = scoreRedGlow.color;
-            currentImage = scoreRedGlow;
+            currentColour = incorrectDepositColour;
         }
 
-        //Color glowColour = scoreGreenGlow.color;
-        //Color currentColour = scoreGreenGlow.color;
+        currentImage = glowImage;
 
         float targetAlpha = maxGlowTransparency;
-
-        //glowCounter = 0;
 
         if (!glowInProgress)
         {
             glowInProgress = true;
-            Debug.Log("New Glow Started");
 
             while (glowCounter < 2)
             {
@@ -292,28 +244,12 @@ public class UIManager : MonoBehaviour
                 glowCounter++;
             }
 
-            // reset glow transparency to 0
+            // reset: glow transparency to 0
             currentImage.color = new Color(currentImage.color.r, currentImage.color.g, currentImage.color.b, 0.0f);
             glowInProgress = false;
             glowCounter = 0;
         }
-
-
-        //if there's a new deposit
-        //if there's a glow in progress
-        //reset current image to 0 transparency
-        // start new glow
-        else
-        {
-
-        }
     }
-
-    //public IEnumerator IncorrectDepositGlow()
-    //{
-
-    //}
-
 
     #region inventoryMethods
     private void UpdateInventoryUI()
