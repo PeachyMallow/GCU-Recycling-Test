@@ -246,36 +246,43 @@ public class RubbishInteraction : MonoBehaviour
                     // Deposit rubbish into the bin
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject, out binType, out recyclingType);
 
-                    switch(binType)
-                    {
-                        case "Paper":
-                            FindObjectOfType<UGS_Analytics>().Correct_Paper_Bin_Deposit(recyclingType);
-                            break;
-                        case "FoodWaste":
-                            FindObjectOfType<UGS_Analytics>().Correct_Food_Bin_Deposit(recyclingType);
-                            break;
-                        case "NonRecyclable":
-                            FindObjectOfType<UGS_Analytics>().Correct_General_Waste_Bin_Deposit(recyclingType);
-                            break;
-                        case "Plastic":
-                            FindObjectOfType<UGS_Analytics>().Correct_Plastic_Bin_Deposit(recyclingType);
-                            break;
-                    }
+                    bool isCorrectDeposit = (binType == recyclingType);// Check if the deposit is correct
 
-                    switch(binType)
+                    if (isCorrectDeposit)
                     {
-                        case "Paper":
-                            FindObjectOfType<UGS_Analytics>().Incorrect_Paper_Bin_Deposit(recyclingType);
-                            break;
-                        case "FoodWaste":
-                            FindObjectOfType<UGS_Analytics>().Incorrect_Food_Bin_Deposit(recyclingType);
-                            break;
-                        case "NonRecyclable":
-                            FindObjectOfType<UGS_Analytics>().Incorrect_General_Waste_Bin_Deposit(recyclingType);
-                            break;
-                        case "Plastic":
-                            FindObjectOfType<UGS_Analytics>().Incorrect_Plastic_Bin_Deposit(recyclingType);
-                            break;
+                        switch (binType)
+                        {
+                            case "Paper":
+                                FindObjectOfType<UGS_Analytics>().Correct_Paper_Bin_Deposit(recyclingType);
+                                break;
+                            case "FoodWaste":
+                                FindObjectOfType<UGS_Analytics>().Correct_Food_Bin_Deposit(recyclingType);
+                                break;
+                            case "NonRecyclable":
+                                FindObjectOfType<UGS_Analytics>().Correct_General_Waste_Bin_Deposit(recyclingType);
+                                break;
+                            case "Plastic":
+                                FindObjectOfType<UGS_Analytics>().Correct_Plastic_Bin_Deposit(recyclingType);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (binType)
+                        {
+                            case "Paper":
+                                FindObjectOfType<UGS_Analytics>().Incorrect_Paper_Bin_Deposit(recyclingType);
+                                break;
+                            case "FoodWaste":
+                                FindObjectOfType<UGS_Analytics>().Incorrect_Food_Bin_Deposit(recyclingType);
+                                break;
+                            case "NonRecyclable":
+                                FindObjectOfType<UGS_Analytics>().Incorrect_General_Waste_Bin_Deposit(recyclingType);
+                                break;
+                            case "Plastic":
+                                FindObjectOfType<UGS_Analytics>().Incorrect_Plastic_Bin_Deposit(recyclingType);
+                                break;
+                        }
                     }
 
                     /*
