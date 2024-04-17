@@ -48,14 +48,15 @@ public class RubbishInteraction : MonoBehaviour
 
     [SerializeField]
     private GameObject depositIcon;
-    [SerializeField]
-    private AudioSource increaseSource;
-    [SerializeField]
-    private AudioClip increaseClip;
-    [SerializeField]
-    private AudioSource decreaseSource;
-    [SerializeField]
-    private AudioClip decreaseClip;
+
+    //[SerializeField]
+    //private AudioSource increaseSource;
+    //[SerializeField]
+    //private AudioClip increaseClip;
+    //[SerializeField]
+    //private AudioSource decreaseSource;
+    //[SerializeField]
+    //private AudioClip decreaseClip;
 
     #endregion
 

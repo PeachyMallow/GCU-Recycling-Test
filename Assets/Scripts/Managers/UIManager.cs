@@ -134,6 +134,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Color incorrectDepositColour;
 
+    // set in Start() - AudioSource component of 'glowImage'
+    private AudioSource scoreAudioSource;
+
+    [Header("Add Score Audio Clips here")]
+    [SerializeField]
+    private AudioClip scoreIncreaseAudio;
+    [SerializeField]
+    private AudioClip scoreDecreaseAudio;
+
     private bool glowInProgress;
     private int glowCounter;
     private Color currentColour;
@@ -153,6 +162,9 @@ public class UIManager : MonoBehaviour
         truckStartScale = truckGO.transform.localScale;
         truckEndScale = truckStartScale * 1.132f;
         numTimesToScale = Mathf.FloorToInt((lerpDuration / scaleDuration) / 2);
+
+        // score
+        scoreAudioSource = glowImage.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -216,11 +228,13 @@ public class UIManager : MonoBehaviour
         if (correctDeposit) // green
         { 
             currentColour = correctDepositColour;
+            scoreAudioSource.PlayOneShot(scoreIncreaseAudio);
         }
         
         else // red
         { 
             currentColour = incorrectDepositColour;
+            scoreAudioSource.PlayOneShot(scoreDecreaseAudio);
         }
 
         currentImage = glowImage;
