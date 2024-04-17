@@ -22,8 +22,8 @@ public class RubbishInteraction : MonoBehaviour
     public float radNum = 0f;
     float currentVelocity = 0;
     public Vector3 collision = Vector3.zero;
-    [SerializeField]
-    public Animator binAnimator;
+    //[SerializeField]
+    //public Animator binAnimator;//   <----- commented out for score glow work
 
     [SerializeField]
     public bool binShakeBool;
@@ -43,18 +43,35 @@ public class RubbishInteraction : MonoBehaviour
     private bool Autopickup;
 
     #region All UI Variables
-    [SerializeField]
+    //[SerializeField]
     // public Slider enviroMeter;
-    [Header("Drag UI Glow Here")]
-    private CanvasGroup increaseGlowGroup;
-    [SerializeField]
-    private CanvasGroup decreaseGlowGroup;
-    [SerializeField]
-    private float fadeSpeed;
-    private bool increaseFadeIn = false;
-    private bool increaseFadeOut = true;
-    private bool decreaseFadeIn = true;
-    private bool decreaseFadeOut = true;
+
+    // ----------------------------------------------------------------------------------
+
+    //                                                                  <----- old score glow 
+
+    //[Header("Drag UI Glow Here")]
+    //[SerializeField]
+    //private CanvasGroup increaseGlowGroup;
+    //[SerializeField]
+    //private CanvasGroup decreaseGlowGroup;
+
+    //[SerializeField]
+    //private float alphaMeasureIncrease;
+    //[SerializeField]
+    //private float alphaMeasureDecrease;
+
+    //[SerializeField]
+    //private float fadeSpeed;
+
+    //private bool increaseFadeIn = false;
+    //private bool increaseFadeOut = true;
+    //private bool decreaseFadeIn = true;
+    //private bool decreaseFadeOut = true;
+
+
+    // ----------------------------------------------------------------------------------
+
     [SerializeField]
     private GameObject depositIcon;
     [SerializeField]
@@ -65,10 +82,7 @@ public class RubbishInteraction : MonoBehaviour
     private AudioSource decreaseSource;
     [SerializeField]
     private AudioClip decreaseClip;
-    [SerializeField]
-    private float alphaMeasureIncrease;
-    [SerializeField]
-    private float alphaMeasureDecrease;
+
     #endregion
 
     // used to update what the player is currently holding
@@ -102,8 +116,10 @@ public class RubbishInteraction : MonoBehaviour
         Console.WriteLine("Auto Pickup Active");
         keyPressed = false;
         canDeposit = false;
-        increaseFadeIn = false;
-        decreaseFadeIn = false;
+
+        //                                                                  <----- score glow 
+        //increaseFadeIn = false;
+        //decreaseFadeIn = false;
     }
 
     private void Update()
@@ -126,63 +142,66 @@ public class RubbishInteraction : MonoBehaviour
         //EndingmenuUI();
 
         float currentScore = Mathf.SmoothDamp(0, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
-   
+
+     
+        //                                                                  <----- score glow
+        // old score glow code
         #region Score UI Green & Red Glow
-        if (increaseFadeIn == true)
-        {
-            if (increaseGlowGroup.alpha < 1)
-            {
-                increaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
-                if (increaseGlowGroup.alpha >= 1)
-                {
-                    increaseFadeIn = false;
-                    increaseSource.PlayOneShot(increaseClip);
-                    increaseFadeOut = true;
-                    alphaMeasureIncrease = increaseGlowGroup.alpha;
-                }
-            }
-        }
 
-        if (increaseFadeOut == true)
-        {
-            if (increaseGlowGroup.alpha >= 0)
-            {
-                increaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
-                if (increaseGlowGroup.alpha == 0)
-                {
-                    increaseFadeOut = false;
+        //if (increaseFadeIn == true)
+        //{
+        //    if (increaseGlowGroup.alpha < 1)
+        //    {
+        //        increaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
+        //        if (increaseGlowGroup.alpha >= 1)
+        //        {
+        //            increaseFadeIn = false;
+        //            increaseSource.PlayOneShot(increaseClip);
+        //            increaseFadeOut = true;
+        //            alphaMeasureIncrease = increaseGlowGroup.alpha;
+        //        }
+        //    }
+        //}
 
-                }
-            }
-        }
+        //if (increaseFadeOut == true)
+        //{
+        //    if (increaseGlowGroup.alpha >= 0)
+        //    {
+        //        increaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
+        //        if (increaseGlowGroup.alpha == 0)
+        //        {
+        //            increaseFadeOut = false;
 
+        //        }
+        //    }
+        //}
 
-        if (decreaseFadeIn == true)
-        {
-            if (decreaseGlowGroup.alpha < 1)
-            {
-                decreaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
-                if (decreaseGlowGroup.alpha == 1)
-                {
-                    decreaseFadeIn = false;
-                    decreaseSource.PlayOneShot(decreaseClip);
-                    decreaseFadeOut = true;
-                    alphaMeasureDecrease = decreaseGlowGroup.alpha;
-                }
-            }
-        }
+        //if (decreaseFadeIn == true)
+        //{
+        //    if (decreaseGlowGroup.alpha < 1)
+        //    {
+        //        decreaseGlowGroup.alpha += Time.deltaTime * fadeSpeed;
+        //        if (decreaseGlowGroup.alpha == 1)
+        //        {
+        //            decreaseFadeIn = false;
+        //            decreaseSource.PlayOneShot(decreaseClip);
+        //            decreaseFadeOut = true;
+        //            alphaMeasureDecrease = decreaseGlowGroup.alpha;
+        //        }
+        //    }
+        //}
 
-        if (decreaseFadeOut == true)
-        {
-            if (decreaseGlowGroup.alpha >= 0)
-            {
-                decreaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
-                if (decreaseGlowGroup.alpha == 0)
-                {
-                    decreaseFadeOut = false;
-                }
-            }
-        }
+        //if (decreaseFadeOut == true)
+        //{
+        //    if (decreaseGlowGroup.alpha >= 0)
+        //    {
+        //        decreaseGlowGroup.alpha -= Time.deltaTime * fadeSpeed;
+        //        if (decreaseGlowGroup.alpha == 0)
+        //        {
+        //            decreaseFadeOut = false;
+        //        }
+        //    }
+        //}
         #endregion
 
         #region Star UI Management
@@ -231,7 +250,7 @@ public class RubbishInteraction : MonoBehaviour
         {
             if (hit.collider.CompareTag("Bin") && keyPressed)
             {
-                Debug.Log(hit.collider.name);
+                //Debug.Log(hit.collider.name);
                 // canDeposit = true;
             }
             else
@@ -264,16 +283,13 @@ public class RubbishInteraction : MonoBehaviour
     // these check if the player is in contact with the bins allowing for a deposit 
     private void OnTriggerStay(Collider RubbishBin)
     {
-
-
         if (RubbishBin.tag == "Bin")
         {
-
             // is the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
-               // binAnimator = RubbishBin.GetComponent<Animator>();
-                binAnimator.SetBool("binShakingBool", true);
+                // binAnimator = RubbishBin.GetComponent<Animator>();
+                //binAnimator.SetBool("binShakingBool", true);//   <----- commented out for score glow work
                 depositIcon.SetActive(true);
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
@@ -301,14 +317,12 @@ public class RubbishInteraction : MonoBehaviour
 
                 if (numRubbish <= 0)
                 {
-                    binAnimator.SetBool("binShakingBool", false);
+                    //binAnimator.SetBool("binShakingBool", false);//   <----- commented out for score glow work
                     depositIcon.SetActive(false);
                 }
             }
 
             canDeposit = false;
-
-
         }
 
         if (Autopickup == false)
@@ -348,15 +362,21 @@ public class RubbishInteraction : MonoBehaviour
 
             recycledScore++;
             // enviroMeter.value = recycledScore;
-            increaseFadeIn = true;
+            //increaseFadeIn = true;//                                                                  <----- score glow
+            //uiManager.ScoreGlowTransparency(true);
+            //uiManager.StartCoroutine("ScoreDepositGlow");
+            StartCoroutine(uiManager.ScoreDepositGlow(true));
         }
 
         else
         {
             recycledScore--;
             // enviroMeter.value = recycledScore;
-            decreaseFadeIn = true;
-
+            //decreaseFadeIn = true;//                                                                  <----- score glow
+            //uiManager.ScoreGlowTransparency(false);
+            //uiManager.StartCoroutine("ScoreDepositGlow");
+            StartCoroutine(uiManager.ScoreDepositGlow(false));
+            //uiManager.StartCoroutine("IncorrectDepositGlow");
         }
     }
 

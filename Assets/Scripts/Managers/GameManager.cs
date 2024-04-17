@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
 using TMPro;
+using static UnityEditor.Experimental.GraphView.Port;
 //using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -102,9 +103,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int binsMaxCapacity;
 
+    #region timerVariables
     [Header("\n----------------------------\n\n\nTimer\n")]
     
-    #region timerVariables
     // timer set in inspector
     [Header("Enter time in seconds")]
     [SerializeField]
@@ -140,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     // is the timer active
     private bool timerActive;
+    #endregion
 
     //Audio Management with Timer
     [Header("Drag Level Music Audio Source here")]
@@ -148,7 +150,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     public Slider timerSlider;
-    #endregion
 
     private void Start()
     {
