@@ -75,9 +75,17 @@ public class GameManager : MonoBehaviour
 
 
     #region Starting Countdown
-    [Header("Drag Countdown TextMeshPro here")]
+    [Header("Drag Countdown Splash here")]
     [SerializeField]
-    public TextMeshProUGUI countdownText;
+    public GameObject countdownSplashGO;
+    [SerializeField]
+    public Sprite countdownThreeImage;
+    [SerializeField]
+    public Sprite countdownTwoImage;
+    [SerializeField]
+    public Sprite countdownOneImage;
+    [SerializeField]
+    public Sprite countdownGoImage;
     [SerializeField]
     private AudioSource threeSfxSource;
     [SerializeField]
@@ -211,25 +219,25 @@ public class GameManager : MonoBehaviour
         // Pause the game's time
         Time.timeScale = 0f;
 
-        countdownText.text = "3";
+        countdownSplashGO.GetComponent<Image>().sprite = countdownThreeImage;
         threeSfxSource.PlayOneShot(threeSFX);
         yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.text = "2";
+        countdownSplashGO.GetComponent<Image>().sprite = countdownTwoImage;
         twoSfxSource.PlayOneShot(twoSFX);
         yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.text = "1";
+        countdownSplashGO.GetComponent<Image>().sprite = countdownOneImage;
         oneSfxSource.PlayOneShot(oneSFX);
         yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.text = "Go!";
+        countdownSplashGO.GetComponent<Image>().sprite = countdownGoImage;
         goSfxSource.PlayOneShot(goSFX);
         yield return new WaitForSecondsRealtime(1f);
-        
+
 
         // Resume the game's time
-        countdownText.text = "";
+        countdownSplashGO.SetActive(false);
         Time.timeScale = 1f;
         levelMusic.Play();
     }

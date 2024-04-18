@@ -23,7 +23,12 @@ public class RubbishInteraction : MonoBehaviour
     float currentVelocity = 0;
     public Vector3 collision = Vector3.zero;
     [SerializeField]
-    public Animator binAnimator;
+    public Animator paperBinAnimator;
+    public Animator plasticBinAnimator;
+    public Animator generalBinAnimator;
+    public Animator foodwasteBinAnimator;
+    [SerializeField]
+    private bool collidingBin;
 
     [SerializeField]
     public bool binShakeBool;
@@ -95,6 +100,7 @@ public class RubbishInteraction : MonoBehaviour
 
     private void Update()
     {
+
         // when the player is depositing rubbish
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -195,11 +201,12 @@ public class RubbishInteraction : MonoBehaviour
     {
         if (RubbishBin.tag == "Bin")
         {
+            collidingBin = true;
             // is the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
                 // binAnimator = RubbishBin.GetComponent<Animator>();
-                binAnimator.SetBool("binShakingBool", true);
+                paperBinAnimator.SetBool("binShakingBool",true);
                 depositIcon.SetActive(true);
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
@@ -227,7 +234,6 @@ public class RubbishInteraction : MonoBehaviour
 
                 if (numRubbish <= 0)
                 {
-                    binAnimator.SetBool("binShakingBool", false);
                     depositIcon.SetActive(false);
                 }
             }
