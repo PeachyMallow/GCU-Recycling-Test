@@ -20,8 +20,10 @@ public class RubbishInteraction : MonoBehaviour
     private int numRubbish;
     private int numRubbishHeld;
     public float radNum = 0f;
+
     float currentVelocity = 0;
     public Vector3 collision = Vector3.zero;
+
     [SerializeField]
     public Animator paperBinAnimator;
     public Animator plasticBinAnimator;
@@ -120,37 +122,6 @@ public class RubbishInteraction : MonoBehaviour
 
         float currentScore = Mathf.SmoothDamp(0, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
 
-        #region Star UI Management
-        if (recycledScore >= uiManager.starOneThresh)
-        {
-            uiManager.starOne.GetComponent<Image>().sprite = uiManager.starFull;
-        }
-
-        if (recycledScore <= uiManager.starOneThresh)
-        {
-            uiManager.starOne.GetComponent<Image>().sprite = uiManager.starEmpty;
-        }
-
-        if (recycledScore >= uiManager.starTwoThresh)
-        {
-           uiManager.starTwo.GetComponent<Image>().sprite = uiManager.starFull;
-        }
-
-        if (recycledScore <= uiManager.starTwoThresh)
-        {
-            uiManager.starTwo.GetComponent<Image>().sprite = uiManager.starEmpty;
-        }
-
-        if (recycledScore >= uiManager.starThreeThresh)
-        {
-           uiManager.starThree.GetComponent<Image>().sprite = uiManager.starFull;
-        }
-
-        if (recycledScore <= uiManager.starThreeThresh)
-        {
-            uiManager.starThree.GetComponent<Image>().sprite = uiManager.starEmpty;
-        }
-        #endregion
   
     }
 

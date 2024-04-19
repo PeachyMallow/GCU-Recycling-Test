@@ -77,7 +77,10 @@ public class UIManager : MonoBehaviour
     [Header("\n----------------------------\n\n\nMenu Screens\n")]
     // menu screens
     [Header("Win Screen")]
+
+    #region STARS
     [SerializeField]
+    [Header("Drag UI Assets Here")]
     public GameObject winUI;
     public GameObject starOne;
     public GameObject starTwo;
@@ -85,12 +88,53 @@ public class UIManager : MonoBehaviour
     public Sprite starFull;
     public Sprite starEmpty;
 
+    [Header("Debug for Stars and End Fanfare")]
+    public bool winScreenActive;
+    public float starOneDelay;
+    public float starTwoDelay;
+    public float starThreeDelay;
+    public float fanfareDelay;
+    public bool hasStarOnePlayed = false;
+    public bool hasStarTwoPlayed = false;
+    public bool hasStarThreePlayed = false;
+    public bool hasFanfarePlayed = false;
+   
+
+    [Header("Drag Animators on Stars Here")]
+    [SerializeField]
+    public Animator starOneAnimator;
+    [SerializeField]
+    public Animator starTwoAnimator;
+    [SerializeField]
+    public Animator starThreeAnimator;
+
+    [Header("Debug for Star Threshold")]
     [Header("Enter Value as ORIGINAL - NOT x25")]
     [SerializeField]
     public float starOneThresh;
     public float starTwoThresh;
     public float starThreeThresh;
+    public float starsEarned;
 
+    [Header("Win Screen Audio")]
+    [SerializeField]
+    public AudioSource drumRollSource;
+    public AudioClip drumRollSFX;
+    public AudioSource starOneSource;
+    public AudioClip starOneSFX;
+    public AudioSource starTwoSource;
+    public AudioClip starTwoSFX;
+    public AudioSource starThreeSource;
+    public AudioClip starThreeSFX;
+    [Header("Fanfare Audio")]
+    public AudioSource oneStarFanfareSource;
+    public AudioClip oneStarFanfareClip;
+    public AudioSource twoStarFanfareSource;
+    public AudioClip twoStarFanfareClip;
+    public AudioSource threeStarFanfareSource;
+    public AudioClip threeStarFanfareClip;
+
+    #endregion
     [Header("Drag GameOver UI here")]
     [SerializeField]
     public GameObject gameOverUI;
@@ -165,6 +209,9 @@ public class UIManager : MonoBehaviour
 
         // score
         scoreAudioSource = glowImage.GetComponent<AudioSource>();
+
+        // win screen
+        winScreenActive = false;
     }
 
     private void Update()
@@ -213,16 +260,75 @@ public class UIManager : MonoBehaviour
         displayScoreText = displayScoreVar.ToString();
         displayScoreGO.text = "Score: " + displayScoreText;
         displayFinalScore.text = "Final Score: " + displayScoreText;
+
+        // Checking if the WinScreen object is active for Star Animation
+        if (winScreenActive)
+        {
+            // Decrease delay for each star only if its animation hasn't played yet
+            if (!hasStarOnePlayed)
+            {
+                starOneDelay -= Time.unscaledDeltaTime;
+                // Debug.Log("Star One Delay: " + starOneDelay);
+            }
+
+            if (!hasStarTwoPlayed)
+            {
+                starTwoDelay -= Time.unscaledDeltaTime;
+                //Debug.Log("Star Two Delay: " + starTwoDelay);
+            }
+
+            if (!hasStarThreePlayed)
+            {
+                starThreeDelay -= Time.unscaledDeltaTime;
+                // Debug.Log("Star Three Delay: " + starThreeDelay);
+            }
+            if (!hasFanfarePlayed)
+            {
+                fanfareDelay -= Time.unscaledDeltaTime;
+            }
+
+            if (starOneDelay <= 0 && !hasStarOnePlayed)
+            {
+                Debug.Log("Playing Star One Animation");
+                PlayStarAnimation(starOne, "PlayStarOne", ref hasStarOnePlayed, starOneSource, starOneSFX);
+            }
+
+            if (starTwoDelay <= 0 && !hasStarTwoPlayed)
+            {
+                Debug.Log("Playing Star Two Animation");
+                PlayStarAnimation(starTwo, "PlayStarTwo", ref hasStarTwoPlayed, starTwoSource, starTwoSFX);
+            }
+
+            if (starThreeDelay <= 0 && !hasStarThreePlayed)
+            {
+                Debug.Log("Playing Star Three Animation");
+                PlayStarAnimation(starThree, "PlayStarThree", ref hasStarThreePlayed, starThreeSource, starThreeSFX);
+            }
+
+            if (fanfareDelay <= 0 && !hasFanfarePlayed && starsEarned > 1)
+            {
+                PlayEndFanfare(starsEarned);
+                hasFanfarePlayed = true;
+            }
+
+            if (!hasFanfarePlayed && starsEarned == 1)
+            {
+                PlayEndFanfare(starsEarned);
+                hasFanfarePlayed = true;
+            }
+        }
+
+
     }
 
-    /// <summary>
-    /// Changes 'Score Glow' dependant on if the bool passed is true or false
-    /// true - green glow (set in inspector 'correctDepositColour')
-    /// false - red glow (set in inspector 'incorrectDepositColour')
-    /// </summary>
-    /// <param name="correctDeposit"></param>
-    /// <returns></returns>
-    public IEnumerator ScoreDepositGlow(bool correctDeposit)
+        /// <summary>
+        /// Changes 'Score Glow' dependant on if the bool passed is true or false
+        /// true - green glow (set in inspector 'correctDepositColour')
+        /// false - red glow (set in inspector 'incorrectDepositColour')
+        /// </summary>
+        /// <param name="correctDeposit"></param>
+        /// <returns></returns>
+        public IEnumerator ScoreDepositGlow(bool correctDeposit)
     {
         // sets the corresponding score glow colour
         if (correctDeposit) // green
@@ -354,6 +460,8 @@ public class UIManager : MonoBehaviour
         {
             if (winUI != null)
             {
+
+                winScreenActive = true;
                 winUI.SetActive(true);
                 Time.timeScale = 0.0f;
             }
@@ -365,7 +473,10 @@ public class UIManager : MonoBehaviour
         {
             if (gameOverUI != null)
             {
+
+                winScreenActive = true;
                 gameOverUI.SetActive(true);
+                drumRollSource.PlayOneShot(drumRollSFX);
                 Time.timeScale = 0.0f;
             }
 
@@ -409,5 +520,52 @@ public class UIManager : MonoBehaviour
         scaleCounter = 0;
     }
 
+    private void PlayStarAnimation(GameObject star, string triggerName, ref bool hasPlayed, AudioSource starSource, AudioClip starClip)
+    {
+        if (star != null)
+        {
+            Animator starAnimator = star.GetComponent<Animator>();
+            if (starAnimator != null && rubbishInteraction.recycledScore >= GetStarThreshold(star))
+            {
+                Debug.Log("Triggering Animation for " + star.name + " with trigger: " + triggerName);
+                starAnimator.SetTrigger(triggerName);
+                hasPlayed = true;
+                starSource.PlayOneShot(starClip);
+                starsEarned++;
 
+            }
+        }
+    }
+
+    private void PlayEndFanfare(float totalStars)
+    {
+        if (totalStars == 1)
+        {
+            oneStarFanfareSource.PlayOneShot(oneStarFanfareClip);
+        }
+
+        if (totalStars == 2)
+        {
+            twoStarFanfareSource.PlayOneShot(twoStarFanfareClip);
+        }
+
+        if (totalStars == 3)
+        {
+            threeStarFanfareSource.PlayOneShot(threeStarFanfareClip);
+        }
+    }
+
+
+    private float GetStarThreshold(GameObject star)
+    {
+        if (star == starOne)
+            return starOneThresh;
+        else if (star == starTwo)
+            return starTwoThresh;
+        else if (star == starThree)
+            return starThreeThresh;
+
+        // Return a default threshold value if the star is not recognized
+        return float.MaxValue; // Return a very large value
+    }
 }
