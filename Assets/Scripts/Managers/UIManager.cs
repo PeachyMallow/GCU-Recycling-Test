@@ -305,13 +305,7 @@ public class UIManager : MonoBehaviour
                 PlayStarAnimation(starThree, "PlayStarThree", ref hasStarThreePlayed, starThreeSource, starThreeSFX);
             }
 
-            if (fanfareDelay <= 0 && !hasFanfarePlayed && starsEarned > 1)
-            {
-                PlayEndFanfare(starsEarned);
-                hasFanfarePlayed = true;
-            }
-
-            if (!hasFanfarePlayed && starsEarned == 1)
+            if (fanfareDelay <= 0 && !hasFanfarePlayed)
             {
                 PlayEndFanfare(starsEarned);
                 hasFanfarePlayed = true;
