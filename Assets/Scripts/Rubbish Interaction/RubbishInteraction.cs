@@ -18,6 +18,7 @@ public class RubbishInteraction : MonoBehaviour
     private int recycledHighScore;
     public int displayScore;
     private int numRubbish;
+    [SerializeField]
     private int numRubbishHeld;
     public float radNum = 0f;
 
@@ -76,7 +77,7 @@ public class RubbishInteraction : MonoBehaviour
     [SerializeField]
     private UIManager uiManager;
 
-    // true when player presses E
+    // true when player presses Space
     private bool keyPressed;
 
     // required to deposit one item at a time
@@ -102,7 +103,6 @@ public class RubbishInteraction : MonoBehaviour
 
     private void Update()
     {
-
         // when the player is depositing rubbish
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -121,8 +121,6 @@ public class RubbishInteraction : MonoBehaviour
         //EndingmenuUI();
 
         float currentScore = Mathf.SmoothDamp(0, recycledScore, ref currentVelocity, 100 * Time.deltaTime);
-
-  
     }
 
     private void FixedUpdate()
@@ -135,25 +133,32 @@ public class RubbishInteraction : MonoBehaviour
 
         if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
         {
-            if (hit.collider.CompareTag("Bin") && keyPressed)
+            if (hit.collider.CompareTag("Bin") && numRubbishHeld > 0)
             {
+                //Debug.Log("Colliding with bin");
+                depositIcon.SetActive(true); // this being here makes this work 1/2
                 //Debug.Log(hit.collider.name);
-                // canDeposit = true;
+                //canDeposit = true;
             }
+
             else
             {
+                //depositIcon.SetActive(false);
                 //canDeposit = false;
             }
+
             Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);
         }
         else
         {
             Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);
+
             canDeposit = false;
-            depositIcon.SetActive(false);
+            depositIcon.SetActive(false);// this being here makes this work 2/2
         }
     }
 
+    // rubbish pickup
     private void OnTriggerEnter(Collider Rubbish)
     {
         if (Autopickup == true)
@@ -173,19 +178,23 @@ public class RubbishInteraction : MonoBehaviour
         if (RubbishBin.tag == "Bin")
         {
             collidingBin = true;
-            // is the bin is full?
+            // if the bin is full?
             if (!RubbishBin.GetComponent<Bins>().IsBinFull())
             {
+                //Debug.Log("Able to deposit");
+                //depositIcon.SetActive(true);
+
                 // binAnimator = RubbishBin.GetComponent<Animator>();
-                paperBinAnimator.SetBool("binShakingBool",true);
-                depositIcon.SetActive(true);
+                //paperBinAnimator.SetBool("binShakingBool",true); //               <-- Uncomment once work is done on recycling logo
+               
                 // keypress 'E' is controlled in Update()
                 if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
                 {
                     /*// unsure if needed?
                     //recycledScore++;
                     //recycledHighScore++;*/
-                    GetComponent<Animator>().Play("Deposit", -1, 0f);
+
+                    //GetComponent<Animator>().Play("Deposit", -1, 0f);
                     Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject);
 
                     numRubbishHeld = Inventory.instance.InventorySize();
@@ -197,20 +206,28 @@ public class RubbishInteraction : MonoBehaviour
                     RubbishScore.text = "Rubbish Collected: " + numRubbishHeld;*/
                 }
 
-                else if (keyPressed && numRubbish <= 0)
-                {
-                    Console.WriteLine("No rubbish to deposit");
-                    //animator.SetBool("isRecycling", false);
-                }
+                //else if (numRubbishHeld <= 0)
+                //{
+                //    depositIcon.SetActive(false);
+                //    //Console.WriteLine("No rubbish to deposit");
+                //    //animator.SetBool("isRecycling", false);
+                //}
 
-                if (numRubbish <= 0)
-                {
-                    depositIcon.SetActive(false);
-                }
+                //if (numRubbish <= 0)
+                //{
+                //    depositIcon.SetActive(false);
+                //}
             }
 
             canDeposit = false;
         }
+
+        else { collidingBin = false; }
+
+        //else
+        //{
+        //    depositIcon.SetActive(false);
+        //}
 
         if (Autopickup == false)
         {
@@ -244,6 +261,8 @@ public class RubbishInteraction : MonoBehaviour
     /// </summary>
     public void Score(bool a)
     {
+        GetComponent<Animator>().Play("Deposit", -1, 0f);
+
         if (a)
         {
             recycledScore++;

@@ -21468,7 +21468,6 @@ MonoBehaviour:
   twoSFX: {fileID: 8300000, guid: 3e6940a0bc91db6449c0b255691b4040, type: 3}
   oneSFX: {fileID: 8300000, guid: c934b293158932f46850f9323d18d998, type: 3}
   goSFX: {fileID: 8300000, guid: 4c38e063a04de78498cc9eb6826a80b4, type: 3}
-  countdownFinished: 0
   binsMaxCapacity: 10
   timer: 120
   truckSource: {fileID: 1123941671}
@@ -23205,7 +23204,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1322398002}
   pauseMenu: {fileID: 679316111}
   rubbishInteraction: {fileID: 1634594924}
-  displayScoreGO: {fileID: 1820608743}
+  displayScoreGO: {fileID: 1796697603}
   displayScoreVar: 0
   displayScoreText: 
   displayFinalScore: {fileID: 117380233}
@@ -36734,6 +36733,7 @@ MonoBehaviour:
   recycledScore: 0
   currentRecycledScore: 0
   displayScore: 0
+  numRubbishHeld: 0
   radNum: 0
   collision: {x: 0, y: 0, z: 0}
   paperBinAnimator: {fileID: 1422972089}
@@ -40973,7 +40973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1826104089
 RectTransform:
   m_ObjectHideFlags: 0
