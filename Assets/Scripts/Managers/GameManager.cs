@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip goSFX;
 
-    [SerializeField]
+    // prevents pausing during countdown
     private bool countdownFinished;
 
     #endregion

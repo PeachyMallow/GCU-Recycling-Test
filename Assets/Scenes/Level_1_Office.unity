@@ -11893,7 +11893,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1157755235}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -18402,7 +18402,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1157755235}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -21468,6 +21468,7 @@ MonoBehaviour:
   twoSFX: {fileID: 8300000, guid: 3e6940a0bc91db6449c0b255691b4040, type: 3}
   oneSFX: {fileID: 8300000, guid: c934b293158932f46850f9323d18d998, type: 3}
   goSFX: {fileID: 8300000, guid: 4c38e063a04de78498cc9eb6826a80b4, type: 3}
+  countdownFinished: 0
   binsMaxCapacity: 10
   timer: 120
   truckSource: {fileID: 1123941671}
@@ -23171,10 +23172,37 @@ MonoBehaviour:
   starThree: {fileID: 633308263}
   starFull: {fileID: 21300000, guid: fb7e9b6810b3f324faa28a4b6c922300, type: 3}
   starEmpty: {fileID: 21300000, guid: 9c0f0b3cfa1fad741af626c55029cc79, type: 3}
+  winScreenActive: 0
+  starOneDelay: 0
+  starTwoDelay: 0
+  starThreeDelay: 0
+  fanfareDelay: 0
+  hasStarOnePlayed: 0
+  hasStarTwoPlayed: 0
+  hasStarThreePlayed: 0
+  hasFanfarePlayed: 0
+  starOneAnimator: {fileID: 0}
+  starTwoAnimator: {fileID: 0}
+  starThreeAnimator: {fileID: 0}
   starOneThresh: 4
   starTwoThresh: 8
   starThreeThresh: 10
-  gameOverUI: {fileID: 0}
+  starsEarned: 0
+  drumRollSource: {fileID: 0}
+  drumRollSFX: {fileID: 0}
+  starOneSource: {fileID: 0}
+  starOneSFX: {fileID: 0}
+  starTwoSource: {fileID: 0}
+  starTwoSFX: {fileID: 0}
+  starThreeSource: {fileID: 0}
+  starThreeSFX: {fileID: 0}
+  oneStarFanfareSource: {fileID: 0}
+  oneStarFanfareClip: {fileID: 0}
+  twoStarFanfareSource: {fileID: 0}
+  twoStarFanfareClip: {fileID: 0}
+  threeStarFanfareSource: {fileID: 0}
+  threeStarFanfareClip: {fileID: 0}
+  gameOverUI: {fileID: 1322398002}
   pauseMenu: {fileID: 679316111}
   rubbishInteraction: {fileID: 1634594924}
   displayScoreGO: {fileID: 1820608743}
@@ -29900,7 +29928,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1157755235}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -42151,7 +42179,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1157755235}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -47324,7 +47352,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1157755235}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
