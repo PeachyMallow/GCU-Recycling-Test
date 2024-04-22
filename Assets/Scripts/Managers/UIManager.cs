@@ -219,9 +219,13 @@ public class UIManager : MonoBehaviour
         // pause screen
         if (pauseMenu != null)
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            // prevents pausing during the start of level countdown
+            if (gM.HasCountdownFinished())
             {
-                TogglePause();
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    TogglePause();
+                }
             }
         }
 
@@ -315,24 +319,24 @@ public class UIManager : MonoBehaviour
 
     }
 
-        /// <summary>
-        /// Changes 'Score Glow' dependant on if the bool passed is true or false
-        /// true - green glow (set in inspector 'correctDepositColour')
-        /// false - red glow (set in inspector 'incorrectDepositColour')
-        /// </summary>
-        /// <param name="correctDeposit"></param>
-        /// <returns></returns>
-        public IEnumerator ScoreDepositGlow(bool correctDeposit)
+    /// <summary>
+    /// Changes 'Score Glow' dependant on if the bool passed is true or false
+    /// true - green glow (set in inspector 'correctDepositColour')
+    /// false - red glow (set in inspector 'incorrectDepositColour')
+    /// </summary>
+    /// <param name="correctDeposit"></param>
+    /// <returns></returns>
+    public IEnumerator ScoreDepositGlow(bool correctDeposit)
     {
         // sets the corresponding score glow colour
         if (correctDeposit) // green
-        { 
+        {
             currentColour = correctDepositColour;
             scoreAudioSource.PlayOneShot(scoreIncreaseAudio);
         }
-        
+
         else // red
-        { 
+        {
             currentColour = incorrectDepositColour;
             scoreAudioSource.PlayOneShot(scoreDecreaseAudio);
         }

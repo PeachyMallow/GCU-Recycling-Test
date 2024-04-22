@@ -9,70 +9,9 @@ using static UnityEditor.Experimental.GraphView.Port;
 
 public class GameManager : MonoBehaviour
 {
-    #region itemSpawnVariablesDELETEATSOMEPOINT
-    //[Header("Litter Spawn\n")]
-
-    // litter's parent
-    //[Header("Drag Litter Parent GameObject here")]
-    //[SerializeField]
-    //private Transform litterParent;
-
-    // item spawn
-    //[Header("Drag litter prefabs here\nOnly items added here will spawn")]
-    //[SerializeField]
-    //private GameObject[] litter;
-
-    // time before item spawn should begin
-    //[Header("Time Before Item Spawn Should Begin")]
-    //[SerializeField]
-    //private float startDelay;
-
-    // true once the start delay has been called
-    //private bool delayOccurred;
-
-    // time between items spawning
-    //[Header("Time in seconds for litter spawning")]
-    //[SerializeField]
-    //private float litterSpawnTime;
-
-    // y position of litter to be instantiated
-    //[Header("Point on Y axis litter should spawn")]
-    //[SerializeField]
-    //private float litterPosY;
-
-    // beca note: could change these to be some type of co-ordinate?
-    //[Header("The Area Where the Litter Should Spawn")]
-    //[Header("X Min")]
-    //[SerializeField]
-    //private int xMin;
-
-    //[Header("X Max")]
-    //[SerializeField]
-    //private int xMax;
-
-    //[Header("Z Min")]
-    //[SerializeField]
-    //private int zMin;
-
-    //[Header("Z Max")]
-    //[SerializeField]
-    //private int zMax;
-
-    // temp variables
-    //[Header("For Debugging")]
-    //// position of litter to be instantiated
-    //[Header("Position for litter to spawn")]
-    //[SerializeField]
-    //private Vector3 litterPos;
-
-    // true if there is an item has been spawned
-    //private bool readyToSpawn;
-    #endregion
-
     [Header("Drag RubbishInteraction script here\n(currently on Player)")]
     [SerializeField]
     private RubbishInteraction RI;
-
 
     #region Starting Countdown
     [Header("Drag Countdown Splash here")]
@@ -102,6 +41,9 @@ public class GameManager : MonoBehaviour
     private AudioClip oneSFX;
     [SerializeField]
     private AudioClip goSFX;
+
+    [SerializeField]
+    private bool countdownFinished;
 
     #endregion
 
@@ -161,6 +103,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        countdownFinished = false;
         StartCoroutine(Countdown());
 
         // timer
@@ -261,6 +204,23 @@ public class GameManager : MonoBehaviour
         countdownSplashGO.SetActive(false);
         Time.timeScale = 1f;
         levelMusic.Play();
+        countdownFinished = true;
+    }
+
+    /// <summary>
+    /// Public bool to access if the start of level countdown has finished
+    /// true - countdown has finished
+    /// false - countdown has not finished
+    /// </summary>
+    /// <returns></returns>
+    public bool HasCountdownFinished()
+    {
+        if (countdownFinished)
+        {
+            return true;
+        }
+
+        else { return false; }
     }
 
     // accesses value set for binsMaxCapacity 
