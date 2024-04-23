@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UI.Image;
+//using static UnityEngine.UI.Image;
 using TMPro;
-using static UnityEditor.Experimental.GraphView.Port;
+//using static UnityEditor.Experimental.GraphView.Port;
 //using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -122,27 +122,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
-        #region DELETE THESE ARE CHEAT CODES FOR TESTING UI
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-            {
-            RI.recycledScore = 1000;
-            timer = 5f;
-            }
-
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            RI.recycledScore = 4;
-            timer = 5f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            RI.recycledScore = 8;
-            timer = 5f;
-        }
-        #endregion
-
         #region timerUpdate
         if (timerActive)
         {

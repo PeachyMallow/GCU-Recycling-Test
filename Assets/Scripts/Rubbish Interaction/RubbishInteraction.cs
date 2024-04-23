@@ -1,21 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+//using System;
+//using System.Collections;
+//using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.ProBuilder.MeshOperations;
-using Unity.Burst.CompilerServices;
+//using UnityEngine.SocialPlatforms.Impl;
+//using UnityEngine.UI;
+//using UnityEngine.SceneManagement;
+//using UnityEngine.ProBuilder.MeshOperations;
+//using Unity.Burst.CompilerServices;
 
 public class RubbishInteraction : MonoBehaviour
 {
-    public int recycledScore; // only public until UI has been finalised
+    private int recycledScore;
 
+    //[SerializeField]
+    //private GameObject bin;
     public Animator paperBinAnimator;
-    public Animator plasticBinAnimator;
-    public Animator generalBinAnimator;
-    public Animator foodwasteBinAnimator;
+    //public Animator plasticBinAnimator;
+    //public Animator generalBinAnimator;
+    //public Animator foodwasteBinAnimator;
 
     [Header("SFX Here")]
     public AudioSource pickupSource;
@@ -49,7 +51,26 @@ public class RubbishInteraction : MonoBehaviour
         {
             if (hit.collider.CompareTag("Bin") && Inventory.instance.InventorySize() > 0)
             {
+                if (hit.collider.transform.gameObject.GetComponent<Animator>() != null)
+                {
+                    Debug.Log(" bin has animator");
+                    GameObject bin = hit.collider.transform.gameObject;
+
+                    if (bin != null)
+                    {
+                        Debug.Log(" bin is not null");
+                        Animator binAnim = bin.GetComponent<Animator>();
+
+                        binAnim.SetBool("binShakingBool", true);
+                    }
+                }
+
+                //bin = hit.collider.transform.gameObject;
+
+                //BinAnimation(bin, true);
+
                 depositIcon.SetActive(true);
+                //paperBinAnimator.SetBool("binShakingBool", true);
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -61,6 +82,13 @@ public class RubbishInteraction : MonoBehaviour
             else
             {
                 depositIcon.SetActive(false);
+                //BinAnimation(bin, false);
+
+                //if (hit.collider.transform.gameObject.GetComponent<Animator>() != null)
+                //{
+                //    hit.collider.transform.gameObject.GetComponent<Animator>().SetBool("binShakingBool", false);
+                //}
+                //paperBinAnimator.SetBool("binShakingBool", false);
             }
 
             //Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);    <-- for debugging raycast
@@ -69,6 +97,15 @@ public class RubbishInteraction : MonoBehaviour
         else
         {
             depositIcon.SetActive(false);
+
+            //if (hit != null && hit.collider.transform.gameObject.GetComponent<Animator>() != null)
+            //{
+            //    hit.collider.transform.gameObject.GetComponent<Animator>().SetBool("binShakingBool", false);
+            //}
+
+            //BinAnimation(bin, false);
+            //hit.collider.transform.gameObject.GetComponent<Animator>().SetBool("binShakingBool", false);
+            //paperBinAnimator.SetBool("binShakingBool", false);
             //Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);    <-- for debugging raycast
         }
     }
@@ -134,5 +171,23 @@ public class RubbishInteraction : MonoBehaviour
     public void ResetScore()
     {
         recycledScore = 1;
+    }
+
+    // hit.collider.transform.gameObject
+    private void BinAnimation(GameObject binCollidedWith, bool binAnimActive)
+    {
+        Debug.Log("In Bin Anim");
+
+        if (binCollidedWith != null)
+        {
+            Debug.Log("BinCollidedWith is not null");
+
+            if (binCollidedWith.GetComponent<Animator>() != null)
+            {
+                Debug.Log("BinCollidedWith has an animator " + binAnimActive);
+                binCollidedWith.GetComponent<Animator>().SetBool("binShakingBool", binAnimActive);
+                return;
+            }
+        }
     }
 }

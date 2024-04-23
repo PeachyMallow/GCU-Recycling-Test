@@ -27932,11 +27932,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d265a73a2c2cdab488663cf13654b597, type: 3}
   m_PrefabInstance: {fileID: 1281799044}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &691014618 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7971349864280435859, guid: 985d9cd92a9c9ed49b5e9cb026018764, type: 3}
-  m_PrefabInstance: {fileID: 480776614}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &694484487 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed091a86790701f43bd4a49c4271243e, type: 3}
@@ -39996,27 +39991,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921ad6740b4427146b20c975eab0c713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RubbishScore: {fileID: 0}
-  score: {fileID: 0}
-  recycledScore: 0
-  currentRecycledScore: 0
-  displayScore: 0
-  radNum: 0
-  collision: {x: 0, y: 0, z: 0}
-  paperBinAnimator: {fileID: 691014618}
-  plasticBinAnimator: {fileID: 691014618}
-  generalBinAnimator: {fileID: 691014618}
-  foodwasteBinAnimator: {fileID: 691014618}
-  collidingBin: 0
-  binShakeBool: 0
+  paperBinAnimator: {fileID: 480776617}
   pickupSource: {fileID: 278036779}
   pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
-  lastHit: {fileID: 0}
-  Autopickup: 1
   depositIcon: {fileID: 813014257}
   uiManager: {fileID: 1172020880}
-  Player: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!208 &1019891392
 NavMeshObstacle:
   m_ObjectHideFlags: 0
