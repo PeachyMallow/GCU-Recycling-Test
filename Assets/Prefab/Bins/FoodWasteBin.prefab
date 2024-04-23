@@ -181,13 +181,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5e2ea6dab3b9a24bb0218af89a2bf6c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8408750079379309099}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5e2ea6dab3b9a24bb0218af89a2bf6c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7769040284257081737}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5e2ea6dab3b9a24bb0218af89a2bf6c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8177772970241733815}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5e2ea6dab3b9a24bb0218af89a2bf6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7807380973975795847}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f5e2ea6dab3b9a24bb0218af89a2bf6c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6248643908474380372}
@@ -202,27 +202,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f5e2ea6dab3b9a24bb0218af89a2bf6c, type: 3}
   m_PrefabInstance: {fileID: 6962478375588040261}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &8408750079379309099
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7808917262526493460}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 12.239508, y: 6.4172335, z: 7.366713}
-  m_Center: {x: 3.4224455, y: 2.7086167, z: 0.12168694}
 --- !u!114 &7769040284257081737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +316,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &7807380973975795847
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7808917262526493460}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.22
+  m_Height: 1.7563751
+  m_Direction: 1
+  m_Center: {x: 1.67, y: 2.71, z: 0.25}
 --- !u!95 &6248643908474380372
 Animator:
   serializedVersion: 5
@@ -433,41 +435,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5697188996073927355}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
 --- !u!4 &7058457396242176134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
   m_PrefabInstance: {fileID: 7385363424450133869}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7692004361056944700 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
-  m_PrefabInstance: {fileID: 7385363424450133869}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &5697188996073927355
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7692004361056944700}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.87818736
-  m_Height: 1.7563751
-  m_Direction: 1
-  m_Center: {x: -0.0000000068072272, y: 0.000000020421693, z: -0.11420633}

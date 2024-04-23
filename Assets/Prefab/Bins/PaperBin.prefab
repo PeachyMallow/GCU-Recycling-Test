@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7553704399419731774}
-  - component: {fileID: 1009103535590208292}
   - component: {fileID: 9069456510998143039}
   - component: {fileID: -2682210903649518863}
   - component: {fileID: 7344244507205060204}
+  - component: {fileID: 2691369426648635220}
   m_Layer: 0
   m_Name: PaperBin
   m_TagString: Bin
@@ -36,27 +36,6 @@ Transform:
   - {fileID: 7921078911482905413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1009103535590208292
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4305328822657105427}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 12.12, y: 20.374878, z: 11.64}
-  m_Center: {x: -0.000016896889, y: -2.637434, z: 3.0317776e-14}
 --- !u!114 &9069456510998143039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +171,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &2691369426648635220
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305328822657105427}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.22
+  m_Height: 1.7563751
+  m_Direction: 1
+  m_Center: {x: 0.12, y: -0.28, z: -0.46}
 --- !u!1 &6229249480045137598
 GameObject:
   m_ObjectHideFlags: 0
