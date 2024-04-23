@@ -260,7 +260,7 @@ public class UIManager : MonoBehaviour
         }
 
         //Score??
-        displayScoreVar = (rubbishInteraction.recycledScore * 25) - 25;
+        displayScoreVar = (rubbishInteraction.GetScore() * 25) - 25;
         displayScoreText = displayScoreVar.ToString();
         displayScoreGO.text = "Score: " + displayScoreText;
         displayFinalScore.text = "Final Score: " + displayScoreText;
@@ -523,7 +523,7 @@ public class UIManager : MonoBehaviour
         if (star != null)
         {
             Animator starAnimator = star.GetComponent<Animator>();
-            if (starAnimator != null && rubbishInteraction.recycledScore >= GetStarThreshold(star))
+            if (starAnimator != null && rubbishInteraction.GetScore() >= GetStarThreshold(star))
             {
                 Debug.Log("Triggering Animation for " + star.name + " with trigger: " + triggerName);
                 starAnimator.SetTrigger(triggerName);
