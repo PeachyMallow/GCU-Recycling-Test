@@ -11130,6 +11130,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Bin
       objectReference: {fileID: 0}
+    - target: {fileID: 5697188996073927355, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7427852286753171886, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -11215,6 +11219,10 @@ PrefabInstance:
       value: 18.81229
       objectReference: {fileID: 0}
     - target: {fileID: 8408750079379309099, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408750079379309099, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
       propertyPath: m_Center.x
       value: 6.7088356
       objectReference: {fileID: 0}
@@ -11222,13 +11230,18 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.121686935
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5697188996073927355, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
+    - {fileID: 8408750079379309099, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7427852286753171886, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1013810185}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7808917262526493460, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1789861138}
   m_SourcePrefab: {fileID: 100100000, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
 --- !u!95 &549967597 stripped
 Animator:
@@ -36748,8 +36761,10 @@ MonoBehaviour:
   Autopickup: 1
   depositIcon: {fileID: 2022954945}
   uiManager: {fileID: 1157755236}
+  keyPressed: 0
   Player: {fileID: 0}
   animator: {fileID: 1634594917}
+  hitObject: {fileID: 0}
 --- !u!208 &1634594925
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -39971,6 +39986,34 @@ MonoBehaviour:
   inventorySize: 8
   rInteraction: {fileID: 1634594924}
   InventoryFullText: {fileID: 1826104088}
+--- !u!1 &1789861134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7808917262526493460, guid: 64a43d181ab294545b8ce8a4084fc70c, type: 3}
+  m_PrefabInstance: {fileID: 536559065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1789861138
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789861134}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.22
+  m_Height: 1.7563751
+  m_Direction: 1
+  m_Center: {x: 1.67, y: 2.71, z: 0.25}
 --- !u!1 &1794293627
 GameObject:
   m_ObjectHideFlags: 0
