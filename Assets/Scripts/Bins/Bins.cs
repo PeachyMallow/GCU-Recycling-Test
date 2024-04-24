@@ -14,24 +14,13 @@ public class Bins : MonoBehaviour
     [SerializeField]
     private AudioClip disposeClip;
 
-    [Header("All of these variables are for Debugging purposes only")]
-    [Header("Amount this bin is holding")]
-    [SerializeField]
     private int binCurrentlyHolding;
-
-    [SerializeField]
     private bool isBinFull;
-
-    [SerializeField]
     private int maxCapacity;
 
+    // to access RubbishInteraction
+    private GameObject player;
     private RubbishInteraction rubbishInteraction;
-
-   // [SerializeField]
-   // private Animator binAnimator;
-   // private string binShake = "BinShake";
-   // private float shakeDuration; 
-
 
     private void Start()
     {
@@ -51,6 +40,28 @@ public class Bins : MonoBehaviour
         }
 
         else { Debug.Log("Bins.cs can't find the GameManager script"); }
+
+        // to stop bin animation
+        player = GameObject.FindWithTag("Player");
+
+        if (player != null)
+        {
+            rubbishInteraction = player.GetComponent<RubbishInteraction>();
+        }
+    }
+
+    private void Update()
+    {
+        if (rubbishInteraction.CurrentBin() != null)
+        {
+            if (rubbishInteraction.CurrentBin() == gameObject)
+            {
+                if (gameObject.GetComponentInChildren<Animator>().GetBool("binShakingBool"))
+                {
+                    gameObject.GetComponentInChildren<Animator>().SetBool("binShakingBool", false);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -60,68 +71,9 @@ public class Bins : MonoBehaviour
     {
         if (!isBinFull)
         {
-            binCurrentlyHolding++ /*+= rubbishHeld*/;
+            binCurrentlyHolding++;
 
-            //play dispose audio
-
-            
             disposeSource.PlayOneShot(disposeClip);
-           //binAnimator.Play(binShake, 0, 0.0f);
-
-            //Inventory.instance.InventorySize();
-            //return rubbishHeld;
         }
-    }
-
-        //else
-        //{
-        //    return rubbishHeld;
-        //}
-
-        //return 0;
-
-    ////old code - don't delete
-    ///// <summary>
-    ///// Adds the deposited litter to the binsCapacity
-    ///// </summary>
-    //public int DepositingLitter(int rubbishHeld)
-    //{
-    //    if (rubbishHeld > 0)
-    //    {
-    //        if (!isBinFull)
-    //        {
-    //            binCurrentlyHolding++ /*+= rubbishHeld*/;
-    //            rubbishHeld--;
-    //            return rubbishHeld;
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        return rubbishHeld;
-    //    }
-
-    //    return 0;
-    //}
-
-    /// <summary>
-    /// True if this bin is full
-    /// </summary>
-    /// <returns></returns>
-    public bool IsBinFull()
-    {
-        if (binCurrentlyHolding >= maxCapacity)
-        {
-            isBinFull = true;
-            binFull.SetActive(true);
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
-
-        // return isBinFull;
     }
 }
