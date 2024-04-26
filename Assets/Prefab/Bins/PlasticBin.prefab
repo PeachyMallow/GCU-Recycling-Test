@@ -25,12 +25,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5424530145644196765}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000006873331, y: -0.99144495, z: -0.1305259, w: 0.00000056561265}
-  m_LocalPosition: {x: 0.038, y: 0.084, z: 0.732}
-  m_LocalScale: {x: 0.13363793, y: 0.13363804, z: 0.13363804}
+  m_LocalRotation: {x: -0.00000041723246, y: -0.79335314, z: 0.6087617, w: 0.00000032782552}
+  m_LocalPosition: {x: 0.037, y: 0.188, z: -0.056}
+  m_LocalScale: {x: 0.13363798, y: 0.13363802, z: 0.13363807}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2388893080369268291}
+  m_Father: {fileID: 4079629735899262523}
   m_LocalEulerAnglesHint: {x: -15, y: 180, z: 0}
 --- !u!212 &2198562194636279100
 SpriteRenderer:
@@ -166,7 +166,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -5107054126005254486, guid: 524655674bd4e8d43819d07c00cf1c82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8597197986949974041}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 524655674bd4e8d43819d07c00cf1c82, type: 3}
       insertIndex: -1
@@ -203,6 +206,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &4079629735899262523 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5107054126005254486, guid: 524655674bd4e8d43819d07c00cf1c82, type: 3}
+  m_PrefabInstance: {fileID: 125494915401967761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &854021470175182599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -376,9 +384,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3484863927721323962}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8597197986949974041}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 29ae59b801ab16443adb7a15bc919f3f, type: 3}
       insertIndex: -1
@@ -438,9 +443,6 @@ MonoBehaviour:
   binFull: {fileID: 4257988434176947968}
   disposeSource: {fileID: -1300862296398009221}
   disposeClip: {fileID: 8300000, guid: b27e8a470aa811c479ecb4f99e946f63, type: 3}
-  binCurrentlyHolding: 0
-  isBinFull: 0
-  maxCapacity: 10
 --- !u!82 &-1300862296398009221
 AudioSource:
   m_ObjectHideFlags: 0
