@@ -63,52 +63,11 @@ public class RubbishInteraction : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Inventory.instance.Remove(uiManager.GetInventoryPos(), hit.transform.gameObject);
-                    return;
-                }
-            }
-
-            else
-            {
-                depositIcon.SetActive(false);
-            }
-
-            //Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);    <-- for debugging raycast
-        }
-
-        else
-        {
-            depositIcon.SetActive(false);
-            //Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);    <-- for debugging raycast
-        }
-    }
-
-    // rubbish pickup
-    private void OnTriggerEnter(Collider Rubbish)
-    {
-        if (Rubbish.tag == "NonRecyclable" || Rubbish.tag == "Paper" || Rubbish.tag == "LiquidInside" || Rubbish.tag == "FoodWaste" || Rubbish.tag == "Plastic")
-        {
-            RubbishPickup(Rubbish.gameObject);
-        }
-    }
-
-    private void OnTriggerStay(Collider RubbishBin)
-    {
-        if (RubbishBin.tag == "Bin")
-        {
-            var bin = RubbishBin.GetComponent<Bins>();
-            // is the bin is full?
-            if (!bin.IsBinFull())
-            {
-                // keypress 'E' is controlled in Update()
-                if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
-                {
-
                     string binType;
                     string recyclingType;
 
                     // Deposit rubbish into the bin
-                    Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject, out binType, out recyclingType);
+                    Inventory.instance.Remove(uiManager.GetInventoryPos(), hit.transform.gameObject, out binType, out recyclingType);
 
                     bool isCorrectDeposit = (binType == recyclingType);// Check if the deposit is correct
 
@@ -148,25 +107,111 @@ public class RubbishInteraction : MonoBehaviour
                                 break;
                         }
                     }
-                }
 
-                else if (keyPressed && numRubbish <= 0)
-                {
-                    Console.WriteLine("No rubbish to deposit");
+                    //Inventory.instance.Remove(uiManager.GetInventoryPos(), hit.transform.gameObject);
+                    return;
                 }
             }
 
-            canDeposit = false;
+            else
+            {
+                depositIcon.SetActive(false);
+            }
+
+            //Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);    <-- for debugging raycast
         }
 
-        if (Autopickup == false)
+        else
         {
-            if (RubbishBin.tag == "NonRecyclable" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" || RubbishBin.tag == "Plastic" && Input.GetKey(KeyCode.E))
-            {
-                RubbishPickup(RubbishBin.gameObject);
-            }
+            depositIcon.SetActive(false);
+            //Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);    <-- for debugging raycast
         }
     }
+
+    // rubbish pickup
+    private void OnTriggerEnter(Collider Rubbish)
+    {
+        if (Rubbish.tag == "NonRecyclable" || Rubbish.tag == "Paper" || Rubbish.tag == "LiquidInside" || Rubbish.tag == "FoodWaste" || Rubbish.tag == "Plastic")
+        {
+            RubbishPickup(Rubbish.gameObject);
+        }
+    }
+
+    //private void OnTriggerStay(Collider RubbishBin)
+    //{
+        //if (RubbishBin.tag == "Bin")
+        //{
+        //    var bin = RubbishBin.GetComponent<Bins>();
+        //    // is the bin is full?
+        //    if (!bin.IsBinFull())
+        //    {
+                //// keypress 'E' is controlled in Update()
+                //if (keyPressed && Inventory.instance.InventorySize() > 0 && canDeposit)
+                //{
+
+                //    string binType;
+                //    string recyclingType;
+
+                //    // Deposit rubbish into the bin
+                //    Inventory.instance.Remove(uiManager.GetInventoryPos(), RubbishBin.gameObject, out binType, out recyclingType);
+
+                //    bool isCorrectDeposit = (binType == recyclingType);// Check if the deposit is correct
+
+                //    if (isCorrectDeposit)
+                //    {
+                //        switch (binType)
+                //        {
+                //            case "Paper":
+                //                FindObjectOfType<UGS_Analytics>().Correct_Paper_Bin_Deposit(recyclingType);
+                //                break;
+                //            case "FoodWaste":
+                //                FindObjectOfType<UGS_Analytics>().Correct_Food_Bin_Deposit(recyclingType);
+                //                break;
+                //            case "NonRecyclable":
+                //                FindObjectOfType<UGS_Analytics>().Correct_General_Waste_Bin_Deposit(recyclingType);
+                //                break;
+                //            case "Plastic":
+                //                FindObjectOfType<UGS_Analytics>().Correct_Plastic_Bin_Deposit(recyclingType);
+                //                break;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        switch (binType)
+                //        {
+                //            case "Paper":
+                //                FindObjectOfType<UGS_Analytics>().Incorrect_Paper_Bin_Deposit(recyclingType);
+                //                break;
+                //            case "FoodWaste":
+                //                FindObjectOfType<UGS_Analytics>().Incorrect_Food_Bin_Deposit(recyclingType);
+                //                break;
+                //            case "NonRecyclable":
+                //                FindObjectOfType<UGS_Analytics>().Incorrect_General_Waste_Bin_Deposit(recyclingType);
+                //                break;
+                //            case "Plastic":
+                //                FindObjectOfType<UGS_Analytics>().Incorrect_Plastic_Bin_Deposit(recyclingType);
+                //                break;
+                //        }
+                //    }
+        //        }
+
+        //        else if (keyPressed && numRubbish <= 0)
+        //        {
+        //            Console.WriteLine("No rubbish to deposit");
+        //        }
+        //    }
+
+        //    canDeposit = false;
+        //}
+
+    //    if (Autopickup == false)
+    //    {
+    //        if (RubbishBin.tag == "NonRecyclable" || RubbishBin.tag == "Paper" || RubbishBin.tag == "LiquidInside" || RubbishBin.tag == "FoodWaste" || RubbishBin.tag == "Plastic" && Input.GetKey(KeyCode.E))
+    //        {
+    //            RubbishPickup(RubbishBin.gameObject);
+    //        }
+    //    }
+    //}
 
     /// <summary>
     /// If player's inventory is not full, then player will pick up rubbish
