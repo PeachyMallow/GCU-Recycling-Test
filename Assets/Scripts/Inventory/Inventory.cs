@@ -63,19 +63,22 @@ public class Inventory : MonoBehaviour
 
     // MAYBE FOR ANALYTICS HERE
     // where the rubbish & bin interaction happens 
-    public void Remove(int arrayPos, GameObject bin)
+    public void Remove(int arrayPos, GameObject bin, out string binType, out string recyclingType)
     {
         // removing 'bin' from the end of the bin currently being interacted with's name
-        string binNameStart = bin.name.Substring(0, bin.name.Length - 3);
+        binType = bin.name.Substring(0, bin.name.Length - 3);
+        recyclingType = null;
 
         if (arrayPos <= items.Count - 1) // prevents empty slots from being selected
         {
-            if (items[arrayPos].recyclingType.StartsWith(binNameStart))
+            if (items[arrayPos].recyclingType.StartsWith(binType))
             {
                 rInteraction.Score(true);
             }
 
             else { rInteraction.Score(false); }
+
+            recyclingType = items[arrayPos].recyclingType;
 
             items.Remove(items[arrayPos]);
 
@@ -87,6 +90,7 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
         }
     }
+
 
     // need to change this 
     /// <summary>

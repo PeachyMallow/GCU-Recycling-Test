@@ -11109,6 +11109,7 @@ GameObject:
   - component: {fileID: 246084079}
   - component: {fileID: 246084078}
   - component: {fileID: 246084081}
+  - component: {fileID: 246084082}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11644,6 +11645,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &246084082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246084074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defc458ab1137d84aa5d0b8962e52584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &248549676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed091a86790701f43bd4a49c4271243e, type: 3}
@@ -39908,14 +39921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921ad6740b4427146b20c975eab0c713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paperBinAnimator: {fileID: 0}
   pickupSource: {fileID: 278036779}
   pickupClip: {fileID: 8300000, guid: 46bce71ebf2c8cf4f88148fa50528e62, type: 3}
   depositIcon: {fileID: 813014257}
   uiManager: {fileID: 1172020880}
-  currentBin: {fileID: 0}
-  childBinAnim: {fileID: 0}
-  lastCollidedBin: {fileID: 0}
 --- !u!208 &1019891392
 NavMeshObstacle:
   m_ObjectHideFlags: 0
