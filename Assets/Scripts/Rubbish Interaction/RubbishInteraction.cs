@@ -1,7 +1,7 @@
 using System;
 //using System.Collections;
 //using System.Collections.Generic;
-using System;
+//using System;
 using Unity.VisualScripting;
 using UnityEngine;
 //using UnityEngine.SocialPlatforms.Impl;
@@ -51,11 +51,19 @@ public class RubbishInteraction : MonoBehaviour
                 if (hit.collider.transform.gameObject.GetComponentInChildren<Animator>() != null)
                 {
                     currentBin = hit.collider.transform.gameObject;
+                    //Debug.Log("animator on child");
 
                     if (currentBin != null)
                     {
+                        //Debug.Log("current bin is not null");
                         childBinAnim = currentBin.GetComponentInChildren<Animator>();
-                        childBinAnim.SetBool("binShakingBool", true);
+
+                        if (!childBinAnim.GetBool("binShakingBool"))
+                        {
+                            childBinAnim.SetBool("binShakingBool", true);
+                            Debug.Log("childBinAnim: " + childBinAnim.name);
+                            //Debug.Log(childBinAnim.GetBool("binShakingBool"));
+                        }
                     }
                 }
 
