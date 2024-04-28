@@ -62,7 +62,6 @@ public class Bins : MonoBehaviour
                 {
                     GetComponent<Animator>().SetBool("binShakingBool", false);
                     rubbishInteraction.SetCurrentBinNull();
-                    Debug.Log(gameObject.name + " has been set to null");
                 }
             }
         }
