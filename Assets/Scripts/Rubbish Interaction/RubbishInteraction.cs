@@ -27,7 +27,9 @@ public class RubbishInteraction : MonoBehaviour
     private UIManager uiManager;
 
     // for bin animation
+    [SerializeField]
     private GameObject currentBin;
+
     private Animator childBinAnim;
 
     void Start()
@@ -45,29 +47,33 @@ public class RubbishInteraction : MonoBehaviour
 
         if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, raycastLength))
         {
+            // player is at bin & has at least one item in their inventory
             if (hit.collider.CompareTag("Bin") && Inventory.instance.InventorySize() > 0)
             {
+                // eggman
+
+                // if bin player is colliding with has an animator
                 // bin animation
-                if (hit.collider.transform.gameObject.GetComponentInChildren<Animator>() != null)
+                if (hit.collider.transform.gameObject.GetComponent<Animator>() != null)
                 {
-                    currentBin = hit.collider.transform.gameObject;
-                    //Debug.Log("animator on child");
+                    currentBin = hit.collider.transform.gameObject; // move this to eggman?
 
                     if (currentBin != null)
                     {
-                        //Debug.Log("current bin is not null");
-                        childBinAnim = currentBin.GetComponentInChildren<Animator>();
+                        childBinAnim = currentBin.GetComponent<Animator>();
 
-                        if (!childBinAnim.GetBool("binShakingBool"))
+                        //Debug.Log("First Debug: " + childBinAnim.GetBool("binShakingBool"));
+
+                        if (childBinAnim.GetBool("binShakingBool") == false) // being run once @ 11:39AM
                         {
                             childBinAnim.SetBool("binShakingBool", true);
-                            Debug.Log("childBinAnim: " + childBinAnim.name);
-                            //Debug.Log(childBinAnim.GetBool("binShakingBool"));
+                            //Debug.Log("childBinAnim: " + childBinAnim.name);
+                            Debug.Log("Second Debug: " + childBinAnim.GetBool("binShakingBool"));
                         }
                     }
                 }
 
-                depositIcon.SetActive(true);
+                depositIcon.SetActive(true); // move this to eggman?
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -116,22 +122,40 @@ public class RubbishInteraction : MonoBehaviour
                         }
                     }
 
-                    //Inventory.instance.Remove(uiManager.GetInventoryPos(), hit.transform.gameObject);
                     return;
                 }
             }
-
+            
+            // still colliding with something but
+            // not at bin, or nothing in inventory
             else
             {
                 depositIcon.SetActive(false);
+                currentBin = null;
             }
 
             //Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);    <-- for debugging raycast
         }
 
+        // if the raycast is not hitting anything
         else
         {
-            depositIcon.SetActive(false);
+            depositIcon.SetActive(false); // move this to below if?
+            
+
+            //if (currentBin != null)
+            //{
+
+            //}
+
+            currentBin = null;
+
+            //if (!hit.collider.CompareTag("Bin"))
+            //{
+            //    Debug.Log("Raycast not hitting bin");
+            //}
+
+            //Debug.Log("Raycast not hitting anything"); // will not be called if raycast is hitting anything near bin as well
             //Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);    <-- for debugging raycast
         }
     }
@@ -279,7 +303,7 @@ public class RubbishInteraction : MonoBehaviour
     /// Returns bin the player's currently at to access from Bins.cs
     /// </summary>
     /// <returns></returns>
-    public GameObject CurrentBin()
+    public GameObject GetCurrentBin()
     {
         if (currentBin != null)
         { 
@@ -287,5 +311,13 @@ public class RubbishInteraction : MonoBehaviour
         }
 
         else { return null; }
+    }
+    
+    /// <summary>
+    /// Sets the current bin to null after the bin animation has been set to false in Bins.cs
+    /// </summary>
+    public void SetCurrentBinNull()
+    {
+        currentBin = null;
     }
 }

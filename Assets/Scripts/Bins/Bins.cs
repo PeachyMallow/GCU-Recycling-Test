@@ -52,13 +52,17 @@ public class Bins : MonoBehaviour
 
     private void Update()
     {
-        if (rubbishInteraction.CurrentBin() != null)
+        // put if RI is null
+        // if player is at any bin - COULD REMOVE?
+        if (rubbishInteraction != null)
         {
-            if (rubbishInteraction.CurrentBin() == gameObject)
+            if (rubbishInteraction.GetCurrentBin() != gameObject)
             {
-                if (gameObject.GetComponentInChildren<Animator>().GetBool("binShakingBool"))
+                if (GetComponent<Animator>().GetBool("binShakingBool"))
                 {
-                    gameObject.GetComponentInChildren<Animator>().SetBool("binShakingBool", false);
+                    GetComponent<Animator>().SetBool("binShakingBool", false);
+                    rubbishInteraction.SetCurrentBinNull();
+                    Debug.Log(gameObject.name + " has been set to null");
                 }
             }
         }
