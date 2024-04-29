@@ -293,19 +293,19 @@ public class UIManager : MonoBehaviour
 
             if (starOneDelay <= 0 && !hasStarOnePlayed)
             {
-                Debug.Log("Playing Star One Animation");
+
                 PlayStarAnimation(starOne, "PlayStarOne", ref hasStarOnePlayed, starOneSource, starOneSFX);
             }
 
             if (starTwoDelay <= 0 && !hasStarTwoPlayed)
             {
-                Debug.Log("Playing Star Two Animation");
+
                 PlayStarAnimation(starTwo, "PlayStarTwo", ref hasStarTwoPlayed, starTwoSource, starTwoSFX);
             }
 
             if (starThreeDelay <= 0 && !hasStarThreePlayed)
             {
-                Debug.Log("Playing Star Three Animation");
+
                 PlayStarAnimation(starThree, "PlayStarThree", ref hasStarThreePlayed, starThreeSource, starThreeSFX);
             }
 
@@ -525,7 +525,6 @@ public class UIManager : MonoBehaviour
             Animator starAnimator = star.GetComponent<Animator>();
             if (starAnimator != null && rubbishInteraction.GetScore() >= GetStarThreshold(star))
             {
-                Debug.Log("Triggering Animation for " + star.name + " with trigger: " + triggerName);
                 starAnimator.SetTrigger(triggerName);
                 hasPlayed = true;
                 starSource.PlayOneShot(starClip);
