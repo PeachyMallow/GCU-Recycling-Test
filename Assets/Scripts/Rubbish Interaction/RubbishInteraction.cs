@@ -1,14 +1,6 @@
 using System;
-//using System.Collections;
-//using System.Collections.Generic;
-//using System;
-using Unity.VisualScripting;
+
 using UnityEngine;
-//using UnityEngine.SocialPlatforms.Impl;
-//using UnityEngine.UI;
-//using UnityEngine.SceneManagement;
-//using UnityEngine.ProBuilder.MeshOperations;
-//using Unity.Burst.CompilerServices;
 
 public class RubbishInteraction : MonoBehaviour
 {
@@ -50,26 +42,24 @@ public class RubbishInteraction : MonoBehaviour
             // player is at bin & has at least one item in their inventory
             if (hit.collider.CompareTag("Bin") && Inventory.instance.InventorySize() > 0)
             {
-                // eggman
-
                 // if bin player is colliding with has an animator
                 // bin animation
                 if (hit.collider.transform.gameObject.GetComponent<Animator>() != null)
                 {
-                    currentBin = hit.collider.transform.gameObject; // move this to eggman?
+                    currentBin = hit.collider.transform.gameObject;
 
                     if (currentBin != null)
                     {
                         childBinAnim = currentBin.GetComponent<Animator>();
 
-                        if (childBinAnim.GetBool("binShakingBool") == false) // being run once @ 11:39AM
+                        if (childBinAnim.GetBool("binShakingBool") == false)
                         {
                             childBinAnim.SetBool("binShakingBool", true);
                         }
                     }
                 }
 
-                depositIcon.SetActive(true); // move this to eggman?
+                depositIcon.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -129,17 +119,13 @@ public class RubbishInteraction : MonoBehaviour
                 depositIcon.SetActive(false);
                 currentBin = null;
             }
-
-            //Debug.DrawRay(raycastOrigin, raycastDirection * hit.distance, Color.green);    <-- for debugging raycast
         }
 
         // if the raycast is not hitting anything
         else
         {
-            depositIcon.SetActive(false); // move this to below if?
+            depositIcon.SetActive(false);
             currentBin = null;
-
-            //Debug.DrawRay(raycastOrigin, raycastDirection * raycastLength, Color.red);    <-- for debugging raycast
         }
     }
 

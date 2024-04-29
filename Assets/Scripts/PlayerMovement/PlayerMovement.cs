@@ -7,14 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
 
-    //// covers both WASD and arrow key input
-    //private float hInput;
-    //private float vInput;
-    // true when player is moving
-    //private bool isMoving;
-
-    // not a temp variable in a method as it needs a wider scope of access
-
     private Vector3 moveDir;
 
     private float targetAngle;
@@ -24,8 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float rotationSmoothing;
 
-    // revisit this and why we need ref
-    //[SerializeField]
     private float turnSmoothVel;
 
     /// <summary>
@@ -45,10 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
-    //private bool isMoving;
-    //public bool horizontal;
-    //public bool vertical;
-
 
     private void Start()
     {
@@ -59,41 +45,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         moveDir = Vector3.ClampMagnitude(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")), 1);
-      
-        #region commentedOut
-        //if (uiManager != null)
-        //{
-        //    if (!uiManager.InspectionActive())
-        //    {
-        // gets the values from arrows or WASD input
-        //hInput = Input.GetAxis("Horizontal");
-        //vInput = Input.GetAxis("Vertical");
-
-        //Debug.Log("hInput: " + hInput);
-        //Debug.Log("vInput: " + vInput);
-
-        //if (Mathf.Abs(hInput) == 1 || Mathf.Abs(vInput) == 1)
-        //{
-        //    isMoving = true;
-        //}
-
-        //else { isMoving = false; }
-
-        //// makes the player come to a halt quicker
-        //if (isMoving)
-        //{
-        //    if (Mathf.Abs(hInput) < 0.5f)
-        //    {
-        //        hInput = 0.0f;
-        //    }
-
-        //    if (Mathf.Abs(vInput) < 0.5f)
-        //    {
-        //        vInput = 0.0f;
-        //    }
-        //}
-
-        #endregion
 
         // idle anim
         if (moveDir == Vector3.zero)
@@ -110,15 +61,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // movement via rb velocity
-        //rb.velocity = moveDir * maxSpeed;
-
-        //movement via MovePosition()
-        //rb.MovePosition(transform.position + (moveDir * maxSpeed * Time.deltaTime));
-
         rb.AddForce(moveDir * maxSpeed * Time.deltaTime, ForceMode.VelocityChange);
 
-        // beca note: need to revisit this to understand it better
         if (moveDir.magnitude >= 0.1f) // player is moving
         {
             targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;

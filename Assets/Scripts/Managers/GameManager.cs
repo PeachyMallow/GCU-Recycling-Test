@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using static UnityEngine.UI.Image;
-using TMPro;
-//using static UnityEditor.Experimental.GraphView.Port;
-//using UnityEngine.UIElements;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -237,8 +234,6 @@ public class GameManager : MonoBehaviour
                 levelMusic.pitch = 1.56f;
                 thresh3 = true;
                 break;
-
-                // default?
         }
     }
 

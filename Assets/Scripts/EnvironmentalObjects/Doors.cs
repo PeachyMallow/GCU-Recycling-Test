@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    //[SerializeField]
     private Rigidbody rb;
 
     // starting Y Rotation of Door
@@ -20,8 +19,6 @@ public class Doors : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
 
-    //[Header("How much weight the door should have when moving")]
-    //[SerializeField]
     private float angularDragValue;
 
     private void Start()
